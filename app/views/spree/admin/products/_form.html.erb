@@ -206,6 +206,7 @@
           <%= f.field_container :spree_user_id do %>
             <%= f.label :spree_user_id, "Vendor" %>
             <%= f.collection_select(:spree_user_id, Spree::User.select {|u| u.has_spree_role?(:vendor)}, :id, :email, { include_blank: t('spree.match_choices.none') }, { class: 'custom-select' , required: true}) %>
+            <%= f.check_box :approved %>
           <% end %>
         </div>
       </div>
