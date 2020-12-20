@@ -3,6 +3,9 @@ class PagesController < ApplicationController
   end
 
   def vendorDashboard
-    @products = Spree::Product.all
+    @current_user = current_spree_user
+    @product = Spree::Product.new
+    @shipping = Spree::ShippingCategory.find(1)
+    @products = Spree::Product.where(spree_user_id: current_spree_user.id)
   end
 end

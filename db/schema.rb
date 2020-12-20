@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_20_182157) do
+ActiveRecord::Schema.define(version: 2020_12_20_211322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -477,11 +477,13 @@ ActiveRecord::Schema.define(version: 2020_12_20_182157) do
     t.boolean "promotionable", default: true
     t.string "meta_title"
     t.datetime "discontinue_on"
-    t.string "vendor"
+    t.bigint "spree_user_id"
+    t.boolean "approved", default: false
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["name"], name: "index_spree_products_on_name"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
+    t.index ["spree_user_id"], name: "index_spree_products_on_spree_user_id"
   end
 
   create_table "spree_products_taxons", id: :serial, force: :cascade do |t|
@@ -1223,6 +1225,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_182157) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "spree_products", "spree_users"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
