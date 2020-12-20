@@ -32,6 +32,8 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
 
+# Solidus
+gem 'solidus'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -60,3 +62,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'solidus_auth_devise'
+gem 'solidus_paypal_commerce_platform'
