@@ -85,6 +85,8 @@ Spree.config do |config|
   # Custom logo for the admin
   config.admin_interface_logo = "logo.png"
 
+
+
   # New Attributes
   Spree::PermittedAttributes.product_attributes << [:vendor]
   Spree::PermittedAttributes.product_attributes << [:approved]
@@ -113,13 +115,18 @@ end
 Spree::Backend::Config.configure do |config|
   config.locale = 'en'
 
+  # New Menu Item Under Product
+
+  config.menu_items[1].sections << "UnApproved".to_sym
+
   # Uncomment and change the following configuration if you want to add
   # a new menu item:
   #
   # config.menu_items << config.class::MenuItem.new(
-  #   [:section],
-  #   'icon-name',
-  #   url: 'https://solidus.io/'
+  #   [:unapproved],
+  #   'th-large',
+  #   url: '/admin/unapproved',
+  #   label: "Unapproved Products"
   # )
 end
 
