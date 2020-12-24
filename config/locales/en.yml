@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  spree:
+    admin:
+      tab:
+        Unapproved: "Unapproved"
+        Vendor Products: "Vendor Products"

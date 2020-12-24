@@ -28,8 +28,8 @@ Spree.config do |config|
   # config.inventory_cache_threshold = 3
 
   # Enable Paperclip adapter for attachments on images and taxons
-  config.image_attachment_module = 'Spree::Image::PaperclipAttachment'
-  config.taxon_attachment_module = 'Spree::Taxon::PaperclipAttachment'
+  config.image_attachment_module = 'Spree::Image::PaperclipAttachmentEdited'
+  config.taxon_attachment_module = 'Spree::Image::PaperclipAttachmentEdited'
 
   # Disable legacy Solidus custom CanCanCan actions aliases
   config.use_custom_cancancan_actions = false
@@ -68,7 +68,7 @@ Spree.config do |config|
 
   # Uncomment and customize the following line to add custom permission sets
   # to a custom users role:
-  config.roles.assign_permissions :role_name, ['Spree::PermissionSets::VendorDashboard']
+  config.roles.assign_permissions :vendor, ['Spree::PermissionSets::VendorDashboard']
 
 
   # Frontend:
@@ -90,6 +90,7 @@ Spree.config do |config|
   # New Attributes
   Spree::PermittedAttributes.product_attributes << [:vendor]
   Spree::PermittedAttributes.product_attributes << [:approved]
+  Spree::PermittedAttributes.product_attributes << [:image]
   Spree::PermittedAttributes.user_attributes << [:vendorname]
 
   # Gateway credentials can be configured statically here and referenced from
@@ -115,9 +116,13 @@ end
 Spree::Backend::Config.configure do |config|
   config.locale = 'en'
 
-  # New Menu Item Under Product
-
-  config.menu_items[1].sections << "UnApproved".to_sym
+  # New Menu Item for Vendors
+  config.menu_items << config.class::MenuItem.new(
+    [:vendor],
+    'th-large',
+    url: '/admin/vendor',
+    label: "Vendor Products"
+  )
 
   # Uncomment and change the following configuration if you want to add
   # a new menu item:
@@ -143,3 +148,4 @@ Spree.user_class = "Spree::LegacyUser"
 # the class name:
 #
 # Spree::UserLastUrlStorer.rules << 'Spree::UserLastUrlStorer::Rules::AuthenticationRule'
+

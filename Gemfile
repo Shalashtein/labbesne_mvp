@@ -34,6 +34,8 @@ gem 'simple_form'
 
 # Solidus
 gem 'solidus'
+# Upload images to Cloudinary
+gem 'paperclip-cloudinary'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

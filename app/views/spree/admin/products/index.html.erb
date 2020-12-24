@@ -1,6 +1,10 @@
 <% admin_layout "full-width" %>
-
+<% if current_spree_user.has_spree_role?(:admin?) %>
 <% admin_breadcrumb(plural_resource_name(Spree::Product)) %>
+<% end %>
+<% if current_spree_user.has_spree_role?(:vendor) %>
+<% admin_breadcrumb link_to(plural_resource_name(Spree::Product), '/admin/vendor') %>
+<% end %>
 
 <% content_for :page_actions do %>
   <li>
@@ -55,29 +59,46 @@
 <% if @collection.any? %>
   <table class="index" id="listing_products">
     <colgroup>
+      <% if current_spree_user.has_spree_role?(:vendor) %>
        <col style="width: 15%;">
        <col style="width: 5%;">
        <col style="width: 50%;">
        <col style="width: 15%;">
        <col style="width: 15%;">
+      <% end %>
+      <% if current_spree_user.has_spree_role?(:admin) %>
+       <col style="width: 15%;">
+       <col style="width: 5%;">
+       <col style="width: 40%;">
+       <col style="width: 10%">
+       <col style="width: 15%;">
+       <col style="width: 15%;">
+      <% end %>
     </colgroup>
     <thead>
       <tr data-hook="admin_products_index_headers">
         <th><%= Spree::Variant.human_attribute_name(:sku) %></th>
         <th></th>
         <th><%= sort_link @search,:name, Spree::Product.human_attribute_name(:name), { default_order: "desc" }, {title: 'admin_products_listing_name_title'} %></th>
+        <% if current_spree_user.has_spree_role?(:admin) %>
+        <th>Vendor</th>
+        <% end %>
         <th class="align-right"><%= sort_link @search,:master_default_price_amount, Spree::Product.human_attribute_name(:price), {}, {title: 'admin_products_listing_price_title'} %></th>
         <th data-hook="admin_products_index_header_actions" class="actions"></th>
       </tr>
     </thead>
     <tbody>
       <% @collection.each do |product| %>
+        <% if product.approved? %>
           <tr <%== "style='color: red;'" if product.deleted? %> id="<%= spree_dom_id product %>" data-hook="admin_products_index_rows">
             <td><%= product.sku %></td>
             <td class="align-center">
               <%= render 'spree/admin/shared/image', image: product.gallery.images.first, size: :mini %>
             </td>
             <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
+            <% if current_spree_user.has_spree_role?(:admin) %>
+            <td><%= Spree::User.exists?(id: product.spree_user_id) ? Spree::User.find(product.spree_user_id).email : "None" %></td>
+            <% end %>
             <td class="align-right"><%= product.display_price.to_html %></td>
             <td class="actions" data-hook="admin_products_index_row_actions">
               <%= link_to_edit product, no_text: true, class: 'edit' if can?(:edit, product) && !product.deleted? %>
@@ -87,6 +108,7 @@
               <%= link_to_delete product, no_text: true if can?(:destroy, product) && !product.deleted? %>
             </td>
           </tr>
+          <% end %>
       <% end %>
     </tbody>
   </table>

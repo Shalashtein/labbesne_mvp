@@ -1,8 +1,11 @@
+<% if current_spree_user.has_spree_role?(:admin) %>
 <ul class="admin-subnav" data-hook="admin_product_sub_tabs">
-  <% if can? :admin, Spree::Product %>
+  <% if can? :admin, Spree::Product%>
     <%= tab :products, match_path: '/products' %>
   <% end %>
-  <%= tab :products, label: "Unapproved", url: '/admin/unapproved' %>
+  <% if can? :admin, Spree::Product %>
+    <%= tab :products, label: "Unapproved", url: '/admin/unapproved' %>
+  <% end %>
   <% if can? :admin, Spree::OptionType %>
     <%= tab :option_types, match_path: '/option_types' %>
   <% end %>
@@ -16,3 +19,4 @@
     <%= tab :taxons, label: :display_order, match_path: '/taxons' %>
   <% end %>
 </ul>
+<% end %>

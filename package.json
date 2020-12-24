@@ -1,6 +1,6 @@
 {
   "name": "labbesne",
-  "license": "to code",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
