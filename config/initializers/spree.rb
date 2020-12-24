@@ -61,14 +61,14 @@ Spree.config do |config|
 
   # Roles
 
-  Spree::Role.find_or_create_by(name: 'stylist')
-  Spree::Role.find_or_create_by(name: 'vendor')
+  # Spree::Role.find_or_create_by(name: 'stylist')
+  # Spree::Role.find_or_create_by(name: 'vendor')
 
   # Permission Sets:
 
   # Uncomment and customize the following line to add custom permission sets
   # to a custom users role:
-  config.roles.assign_permissions :vendor, ['Spree::PermissionSets::VendorDashboard']
+  # config.roles.assign_permissions :vendor, ['Spree::PermissionSets::VendorDashboard']
 
 
   # Frontend:
