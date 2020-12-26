@@ -118,21 +118,13 @@ Spree::Backend::Config.configure do |config|
 
   # New Menu Item for Vendors
   config.menu_items << config.class::MenuItem.new(
-    [:vendor],
+    [:vendor, :tracks],
     'th-large',
-    url: '/admin/vendor',
-    label: "Vendor Products"
+    url: '/vendor',
+    label: "Vendor Products",
+    partial: "spree/admin/shared/vendor_sub_menu"
   )
 
-  # Uncomment and change the following configuration if you want to add
-  # a new menu item:
-  #
-  # config.menu_items << config.class::MenuItem.new(
-  #   [:unapproved],
-  #   'th-large',
-  #   url: '/admin/unapproved',
-  #   label: "Unapproved Products"
-  # )
 end
 
 Spree::Api::Config.configure do |config|

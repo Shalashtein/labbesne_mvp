@@ -4,7 +4,7 @@
     <%= tab :products, match_path: '/products' %>
   <% end %>
   <% if can? :admin, Spree::Product %>
-    <%= tab :products, label: "Unapproved", url: '/admin/unapproved' %>
+    <%= tab :unapproved, label: "Unapproved", match_path: '/products/unapproved', url: '/unapproved' %>
   <% end %>
   <% if can? :admin, Spree::OptionType %>
     <%= tab :option_types, match_path: '/option_types' %>

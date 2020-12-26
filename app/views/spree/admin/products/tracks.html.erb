@@ -1,0 +1,10 @@
+<% admin_layout "full-width" %>
+
+<% admin_breadcrumb link_to("Vendor", '/vendor') %>
+<% admin_breadcrumb("Vendor Orders") %>
+
+<ul>
+  <% @tracks.each do |t| %>
+    <li><%= "#{t} Recieved by vendor: #{t.vendor_recieved}, On the way: #{t.vendor_sent}" %></li>
+  <% end %>
+</ul>

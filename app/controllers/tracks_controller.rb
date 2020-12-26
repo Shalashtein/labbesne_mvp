@@ -69,6 +69,6 @@ class TracksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def track_params
-      params.require(:track).permit(:spree_line_item_id, :vendor_recieved, :vendor_sent, :recieved)
+      params.require(:track).permit(:spree_line_item_id, :vendor_recieved, :vendor_sent, :recieved, :spree_user, :quantity)
     end
 end

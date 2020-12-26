@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_164611) do
+ActiveRecord::Schema.define(version: 2020_12_25_195842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1231,7 +1231,10 @@ ActiveRecord::Schema.define(version: 2020_12_24_164611) do
     t.boolean "recieved"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "spree_user_id", null: false
+    t.integer "quantity", limit: 2
     t.index ["spree_line_item_id"], name: "index_tracks_on_spree_line_item_id"
+    t.index ["spree_user_id"], name: "index_tracks_on_spree_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -1242,4 +1245,5 @@ ActiveRecord::Schema.define(version: 2020_12_24_164611) do
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
   add_foreign_key "spree_wallet_payment_sources", "spree_users", column: "user_id"
   add_foreign_key "tracks", "spree_line_items"
+  add_foreign_key "tracks", "spree_users"
 end

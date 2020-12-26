@@ -18,8 +18,16 @@ module Spree::Admin::ProductsControllerDecorator
   end
 
   def unapproved
-    @search = Spree::Product.ransack(approved: false)
+    return @unapproved if @unapproved
     @unapproved = Spree::Product.where(approved: false)
+  end
+
+  def tracks
+    @tracks = if current_spree_user.has_spree_role?(:admin)
+                Track.where(recieved: false)
+              else
+                Track.where(spree_user_id: current_spree_user.id, recieved: false)
+              end
   end
 
 

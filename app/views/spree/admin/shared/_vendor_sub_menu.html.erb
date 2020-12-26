@@ -1,0 +1,15 @@
+<ul class="admin-subnav" data-hook="admin_vendor_sub_tabs">
+  <%if current_spree_user.has_spree_role?(:vendor) %>
+  <% if can? :admin, Spree::Product %>
+    <%= tab :vendor, label: "Products", match_path: '/vendor', url: '/vendor' %>
+  <% end %>
+  <% end %>
+  <% if can? :admin, Spree::Product %>
+    <%= tab :tracks, label: "Orders", match_path: '/vendor/orders', url: '/vendor/orders' %>
+  <% end %>
+</ul>
+<% if action_name == 'vendor' || action_name == 'tracks' %>
+  <script>
+    document.querySelectorAll("[data-hook='admin_product_sub_tabs']")[0].parentElement.classList.remove("selected");
+  </script>
+<% end %>
