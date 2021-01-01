@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+
+  resources :product_specs
+  resources :profile_specs
+  resources :specs
+  resources :lifestyles
+  resources :body_measurements
+  resources :social_activities
+  resources :outdoor_levels
+  resources :job_types
+  resources :activity_levels
+  resources :shoe_sizes
+  resources :shirt_sizes
+  resources :body_types
+  resources :profiles
   resources :tracks
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
@@ -11,6 +25,7 @@ Rails.application.routes.draw do
   get '/unapproved', to: 'spree/admin/products#unapproved'
   get '/vendor', to: 'spree/admin/products#vendor'
   get '/vendor/orders', to: 'spree/admin/products#tracks'
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  patch '/vendor/orders/:id/vendorRecieved', to: 'tracks#vendorRecieved', as: 'vendor_recieved'
+  patch '/vendor/orders/:id/vendorSent', to: 'tracks#vendorSent', as: 'vendor_sent'
+  patch '/vendor/orders/:id/Recieved',to: 'tracks#Recieved', as: 'recieved'
 end

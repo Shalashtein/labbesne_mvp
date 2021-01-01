@@ -3,7 +3,7 @@
 <% admin_breadcrumb(plural_resource_name(Spree::Product)) %>
 <% end %>
 <% if current_spree_user.has_spree_role?(:vendor) %>
-<% admin_breadcrumb link_to(plural_resource_name(Spree::Product), '/admin/vendor') %>
+<% admin_breadcrumb link_to(plural_resource_name(Spree::Product), '/vendor') %>
 <% end %>
 
 <% content_for :page_actions do %>

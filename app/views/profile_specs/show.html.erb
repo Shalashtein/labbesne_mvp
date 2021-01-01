@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Profiles:</strong>
+  <%= @profile_spec.profiles_id %>
+</p>
+
+<p>
+  <strong>Specs:</strong>
+  <%= @profile_spec.specs_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @profile_spec.value %>
+</p>
+
+<%= link_to 'Edit', edit_profile_spec_path(@profile_spec) %> |
+<%= link_to 'Back', profile_specs_path %>

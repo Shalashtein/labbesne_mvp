@@ -1,4 +1,9 @@
-<% admin_breadcrumb link_to(plural_resource_name(Spree::Product), '/admin/vendor') %>
+<% if current_spree_user.has_spree_role?(:admin?) %>
+<% admin_breadcrumb(plural_resource_name(Spree::Product)) %>
+<% end %>
+<% if current_spree_user.has_spree_role?(:vendor) %>
+<% admin_breadcrumb link_to(plural_resource_name(Spree::Product), '/vendor') %>
+<% end %>
 <% admin_breadcrumb t('spree.new_product') %>
 
 <%= render partial: 'spree/shared/error_messages', locals: { target: @product } %>

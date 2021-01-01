@@ -1,0 +1,16 @@
+<%= simple_form_for(Spree::User.new, as: :spree_user, url: spree.registration_path) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :email, as: :email, label: false, input_html: {placeholder: 'your@email.com'} %>
+    <%= f.input :password, as: :password, label: false, input_html: {placeholder: 'password'} %>
+    <%= f.input :password_confirmation, as: :password, label: false, input_html: {placeholder: 'confirm password'} %>
+  </div>
+  <% if flash[:error] %>
+    <div class="flash errors"><%= flash[:error] %></div>
+  <% end %>
+  <div class="form-actions">
+    <%= f.button :submit, "Singup", class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>

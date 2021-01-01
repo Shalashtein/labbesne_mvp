@@ -3,8 +3,34 @@
 <% admin_breadcrumb link_to("Vendor", '/vendor') %>
 <% admin_breadcrumb("Vendor Orders") %>
 
-<ul>
+<div class="tracks-card-container">
   <% @tracks.each do |t| %>
-    <li><%= "#{t} Recieved by vendor: #{t.vendor_recieved}, On the way: #{t.vendor_sent}" %></li>
+    <% li = Spree::LineItem.find(t.spree_line_item_id) %>
+    <% v = Spree::Variant.find(li.variant_id) %>
+    <% p = Spree::Product.find(v.product_id) %>
+    <div class="card tracks-card <%= t.vendor_recieved? ? 'tracks-card-yellow' : 'tracks-card-red' %>" style="width: 18rem;">
+      <img class="card-img-top" src=<%= p.gallery.images.first.attachment.url %> alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= p.name %></h5>
+        <p class="card-text"><%= "Quantity: #{t.quantity}" %></p>
+        <div class="tracks-card-buttons">
+          <% if current_spree_user.has_spree_role?(:admin) %>
+            <% if !t.vendor_recieved? %>
+              <button class="btn btn-danger">Not Ready</button>
+            <% elsif !t.vendor_sent? %>
+              <button class="btn btn-warning">Ready</button>
+            <% else %>
+              <%= button_to "Mark as recieved", "/vendor/orders/#{t.id}/recieved", method: :patch, class: "btn btn-primary" %>
+            <% end %>
+          <% else %>
+            <% if !t.vendor_recieved? %>
+              <%= button_to "Mark as ready", "/vendor/orders/#{t.id}/vendorRecieved", method: :patch, class: "btn btn-warning" %>
+            <% else %>
+              <%= button_to "Mark as sent", "/vendor/orders/#{t.id}/vendorSent", method: :patch, class: "btn btn-success" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>

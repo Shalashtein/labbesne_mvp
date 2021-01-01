@@ -1,0 +1,9 @@
+<div class="container-fluid container-fullscreen container-fullscreen-bg container-fullscreen-flex container-fullscreen-flex-vc">
+  <div class="login-logo-container">
+    <%= image_tag "logo-white.png", class: 'login-logo' %>
+  </div>
+  <div class="login-form-area">
+    <%= render partial: 'spree/shared/custom_signup' %>
+    <%= link_to "Have an account? Click here to signin", spree.login_path %>
+  </div>
+</div>

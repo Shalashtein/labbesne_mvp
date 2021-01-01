@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :set_track, only: [:show, :edit, :update, :destroy]
+  before_action :set_track, only: [:show, :edit, :update, :destroy, :vendorRecieved, :vendorSent, :recieved]
 
   # GET /tracks
   # GET /tracks.json
@@ -48,6 +48,33 @@ class TracksController < ApplicationController
         format.html { render :edit }
         format.json { render json: @track.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def vendorRecieved
+    @track.vendor_recieved = true
+    if @track.save
+      redirect_to '/vendor/orders', notice: 'Order marked as recieved'
+    else
+      redirect_to '/vendor/orders', notice: "Error: #{@track.error}"
+    end
+  end
+
+  def vendorSent
+    @track.vendor_sent = true
+    if @track.save
+      redirect_to '/vendor/orders', notice: 'Order marked as sent'
+    else
+      redirect_to '/vendor/orders', notice: "Error: #{@track.error}"
+    end
+  end
+
+  def recieved
+    @track.recieved = true
+    if @track.save
+      redirect_to '/vendor/orders', notice: 'Order marked as recieved'
+    else
+      redirect_to '/vendor/orders', notice: "Error: #{@track.error}"
     end
   end
 

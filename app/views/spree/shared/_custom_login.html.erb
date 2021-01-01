@@ -1,0 +1,16 @@
+<%= simple_form_for(Spree::User.new, as: :spree_user, url: spree.create_new_session_path) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :email, as: :email, label: false, input_html: {placeholder: 'your@email.com'}  %>
+    <%= f.input :password, as: :password, label: false, input_html: {placeholder: 'password'}  %>
+    <%= f.input :remember_me, as: :boolean, input_html: { class: 'remember_me' } %>
+  </div>
+  <% if flash[:error] %>
+    <div class="flash errors"><%= flash[:error] %></div>
+  <% end %>
+  <div class="form-actions">
+    <%= f.button :submit, "Login", class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>

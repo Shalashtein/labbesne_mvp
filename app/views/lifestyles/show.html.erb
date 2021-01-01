@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Profiles:</strong>
+  <%= @lifestyle.profiles_id %>
+</p>
+
+<p>
+  <strong>Activity levels:</strong>
+  <%= @lifestyle.activity_levels_id %>
+</p>
+
+<p>
+  <strong>Works:</strong>
+  <%= @lifestyle.works %>
+</p>
+
+<p>
+  <strong>Job types:</strong>
+  <%= @lifestyle.job_types_id %>
+</p>
+
+<p>
+  <strong>Work hours:</strong>
+  <%= @lifestyle.work_hours %>
+</p>
+
+<p>
+  <strong>Studies:</strong>
+  <%= @lifestyle.studies %>
+</p>
+
+<p>
+  <strong>Study hours:</strong>
+  <%= @lifestyle.study_hours %>
+</p>
+
+<p>
+  <strong>Social activities:</strong>
+  <%= @lifestyle.social_activities_id %>
+</p>
+
+<p>
+  <strong>Outdoor levels:</strong>
+  <%= @lifestyle.outdoor_levels_id %>
+</p>
+
+<%= link_to 'Edit', edit_lifestyle_path(@lifestyle) %> |
+<%= link_to 'Back', lifestyles_path %>

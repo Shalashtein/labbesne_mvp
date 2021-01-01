@@ -4,7 +4,7 @@ module Spree::Admin::ResourceControllerDecorator
       base.rescue_from CanCan::AccessDenied do |exception|
         respond_to do |format|
           format.json { head :forbidden, content_type: 'text/html' }
-          format.html { redirect_to '/admin/vendor', notice: "Action: #{exception.action} Subject: #{exception.subject}"}
+          format.html { redirect_to '/vendor', notice: "Action: #{exception.action} Subject: #{exception.subject}"}
           format.js   { head :forbidden, content_type: 'text/html' }
         end
       end
@@ -18,7 +18,7 @@ module Spree::Admin::ResourceControllerDecorator
       invoke_callbacks(:create, :after)
       flash[:success] = flash_message_for(@object, :successfully_created)
       respond_with(@object) do |format|
-        current_spree_user.has_spree_role?(:vendor) ? location_after_save = '/admin/vendor' : location_after_save = spree.edit_admin_product_url(@object)
+        current_spree_user.has_spree_role?(:vendor) ? location_after_save = '/vendor' : location_after_save = spree.edit_admin_product_url(@object)
         format.html { redirect_to location_after_save }
         format.js   { render layout: false }
       end

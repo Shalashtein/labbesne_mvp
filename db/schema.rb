@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_25_195842) do
+ActiveRecord::Schema.define(version: 2021_01_01_201326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,32 @@ ActiveRecord::Schema.define(version: 2020_12_25_195842) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "activity_levels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "body_measurements", force: :cascade do |t|
+    t.bigint "profiles_id", null: false
+    t.bigint "body_types_id", null: false
+    t.integer "height", limit: 2
+    t.integer "weight", limit: 2
+    t.string "shirt_size"
+    t.float "pants_size"
+    t.float "shoe_size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["body_types_id"], name: "index_body_measurements_on_body_types_id"
+    t.index ["profiles_id"], name: "index_body_measurements_on_profiles_id"
+  end
+
+  create_table "body_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -68,6 +94,37 @@ ActiveRecord::Schema.define(version: 2020_12_25_195842) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "job_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lifestyles", force: :cascade do |t|
+    t.bigint "profiles_id", null: false
+    t.bigint "activity_levels_id"
+    t.boolean "works"
+    t.bigint "job_types_id"
+    t.integer "work_hours", limit: 2
+    t.boolean "studies"
+    t.integer "study_hours", limit: 2
+    t.bigint "social_activities_id"
+    t.bigint "outdoor_levels_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_levels_id"], name: "index_lifestyles_on_activity_levels_id"
+    t.index ["job_types_id"], name: "index_lifestyles_on_job_types_id"
+    t.index ["outdoor_levels_id"], name: "index_lifestyles_on_outdoor_levels_id"
+    t.index ["profiles_id"], name: "index_lifestyles_on_profiles_id"
+    t.index ["social_activities_id"], name: "index_lifestyles_on_social_activities_id"
+  end
+
+  create_table "outdoor_levels", force: :cascade do |t|
+    t.string "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "paypal_commerce_platform_sources", force: :cascade do |t|
     t.integer "payment_method_id"
     t.string "authorization_id"
@@ -77,6 +134,45 @@ ActiveRecord::Schema.define(version: 2020_12_25_195842) do
     t.string "refund_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "product_specs", force: :cascade do |t|
+    t.bigint "spree_product_id", null: false
+    t.bigint "specs_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["specs_id"], name: "index_product_specs_on_specs_id"
+    t.index ["spree_product_id"], name: "index_product_specs_on_spree_product_id"
+  end
+
+  create_table "profile_specs", force: :cascade do |t|
+    t.bigint "profiles_id", null: false
+    t.bigint "specs_id", null: false
+    t.integer "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profiles_id"], name: "index_profile_specs_on_profiles_id"
+    t.index ["specs_id"], name: "index_profile_specs_on_specs_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "spree_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spree_user_id"], name: "index_profiles_on_spree_user_id"
+  end
+
+  create_table "social_activities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "specs", force: :cascade do |t|
+    t.string "name"
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spree_addresses", id: :serial, force: :cascade do |t|
@@ -1231,13 +1327,25 @@ ActiveRecord::Schema.define(version: 2020_12_25_195842) do
     t.boolean "recieved"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "spree_user_id", null: false
+    t.bigint "spree_user_id", default: 1, null: false
     t.integer "quantity", limit: 2
     t.index ["spree_line_item_id"], name: "index_tracks_on_spree_line_item_id"
     t.index ["spree_user_id"], name: "index_tracks_on_spree_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "body_measurements", "body_types", column: "body_types_id"
+  add_foreign_key "body_measurements", "profiles", column: "profiles_id"
+  add_foreign_key "lifestyles", "activity_levels", column: "activity_levels_id"
+  add_foreign_key "lifestyles", "job_types", column: "job_types_id"
+  add_foreign_key "lifestyles", "outdoor_levels", column: "outdoor_levels_id"
+  add_foreign_key "lifestyles", "profiles", column: "profiles_id"
+  add_foreign_key "lifestyles", "social_activities", column: "social_activities_id"
+  add_foreign_key "product_specs", "specs", column: "specs_id"
+  add_foreign_key "product_specs", "spree_products"
+  add_foreign_key "profile_specs", "profiles", column: "profiles_id"
+  add_foreign_key "profile_specs", "specs", column: "specs_id"
+  add_foreign_key "profiles", "spree_users"
   add_foreign_key "spree_products", "spree_users"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"

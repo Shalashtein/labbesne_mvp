@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Profiles:</strong>
+  <%= @body_measurement.profiles_id %>
+</p>
+
+<p>
+  <strong>Body types:</strong>
+  <%= @body_measurement.body_types_id %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @body_measurement.height %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @body_measurement.weight %>
+</p>
+
+<p>
+  <strong>Shirt size:</strong>
+  <%= @body_measurement.shirt_size %>
+</p>
+
+<p>
+  <strong>Pants size:</strong>
+  <%= @body_measurement.pants_size %>
+</p>
+
+<p>
+  <strong>Shoe size:</strong>
+  <%= @body_measurement.shoe_size %>
+</p>
+
+<%= link_to 'Edit', edit_body_measurement_path(@body_measurement) %> |
+<%= link_to 'Back', body_measurements_path %>

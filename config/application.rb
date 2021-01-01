@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Labbesne
   class Application < Rails::Application
+    # to debug rails server hangs
+    config.middleware.insert_before Rack::Sendfile, ActionDispatch::DebugLocks
     # Load application's model / class decorators
     initializer 'spree.decorators' do |app|
       config.to_prepare do
