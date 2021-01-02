@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   patch '/vendor/orders/:id/vendorRecieved', to: 'tracks#vendorRecieved', as: 'vendor_recieved'
   patch '/vendor/orders/:id/vendorSent', to: 'tracks#vendorSent', as: 'vendor_sent'
   patch '/vendor/orders/:id/Recieved',to: 'tracks#Recieved', as: 'recieved'
+  get '/profile', to: 'pages#profileRouter'
 end

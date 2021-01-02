@@ -5,7 +5,6 @@ body{
   width: 100vw;
 }
 .container-home{
-  background-color: red;
   width: 100%;
   height: 100%;
   display: flex;
@@ -29,6 +28,8 @@ body{
 .home-router{
   display: flex;
   margin-top: 50px;
+  justify-content: space-around;
+  align-items: center;
 }
 @media only screen and (max-width: 600px) {
   .home-router{
