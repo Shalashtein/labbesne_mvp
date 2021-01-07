@@ -11,7 +11,12 @@ environment.plugins.prepend('Provide',
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
-    Popper: ['popper.js', 'default']
+    Popper: ['popper.js', 'default'],
+    Swing: 'swing',
+    Direction: 'swing/dist/Direction.js',
+    Stack: 'swing/dist/Stack.js',
+    Card: 'swing/dist/Card.js',
+    utilities: 'swing/dist/utilities.js'
   })
 );
 

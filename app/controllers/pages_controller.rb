@@ -4,6 +4,10 @@ class PagesController < ApplicationController
   def home
   end
 
+  def swipepage
+    @products = Spree::Product.all
+  end
+
   def profileRouter
     @measurements_progress = if !current_spree_user.profile.body_measurement.nil?
                               100
