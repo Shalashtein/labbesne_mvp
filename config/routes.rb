@@ -14,6 +14,16 @@ Rails.application.routes.draw do
   resources :body_types
   resources :profiles
   resources :tracks
+
+  get '/unapproved', to: 'spree/admin/products#unapproved'
+  get '/vendor', to: 'spree/admin/products#vendor'
+  get '/vendor/orders', to: 'spree/admin/products#tracks'
+  patch '/vendor/orders/:id/vendorRecieved', to: 'tracks#vendorRecieved', as: 'vendor_recieved'
+  patch '/vendor/orders/:id/vendorSent', to: 'tracks#vendorSent', as: 'vendor_sent'
+  patch '/vendor/orders/:id/Recieved',to: 'tracks#Recieved', as: 'recieved'
+  get '/profile', to: 'pages#profileRouter'
+  get '/profile/measurements', to: 'pages#measurements'
+
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -22,11 +32,4 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, at: '/shop'
 
   mount SolidusPaypalCommercePlatform::Engine, at: '/shop/solidus_paypal_commerce_platform'
-  get '/unapproved', to: 'spree/admin/products#unapproved'
-  get '/vendor', to: 'spree/admin/products#vendor'
-  get '/vendor/orders', to: 'spree/admin/products#tracks'
-  patch '/vendor/orders/:id/vendorRecieved', to: 'tracks#vendorRecieved', as: 'vendor_recieved'
-  patch '/vendor/orders/:id/vendorSent', to: 'tracks#vendorSent', as: 'vendor_sent'
-  patch '/vendor/orders/:id/Recieved',to: 'tracks#Recieved', as: 'recieved'
-  get '/profile', to: 'pages#profileRouter'
 end

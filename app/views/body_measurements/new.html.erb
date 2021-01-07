@@ -1,5 +1,29 @@
-<h1>New Body Measurement</h1>
+<div class="measurements-profile-router">
+  <h1>LABBESNE</h1>
+  <h3>Fill out your body measurements</h3>
+  <div class="container measurements-links">
+    <div class="row">
+      <%= simple_form_for(@body_measurement) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: "x" if f.object.errors[:base].present? %>
 
-<%= render 'form', body_measurement: @body_measurement %>
-
-<%= link_to 'Back', body_measurements_path %>
+      <div class="form-inputs">
+        <div class="col-sm-12 col-md-6">
+          <%= f.association :profiles, as: :hidden, input_html: { value: current_spree_user.profile.id } %>
+          <%= f.association :body_types, label: 'Body type' %>
+          <%= f.input :height, label: 'Height (cm)', input_html: { min: '0', step: 'any' } %>
+          <%= f.input :weight, label: 'Weight (kg)', input_html: { min: '0', step: 'any' } %>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <%= f.input :shirt_size, collection: ['XS','S','M','L','XL','XXL'] %>
+          <%= f.input :pants_size, label: 'Pants Size (EU)', input_html: { min: '0', step: 'any' } %>
+          <%= f.input :shoe_size, label: 'Shoe Size (EU)', input_html: { min: '0', step: 'any' } %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Save Measurements", class: "btn-form" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

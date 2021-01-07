@@ -4,12 +4,21 @@ class BodyMeasurementsController < ApplicationController
   # GET /body_measurements
   # GET /body_measurements.json
   def index
-    @body_measurements = BodyMeasurement.all
+    if !current_spree_user.has_spree_role?(:admin)
+      redirect_to '/profile'
+    else
+      @body_measurements = BodyMeasurement.all
+    end
   end
 
   # GET /body_measurements/1
   # GET /body_measurements/1.json
   def show
+    if !current_spree_user.has_spree_role?(:admin)
+      redirect_to '/profile'
+    else
+      @body_measurements = BodyMeasurement.all
+    end
   end
 
   # GET /body_measurements/new
@@ -25,10 +34,9 @@ class BodyMeasurementsController < ApplicationController
   # POST /body_measurements.json
   def create
     @body_measurement = BodyMeasurement.new(body_measurement_params)
-
     respond_to do |format|
       if @body_measurement.save
-        format.html { redirect_to @body_measurement, notice: 'Body measurement was successfully created.' }
+        format.html { redirect_to '/profile', notice: 'Measurements Saved' }
         format.json { render :show, status: :created, location: @body_measurement }
       else
         format.html { render :new }
