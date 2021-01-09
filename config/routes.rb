@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'pages#profileRouter'
   get '/profile/measurements', to: 'pages#measurements'
   get '/profile/swipe', to: 'pages#swipepage', as: 'swipe'
+  get '/store', to: 'pages#store', as: 'store'
 
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.

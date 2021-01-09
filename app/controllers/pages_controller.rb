@@ -1,7 +1,12 @@
 class PagesController < ApplicationController
+  layout 'application', only: "store"
   before_action :signinRouter
 
   def home
+  end
+
+  def store
+    @products = Spree::Product.all
   end
 
   def swipepage
