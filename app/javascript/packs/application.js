@@ -34,8 +34,11 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   lifestyleCollapse();
+  storeRouter();
   Swipe();
 });
+
+//-------------- Form Collapse in Lifestyle -------------
 var lifestyleCollapse = function(){
   $('#lifestyle_studies').click(function studyChanged(){
         if($('#lifestyle_studies').is(":checked"))
@@ -53,6 +56,7 @@ $('#lifestyle_works').click(function workChanged(){
  });
 };
 
+//----------------------- Swipe UI ----------------------
 var Swipe = function(){
   // Prepare the cards in the stack for iteration.
 const cards = [].slice.call(document.querySelectorAll('#swipe-card-stack li'));
@@ -101,4 +105,7 @@ stack.on('throwin', () => {
   currentCard.querySelector(".swipe-card-like").classList.add("hidden");
   currentCard.querySelector(".swipe-card-dislike").classList.add("hidden");
 });
+};
+var storeRouter = function(){
+
 };

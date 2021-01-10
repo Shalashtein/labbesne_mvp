@@ -2,3 +2,17 @@
   width: 100vw;
   background-color: violet;
 }
+.hero-footer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+}
+.to-products:hover {
+  filter:drop-shadow(0px 0px 3px ghostwhite);
+}
+#products-section{
+  width: 100vw;
+  height: 100vh;
+}

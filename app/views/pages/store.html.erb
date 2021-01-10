@@ -2,9 +2,14 @@
   <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://c0.wallpaperflare.com/preview/410/103/806/black-cloth.jpg);">
     <div class="container">
       <h1>Labbesne</h1>
-      <p><strong>Science</strong> and <strong>Art</strong>, working together to <strong>style</strong> you</p>
+      <p><strong>science</strong> and <strong>art</strong>, meet to <strong>style</strong> you</p>
       <a class="btn btn-flat" href="#">Style Me</a>
     </div>
-    <i class="fa fa-angle-double-down to-products"></i>
+    <div class="hero-footer">
+      <a href="#products-section"><i class="fa fa-angle-double-down to-products"></i></a>
+    </div>
+  </div>
+  <div id="products-section">
+    <%= render partial: 'pages/partials/gender-router' %>
   </div>
 </div>
