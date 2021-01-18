@@ -1,5 +1,0 @@
-bump:
-  recurse: false
-  file: 'lib/spree/auth/version.rb'
-  message: Bump SolidusAuthDevise to %{version}
-  tag: true
