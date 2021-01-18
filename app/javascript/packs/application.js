@@ -34,7 +34,6 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   lifestyleCollapse();
-  storeRouter();
   Swipe();
 });
 
@@ -105,7 +104,4 @@ stack.on('throwin', () => {
   currentCard.querySelector(".swipe-card-like").classList.add("hidden");
   currentCard.querySelector(".swipe-card-dislike").classList.add("hidden");
 });
-};
-var storeRouter = function(){
-
 };

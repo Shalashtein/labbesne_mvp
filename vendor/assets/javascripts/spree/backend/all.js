@@ -9,3 +9,6 @@
 //= require spree/backend
 //= require_tree .
 //= require spree/backend/solidus_paypal_commerce_platform
+$(document).ready(function(){
+  $('.delete-resource').removeClass('fa').addClass('fas');
+});

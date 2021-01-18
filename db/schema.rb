@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_082425) do
+ActiveRecord::Schema.define(version: 2021_01_18_113056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_082425) do
     t.float "shoe_size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "gender"
     t.index ["body_types_id"], name: "index_body_measurements_on_body_types_id"
     t.index ["profiles_id"], name: "index_body_measurements_on_profiles_id"
   end
@@ -173,7 +174,6 @@ ActiveRecord::Schema.define(version: 2021_01_08_082425) do
     t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "parent"
   end
 
   create_table "spree_addresses", id: :serial, force: :cascade do |t|
