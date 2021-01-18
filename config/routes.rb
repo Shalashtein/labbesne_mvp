@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
+  root to: 'pages#store'
   resources :product_specs
   resources :profile_specs
   resources :specs
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   patch '/vendor/orders/:id/vendorRecieved', to: 'tracks#vendorRecieved', as: 'vendor_recieved'
   patch '/vendor/orders/:id/vendorSent', to: 'tracks#vendorSent', as: 'vendor_sent'
   patch '/vendor/orders/:id/Recieved',to: 'tracks#Recieved', as: 'recieved'
-  get '/profile', to: 'pages#profileRouter'
+  get '/profileforms', to: 'pages#profileRouter', as: 'profile_router'
   get '/profile/measurements', to: 'pages#measurements'
   get '/profile/swipe', to: 'pages#swipepage', as: 'swipe'
   get '/store', to: 'pages#store', as: 'store'

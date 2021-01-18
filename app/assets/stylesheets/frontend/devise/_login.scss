@@ -35,6 +35,9 @@
     margin-top: 40px;
   }
 }
+.form-inputs{
+  display: block;
+}
 #spree_user_email, #spree_user_password, #spree_user_password_confirmation{
   background-color: rgba(0,0,0,0) !important;
   color: white;

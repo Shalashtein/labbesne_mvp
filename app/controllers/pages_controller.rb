@@ -2,9 +2,6 @@ class PagesController < ApplicationController
   layout 'application', only: "store"
   before_action :signinRouter
 
-  def home
-  end
-
   def store
     @products = Spree::Product.all
   end
@@ -15,6 +12,11 @@ class PagesController < ApplicationController
 
   def profileRouter
     @measurements_progress = if !current_spree_user.profile.body_measurement.nil?
+                              100
+                             else
+                              0
+                             end
+    @lifestyle_progress = if !current_spree_user.profile.lifestyle.nil?
                               100
                              else
                               0
