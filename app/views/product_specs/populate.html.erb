@@ -1,0 +1,89 @@
+<div class="product_spec_container container-fluid">
+  <dv class="row">
+    <div class="product_spec_sidebar col-sm-0 col-md-3">
+      <h2><%= @product.name %></h2>
+      <%= image_tag @product.gallery.images.first.url(:large), class: "product_spec_image" %>
+    </div>
+    <div class="product_spec_main col-sm-12 col-md-9">
+      <div class="clothing_type_selector col-sm-12">
+        <% if @product_type.nil? %>
+          <button class="btn clothing_type_selector_btn" id="clothing_type_selector_top">Top</button>
+          <button class="btn clothing_type_selector_btn" id="clothing_type_selector_pants">Pants</button>
+          <button class="btn clothing_type_selector_btn" id="clothing_type_selector_shoes">Shoes</button>
+          <button class="btn clothing_type_selector_btn" id="clothing_type_selector_accessory">Accessory</button>
+          <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
+              <%= f.association :specs, as: :hidden, input_html: { value: Spec.where(name: 'clothing-type', value: 'top').first.id }  %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, class: 'type-top-submit' %>
+            </div>
+          <% end %>
+          <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
+              <%= f.association :specs, as: :hidden, input_html: { value: Spec.where(name: 'clothing-type', value: 'pants').first.id }  %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, class: 'type-pants-submit' %>
+            </div>
+          <% end %>
+          <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
+              <%= f.association :specs, as: :hidden, input_html: { value: Spec.where(name: 'clothing-type', value: 'shoes').first.id }  %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, class: 'type-shoes-submit' %>
+            </div>
+          <% end %>
+          <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
+              <%= f.association :specs, as: :hidden, input_html: { value: Spec.where(name: 'clothing-type', value: 'accessory').first.id }  %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, class: 'type-accessory-submit' %>
+            </div>
+          <% end %>
+          <% else %>
+          <button class="btn clothing_type_selector_btn" id="clothing_type_selector_set"><%= @product_type.specs.value.capitalize %></button>
+        <% end %>
+      </div>
+      <div class="top_selector">
+        <div class="top_selector_fine">
+          <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
+              <%= f.association :specs, collection: Spec.where(name: 'gender'), label: 'Gender', value_method: :id, label_method: :value %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, class: 'top-fine-submit' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </dv>
+</div>

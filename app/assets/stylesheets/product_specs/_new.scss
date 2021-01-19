@@ -1,0 +1,62 @@
+.product_spec_container{
+  padding-top: 70px;
+  height: 100vh;
+  width: 100vw;
+  background-color: purple;
+}
+.product_spec_sidebar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(100,100,100,0.2);
+  height: 100%;
+  border-radius: 10px;
+  & > h2{
+    color: ghostwhite;
+  }
+}
+.product_spec_image{
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgba(200,50,200,0.5);
+  border-radius: 10px;
+}
+.clothing_type_selector{
+  display: flex;
+  justify-content: center;
+  & > button{
+    color: white;
+    margin-right: 20px;
+    background-color: rgba(200,200,200,0.3);
+  }
+}
+.clothing_type_selected{
+  background-color: rgba(200,200,200,0.3);
+  border: 1px solid blue;
+}
+.top_selector{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+  label.select{
+      color: white;
+  };
+  select.select{
+    color: ghostwhite;
+    option{
+      color: black;
+    }
+  };
+  &_fine{
+    width: 45%;
+    margin: 0 2.5%;
+  };
+}
+
+.top-fine-submit{
+  display: none;
+}
+.type-top-submit, .type-pants-submit, .type-shoes-submit, .type-accessory-submit{
+  display: none;
+}

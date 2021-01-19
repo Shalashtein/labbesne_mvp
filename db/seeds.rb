@@ -32,10 +32,13 @@ default_specs = [
   ["rise","super-high"],["rise","high"],["rise","medium"],["rise","medium-to-low"],["riserise","low"],["rise","super-low"],
   ["band","button"],["band","zipper"],["band","elastic"],["band","tie"],
   ["crotch","regular"],["crotch","sarouel"],
-  ["pockets","none"],["pockets","small"],["pockets","regular"],["pockets","cargo"]
+  ["pockets","none"],["pockets","small"],["pockets","regular"],["pockets","cargo"],
+  ["gender","male"], ["gender","female"], ["gender","unisex"]
 ]
 
 default_specs.each do |spec|
-  Spec.create(name: spec[0], value: spec[1]).save!
-  puts "#{spec[0]}: #{spec[1]} created."
+  if !Spec.where(value: spec[1]).exists?
+    Spec.create(name: spec[0], value: spec[1]).save!
+    puts "#{spec[0]}: #{spec[1]} created."
+  end
 end

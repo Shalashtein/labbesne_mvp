@@ -7,6 +7,29 @@ class ProductSpecsController < ApplicationController
     @product_specs = ProductSpec.all
   end
 
+  def populate
+    @product = Spree::Product.find(params[:spree_product_id])
+    @product_type = ProductSpec.where(spree_product_id: params[:spree_product_id], specs_id: Spec.where(name: 'clothing-type')).first
+    @product_spec = ProductSpec.new
+    @specs = Spec.all
+  end
+
+  def popsave
+    if !ProductSpec.where(spree_product_id: params[:spree_product_id], specs_id: params[:specs_id]).exists?
+      product_spec = ProductSpec.new(product_spec_params)
+    end
+    respond_to do |format|
+      if product_spec.save
+        @product = Spree::Product.find(product_spec.spree_product_id)
+        format.html { redirect_to populate_path(spree_product_id: @product.id), notice: 'Product specs updated.' }
+        format.json { render :show, status: :created, location: populate_path(spree_product_id: @product.id) }
+      else
+        format.html { render :populate }
+        format.json { render json: product_spec.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /product_specs/1
   # GET /product_specs/1.json
   def show

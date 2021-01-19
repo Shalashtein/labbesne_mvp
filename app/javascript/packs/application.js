@@ -35,6 +35,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   lifestyleCollapse();
   Swipe();
+  populatePage();
 });
 
 //-------------- Form Collapse in Lifestyle -------------
@@ -104,4 +105,19 @@ stack.on('throwin', () => {
   currentCard.querySelector(".swipe-card-like").classList.add("hidden");
   currentCard.querySelector(".swipe-card-dislike").classList.add("hidden");
 });
+};
+var populatePage = function(){
+  $('#clothing_type_selector_top').click(function(){
+    console.log("click");
+    $('.type-top-submit').click();
+  });
+  $('#clothing_type_selector_pants').click(function(){
+    $('.type-pants-submit').click();
+  });
+  $('#clothing_type_selector_shoes').click(function(){
+    $('.type-shoes-submit').click();
+  });
+  $('#clothing_type_selector_accessory').click(function(){
+    $('.type-accessory-submit-submit').click();
+  });
 };
