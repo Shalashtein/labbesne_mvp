@@ -30,6 +30,13 @@ class ProductSpecsController < ApplicationController
     end
   end
 
+  def reset
+    ProductSpec.where(spree_product_id: params[:spree_product_id]).each do |ps|
+      ps.destroy
+    end
+    redirect_to populate_path(spree_product_id: params[:spree_product_id]), notice: 'Product specs cleared.'
+  end
+
   # GET /product_specs/1
   # GET /product_specs/1.json
   def show

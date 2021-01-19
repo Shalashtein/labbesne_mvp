@@ -120,4 +120,7 @@ var populatePage = function(){
   $('#clothing_type_selector_accessory').click(function(){
     $('.type-accessory-submit-submit').click();
   });
+  $('.btn-product-specs-save').click(function(){
+    $('.fine-submit').click();
+  });
 };

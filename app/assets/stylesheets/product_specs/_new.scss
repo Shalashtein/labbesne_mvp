@@ -3,6 +3,7 @@
   height: 100vh;
   width: 100vw;
   background-color: purple;
+  overflow: hidden;
 }
 .product_spec_sidebar{
   display: flex;
@@ -14,6 +15,10 @@
   & > h2{
     color: ghostwhite;
   }
+  form{
+    width: 100%;
+    margin: 5px;
+  };
 }
 .product_spec_image{
   width: 100%;
@@ -34,7 +39,7 @@
   background-color: rgba(200,200,200,0.3);
   border: 1px solid blue;
 }
-.top_selector{
+.top_selector, .pants_selector, .shoes_selector, .accessory_selector{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -42,6 +47,9 @@
   label.select{
       color: white;
   };
+  .form-control:disabled{
+    background-color: transparent;
+  }
   select.select{
     color: ghostwhite;
     option{
@@ -54,9 +62,23 @@
   };
 }
 
-.top-fine-submit{
+.fine-submit{
   display: none;
 }
 .type-top-submit, .type-pants-submit, .type-shoes-submit, .type-accessory-submit{
   display: none;
+}
+.btn-product-specs-save{
+  width: 100%;
+  background-color: rgba(74, 150, 196, 0.8);
+  color: white;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.btn-product-specs-reset{
+  width: 100%;
+  background-color: red;
+  color: white;
+  font-weight: bold;
 }

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get '/store', to: 'pages#store', as: 'store'
   get '/shop/admin/product_specs', to: 'product_specs#populate', as: 'populate'
   post '/shop/admin/product_specs', to: 'product_specs#popsave', as: 'popsave'
+  delete '/shop/admin/product_specs/:spree_product_id', to: 'product_specs#reset', as: 'popreset'
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
