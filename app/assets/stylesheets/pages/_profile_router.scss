@@ -61,3 +61,35 @@ div[class^="router-link-"]{
     font-size: 2.5vw;
   }
 }
+div[class^="disabled-router-link-"]{
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(200,200,200,0.1);
+  font-family: 'Rubik', sans-serif;
+  width: 100%;
+  & > i{
+    text-align: center;
+  }
+  & > .progress-inner{
+    height: 2px;
+    width: 100%;
+    opacity: 0.9;
+  }
+  &:hover{
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(200,200,200,0.2);
+  }
+  &:hover .progress-inner{
+    opacity: 1;
+  }
+}
+@media only screen and (min-width: 992px) {
+  div[class^="disabled-router-link-"]{
+    font-size: 2.5vw;
+  }
+}

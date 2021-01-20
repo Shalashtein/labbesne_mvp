@@ -10,7 +10,7 @@
       </div>
     <% end %>
     <%= link_to new_lifestyle_path do %>
-      <div class="router-link-lifestyle">
+      <div class="<%= current_spree_user.profile.body_measurement.nil? ? "disabled-router-link-lifestyle" : "router-link-lifestyle" %>" >
         <i class="fas fa-glass-cheers"></i>
         <p>Lifestyle</p>
         <div class="progress progress-inner">
@@ -19,7 +19,7 @@
       </div>
     <% end %>
     <%= link_to swipe_path do %>
-      <div class="router-link-preferences">
+      <div class="<%= current_spree_user.profile.body_measurement.nil? ? "disabled-router-link-preferences" : "router-link-preferences" %>">
         <i class="fas fa-heart"></i>
         <p>Preferences</p>
         <div class="progress progress-inner">

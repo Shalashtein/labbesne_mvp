@@ -13,10 +13,10 @@
         </div>
         <div class="col-sm-12 col-md-6">
           <%= f.input :studies, label: "Are you a student?"%>
-          <%= f.input :study_hours, label: "Hours spent at school per week", selected: 6 %>
+          <%= f.input :study_hours, label: "Hours spent at school per week", input_html: { min: '0', step: 'any' }  %>
           <%= f.input :works, label: "Do you have a job?"%>
           <%= f.association :job_types, label: "How's your job like?", selected: 6 %>
-          <%= f.input :work_hours, label: "Hours spent working per week" %>
+          <%= f.input :work_hours, label: "Hours spent working per week", input_html: { min: '0', step: 'any' }  %>
         </div>
       </div>
       <div class="form-actions">
