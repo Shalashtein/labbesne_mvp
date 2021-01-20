@@ -9,6 +9,10 @@
           <%= f.text_field :name, class: 'fullwidth title', required: true %>
           <%= f.error_message_on :name %>
         <% end %>
+        <%= f.field_container :gender do %>
+          <%= f.label "Gender", class: 'required' %>
+          <%= f.select(:gender, ['Men','Women','Unisex'], {}, { class: 'custom-select' , required: true}) %>
+        <% end %>
       </div>
 
       <div data-hook="admin_product_form_slug">
@@ -203,10 +207,17 @@
             <%= f.label :meta_description %>
             <%= f.text_field :meta_description, class: 'fullwidth' %>
           <% end %>
-          <%= f.field_container :spree_user_id do %>
+          <%= f.field_container :vendor do %>
             <%= f.label :spree_user_id, "Vendor" %>
             <%= f.collection_select(:spree_user_id, Spree::User.select {|u| u.has_spree_role?(:vendor)}, :id, :email, { include_blank: t('spree.match_choices.none') }, { class: 'custom-select' , required: true}) %>
+          <% end %>
+          <%= f.field_container :approved do %>
+            <%= f.label :approved, "Approved?" %>
             <%= f.check_box :approved %>
+          <% end %>
+          <%= f.field_container :test do %>
+            <%= f.label :test, "Test Product?" %>
+            <%= f.check_box :test %>
           <% end %>
         </div>
       </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_18_113056) do
+ActiveRecord::Schema.define(version: 2021_01_20_101323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -576,6 +576,8 @@ ActiveRecord::Schema.define(version: 2021_01_18_113056) do
     t.datetime "discontinue_on"
     t.bigint "spree_user_id"
     t.boolean "approved", default: false
+    t.string "gender"
+    t.boolean "test"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["name"], name: "index_spree_products_on_name"

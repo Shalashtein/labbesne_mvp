@@ -81,25 +81,6 @@
 
               <div class="form-inputs">
                 <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
-                <% unless ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'gender')).exists? %>
-                  <%= f.association :specs, collection: Spec.where(name: 'gender'), label: 'Gender', value_method: :id, label_method: :value %>
-                <% else %>
-                  <%= f.association :specs, collection: Spec.where(name: 'gender'), selected: ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'gender')).first.specs_id, disabled: true, label: 'Gender', value_method: :id, label_method: :value %>
-                <% end %>
-              </div>
-
-              <div class="form-actions">
-                <%= f.button :submit, class: 'fine-submit' %>
-              </div>
-            <% end %>
-          </div>
-          <div class="top_selector_fine">
-            <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
-              <%= f.error_notification %>
-              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-              <div class="form-inputs">
-                <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
                 <% unless ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'top-type')).exists? %>
                   <%= f.association :specs, collection: Spec.where(name: 'top-type'), label: 'Type', value_method: :id, label_method: :value %>
                 <% else %>
@@ -272,25 +253,6 @@
       <!-- ---------------------START OF Pants SPECS -->
 
         <div class="pants_selector">
-          <div class="pants_selector_fine">
-            <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
-              <%= f.error_notification %>
-              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-              <div class="form-inputs">
-                <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
-                <% unless ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'gender')).exists? %>
-                  <%= f.association :specs, collection: Spec.where(name: 'gender'), label: 'Gender', value_method: :id, label_method: :value %>
-                <% else %>
-                  <%= f.association :specs, collection: Spec.where(name: 'gender'), selected: ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'gender')).first.specs_id, disabled: true, label: 'Gender', value_method: :id, label_method: :value %>
-                <% end %>
-              </div>
-
-              <div class="form-actions">
-                <%= f.button :submit, class: 'fine-submit' %>
-              </div>
-            <% end %>
-          </div>
           <div class="pants_selector_fine">
             <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
               <%= f.error_notification %>
@@ -509,25 +471,6 @@
       <!-- ---------------------START OF Shoes SPECS -->
 
         <div class="shoes_selector">
-          <div class="shoes_selector_fine">
-            <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
-              <%= f.error_notification %>
-              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-              <div class="form-inputs">
-                <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
-                <% unless ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'gender')).exists? %>
-                  <%= f.association :specs, collection: Spec.where(name: 'gender'), label: 'Gender', value_method: :id, label_method: :value %>
-                <% else %>
-                  <%= f.association :specs, collection: Spec.where(name: 'gender'), selected: ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'gender')).first.specs_id, disabled: true, label: 'Gender', value_method: :id, label_method: :value %>
-                <% end %>
-              </div>
-
-              <div class="form-actions">
-                <%= f.button :submit, class: 'fine-submit' %>
-              </div>
-            <% end %>
-          </div>
           <div class="shoes_selector_fine">
             <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
               <%= f.error_notification %>
