@@ -11,15 +11,20 @@ class PagesController < ApplicationController
   end
 
   def profileRouter
-    @measurements_progress = if !current_spree_user.profile.body_measurement.nil?
-                              100
-                             else
+    @measurements_progress = if current_spree_user.profile.body_measurement.nil?
                               0
+                             else
+                              100
                              end
-    @lifestyle_progress = if !current_spree_user.profile.lifestyle.nil?
-                              100
-                             else
+    @lifestyle_progress = if current_spree_user.profile.lifestyle.nil?
                               0
+                             else
+                              100
+                             end
+    @info_progress = if current_spree_user.profile.info.nil?
+                              0
+                             else
+                              100
                              end
   end
 

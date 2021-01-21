@@ -28,7 +28,7 @@ class LifestylesController < ApplicationController
 
     respond_to do |format|
       if @lifestyle.save
-        format.html { redirect_to @lifestyle, notice: 'Lifestyle was successfully created.' }
+        format.html { redirect_to profile_router_path, notice: 'Lifestyle saved.' }
         format.json { render :show, status: :created, location: @lifestyle }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LifestylesController < ApplicationController
   def update
     respond_to do |format|
       if @lifestyle.update(lifestyle_params)
-        format.html { redirect_to @lifestyle, notice: 'Lifestyle was successfully updated.' }
+        format.html { redirect_to profile_router_path, notice: 'Lifestyle updated.' }
         format.json { render :show, status: :ok, location: @lifestyle }
       else
         format.html { render :edit }

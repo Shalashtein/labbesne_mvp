@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :infos
   root to: 'pages#store'
   resources :product_specs
   resources :profile_specs

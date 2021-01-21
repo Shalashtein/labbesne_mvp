@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_101323) do
+ActiveRecord::Schema.define(version: 2021_01_20_111452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,17 @@ ActiveRecord::Schema.define(version: 2021_01_20_101323) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "infos", force: :cascade do |t|
+    t.bigint "profiles_id", null: false
+    t.string "name"
+    t.date "dob"
+    t.string "gender"
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profiles_id"], name: "index_infos_on_profiles_id"
   end
 
   create_table "job_types", force: :cascade do |t|
@@ -1339,6 +1350,7 @@ ActiveRecord::Schema.define(version: 2021_01_20_101323) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "body_measurements", "body_types", column: "body_types_id"
   add_foreign_key "body_measurements", "profiles", column: "profiles_id"
+  add_foreign_key "infos", "profiles", column: "profiles_id"
   add_foreign_key "lifestyles", "activity_levels", column: "activity_levels_id"
   add_foreign_key "lifestyles", "job_types", column: "job_types_id"
   add_foreign_key "lifestyles", "outdoor_levels", column: "outdoor_levels_id"

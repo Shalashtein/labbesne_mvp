@@ -11,14 +11,14 @@
 .container-links{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   width: 60%;
   margin-top: 50px;
   & > a{
     margin: 5px;
-    flex-basis: 0;
-    flex-grow: 1;
+    width: 45%;
   }
   & > a:active, a:hover{
     text-decoration: none;
@@ -40,6 +40,7 @@ div[class^="router-link-"]{
   background-color: rgba(200,200,200,0.1);
   font-family: 'Rubik', sans-serif;
   width: 100%;
+  position: relative;
   & > i{
     text-align: center;
   }
@@ -92,4 +93,16 @@ div[class^="disabled-router-link-"]{
   div[class^="disabled-router-link-"]{
     font-size: 2.5vw;
   }
+}
+.profile-form-done{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #1EDD88;
+}
+.profile-form-not-done{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: none;
 }

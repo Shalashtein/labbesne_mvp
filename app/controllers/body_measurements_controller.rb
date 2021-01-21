@@ -36,7 +36,7 @@ class BodyMeasurementsController < ApplicationController
     @body_measurement = BodyMeasurement.new(body_measurement_params)
     respond_to do |format|
       if @body_measurement.save
-        format.html { redirect_to '/profile', notice: 'Measurements Saved' }
+        format.html { redirect_to profile_router_path, notice: 'Measurements Saved' }
         format.json { render :show, status: :created, location: @body_measurement }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class BodyMeasurementsController < ApplicationController
   def update
     respond_to do |format|
       if @body_measurement.update(body_measurement_params)
-        format.html { redirect_to @body_measurement, notice: 'Body measurement was successfully updated.' }
+        format.html { redirect_to profile_router_path, notice: 'Measurements updated.' }
         format.json { render :show, status: :ok, location: @body_measurement }
       else
         format.html { render :edit }

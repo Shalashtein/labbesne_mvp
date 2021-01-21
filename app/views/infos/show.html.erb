@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Profiles:</strong>
+  <%= @info.profiles_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @info.name %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @info.dob %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @info.gender %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @info.phone %>
+</p>
+
+<%= link_to 'Edit', edit_info_path(@info) %> |
+<%= link_to 'Back', infos_path %>

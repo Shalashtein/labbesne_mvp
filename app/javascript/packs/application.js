@@ -33,6 +33,7 @@ require("swing");
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  disabledLinks();
   lifestyleCollapse();
   Swipe();
   populatePage();
@@ -123,4 +124,9 @@ var populatePage = function(){
   $('.btn-product-specs-save').click(function(){
     $('.fine-submit').click();
   });
+};
+var disabledLinks = function(){
+   $('a[disabled=disabled]').click(function(event){
+        event.preventDefault(); // Prevent link from following its href
+    });
 };
