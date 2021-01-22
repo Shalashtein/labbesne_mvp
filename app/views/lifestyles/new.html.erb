@@ -5,13 +5,13 @@
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
         <div class="form-inputs">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 input-column">
           <%= f.association :profiles, as: :hidden, input_html: { value: current_spree_user.profile.id } %>
           <%= f.association :activity_levels, label: "How physically active are you?" %>
           <%= f.association :social_activities, label: "How social are you?" %>
           <%= f.association :outdoor_levels, label: "Do you like outdoor activities?"%>
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 input-column">
           <%= f.input :studies, label: "Are you a student?"%>
           <%= f.input :study_hours, label: "Hours spent at school per week", input_html: { min: '0', step: 'any' }  %>
           <%= f.input :works, label: "Do you have a job?"%>

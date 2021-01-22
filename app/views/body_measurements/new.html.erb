@@ -6,13 +6,13 @@
       <%= f.error_notification message: "x" if f.object.errors[:base].present? %>
 
       <div class="form-inputs">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 input-column">
           <%= f.association :profiles, as: :hidden, input_html: { value: current_spree_user.profile.id } %>
           <%= f.association :body_types, label: 'Body type' %>
           <%= f.input :height, label: 'Height (cm)', input_html: { min: '0', step: 'any' } %>
           <%= f.input :weight, label: 'Weight (kg)', input_html: { min: '0', step: 'any' } %>
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 input-column">
           <%= f.input :shirt_size, collection: ['XS','S','M','L','XL','XXL'] %>
           <%= f.input :pants_size, label: 'Pants Size (EU)', input_html: { min: '0', step: 'any' } %>
           <%= f.input :shoe_size, label: 'Shoe Size (EU)', input_html: { min: '0', step: 'any' } %>

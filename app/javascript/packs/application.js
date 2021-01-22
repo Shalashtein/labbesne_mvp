@@ -233,3 +233,4 @@ var pcurrentCard = "";
     pcurrentCard.querySelector(".swipe-card-dislike").classList.add("hidden");
   });
 };
+
