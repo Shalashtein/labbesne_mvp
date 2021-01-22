@@ -196,6 +196,9 @@ var pcurrentCard = "";
     }
 
   });
+  pstack.on('dragend', (event) =>{
+    pcurrentCard = event.target;
+  });
 
   // Add event listener for when a card is thrown in the stack, including the spring back into place effect.
   pstack.on('throwin', () => {
