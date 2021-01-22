@@ -61,8 +61,8 @@ Spree.config do |config|
 
   # Roles
 
-  Spree::Role.find_or_create_by(name: 'stylist')
-  Spree::Role.find_or_create_by(name: 'vendor')
+  #Spree::Role.find_or_create_by(name: 'stylist')
+  #Spree::Role.find_or_create_by(name: 'vendor')
 
   # Permission Sets:
 
