@@ -46,6 +46,10 @@ class Spree::UserSessionsController < Devise::SessionsController
     end
   end
 
+  def destroy
+    super
+  end
+
   protected
 
   def translation_scope
@@ -64,9 +68,13 @@ class Spree::UserSessionsController < Devise::SessionsController
     elsif spree_current_user.has_spree_role?(:vendor)
       redirect_to '/shop/vendor'
     else
-      redirect_to(session["spree_user_return_to"] || default)
+      redirect_to(session["spree_user_return_to"] || '/')
       session["spree_user_return_to"] = nil
     end
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    '/'
   end
 
   def success_json
