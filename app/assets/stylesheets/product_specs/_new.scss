@@ -82,3 +82,14 @@
   color: white;
   font-weight: bold;
 }
+.btn-product-specs-back{
+  width: 100%;
+  background-color: rgb(210, 105, 30);
+  color: white;
+  font-weight: bold;
+}
+#new_product_spec{
+  select.form-control:focus{
+    background-color: transparent;
+  }
+}

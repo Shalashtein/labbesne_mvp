@@ -5,6 +5,7 @@
       <%= image_tag @product.gallery.images.first.url(:large), class: "product_spec_image" %>
       <button class="btn btn-product-specs-save">Save</button>
       <%= button_to "Reset", popreset_path(spree_product_id: @product.id), method: :delete, remote: true, class: 'btn btn-product-specs-reset' %>
+      <%= button_to "Back", spree.edit_admin_product_path(id: @product.id), method: :get, class: 'btn btn-product-specs-back' %>
     </div>
     <div class="product_spec_main col-sm-12 col-md-9">
       <div class="clothing_type_selector col-sm-12">
@@ -397,25 +398,6 @@
                   <%= f.association :specs, collection: Spec.where(name: 'color-scheme'), label: 'Color Scheme', value_method: :id, label_method: :value %>
                 <% else %>
                   <%= f.association :specs, collection: Spec.where(name: 'color-scheme'), selected: ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'color-scheme')).first.specs_id, disabled: true, label: 'Color Scheme', value_method: :id, label_method: :value %>
-                <% end %>
-              </div>
-
-              <div class="form-actions">
-                <%= f.button :submit, class: 'fine-submit' %>
-              </div>
-            <% end %>
-          </div>
-          <div class="pants_selector_fine">
-            <%= simple_form_for(ProductSpec.new, remote: :true, url: popsave_path) do |f| %>
-              <%= f.error_notification %>
-              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-              <div class="form-inputs">
-                <%= f.association :spree_product, as: :hidden, input_html: { value: @product.id } %>
-                <% unless ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'cuffs')).exists? %>
-                  <%= f.association :specs, collection: Spec.where(name: 'cuffs'), label: 'Cuffs', value_method: :id, label_method: :value %>
-                <% else %>
-                  <%= f.association :specs, collection: Spec.where(name: 'cuffs'), selected: ProductSpec.where(spree_product_id: @product.id, specs_id: Spec.where(name: 'cuffs')).first.specs_id, disabled: true, label: 'Cuffs', value_method: :id, label_method: :value %>
                 <% end %>
               </div>
 

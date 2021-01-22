@@ -1,0 +1,22 @@
+<div class="products-container">
+  <div class="products-container-sidebar">
+
+  </div>
+  <div class="products-section-swiper">
+    <ul id="products-swipe-card-stack">
+      <% @products.each_with_index do |p,i| %>
+        <li class="swipe-card">
+          <div class="swipe-card-base">
+            <%= i %>
+          </div>
+          <div class="swipe-card-like hidden">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="swipe-card-dislike hidden">
+            <i class="far fa-times-circle"></i>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

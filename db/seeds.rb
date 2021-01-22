@@ -14,11 +14,11 @@ default_specs = [
   ["fit","loose"],["fit","regular"],["fit","slim"],["fit","skinny"],
   ["color-scheme","monochromatic"],["color-scheme","pattern"],["color-scheme","print"],
   ["cuffs","none"],["cuffs","elastic"],["cuffs","buttoned"],["cuffs","puffed"],
-  ["zipper","none"],["zipper","edge-to-edge"],["zipper","invisible"],
+  ["zipper","none"],["zipper","button"],["zipper","edge-to-edge"],["zipper","invisible"],
   ["fabric","cotton"],["fabric","silk"],["fabric","linen"],["fabric","polyester"],["fabric","jeans"],["fabric","lycra"],["fabric","khaki"],["fabric","athletic"],["fabric","leather"],["fabric","foam"],["fabric","generic"],["fabric","other"],
 
   ["top-type","formal-shirt"],["top-type","casual-shirt"],["top-type","sweater"],["top-type","hoodie"],["top-type","jacket"],["top-type","dress"],["top-type","vest"],["top-type","coat"],
-  ["collar","round"],["collar","v-neck"],["collar","polo"],["collar","henley"],["collar","scoop"],["collar","cowl"],["collar","boat"],["collar","off-shoulder"],["collar","asymmetric"],["collar","turtle-neck"],
+  ["collar","classic"],["collar","buttoned"], ["collar","mandarin"], ["collar","round"],["collar","v-neck"],["collar","polo"],["collar","henley"],["collar","scoop"],["collar","cowl"],["collar","boat"],["collar","off-shoulder"],["collar","asymmetric"],["collar","turtle-neck"],
   ["top-cut","regular"],["top-cut","crop"],
   ["sleeve","none"],["sleeve","cap"],["sleeve","short"],["sleeve","three-quraters"],["sleeve","long"],
 
@@ -37,7 +37,7 @@ default_specs = [
 ]
 
 default_specs.each do |spec|
-  if !Spec.where(value: spec[1]).exists?
+  if !Spec.where(name: spec[0], value: spec[1]).exists?
     Spec.create(name: spec[0], value: spec[1]).save!
     puts "#{spec[0]}: #{spec[1]} created."
   end

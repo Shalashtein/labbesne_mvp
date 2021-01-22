@@ -31,11 +31,10 @@ require("swing");
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  productSwipe();
   disabledLinks();
   lifestyleCollapse();
-  Swipe();
+  profileSwipe();
   populatePage();
 });
 
@@ -56,9 +55,14 @@ $('#lifestyle_works').click(function workChanged(){
           $(".lifestyle_work_hours").hide();}
  });
 };
+/*
 
-//----------------------- Swipe UI ----------------------
-var Swipe = function(){
+
+
+
+*/
+//----------------------- Profile Swipe UI ----------------------
+var profileSwipe = function(){
   // Prepare the cards in the stack for iteration.
 const cards = [].slice.call(document.querySelectorAll('#swipe-card-stack li'));
 
@@ -107,6 +111,13 @@ stack.on('throwin', () => {
   currentCard.querySelector(".swipe-card-dislike").classList.add("hidden");
 });
 };
+/*
+
+
+
+
+*/
+// -------------------- Product Specs Page Form Submissions
 var populatePage = function(){
   $('#clothing_type_selector_top').click(function(){
     console.log("click");
@@ -125,8 +136,71 @@ var populatePage = function(){
     $('.fine-submit').click();
   });
 };
+/*
+
+
+
+
+*/
+// ------------------------ Disabled Links on Profile Router
 var disabledLinks = function(){
    $('a[disabled=disabled]').click(function(event){
         event.preventDefault(); // Prevent link from following its href
     });
+};
+/*
+
+
+
+
+*/
+//----------------------- Products Swipe UI ----------------------
+var productSwipe = function(){
+  // Prepare the cards in the stack for iteration.
+const pcards = [].slice.call(document.querySelectorAll('#products-swipe-card-stack li'));
+
+// An instance of the Stack is used to attach event listeners.
+const pstack = Swing.Stack();
+var pcurrentCard = "";
+  pcards.forEach((targetElement) => {
+    // Add card element to the Stack.
+    pstack.createCard(targetElement);
+  });
+
+  // Add event listener for when a card is thrown out of the stack.
+  pstack.on('throwout', (event) => {
+    // e.target Reference to the element that has been thrown out of the stack.
+    // e.throwDirection Direction in which the element has been thrown (Direction.LEFT, Direction.RIGHT).
+    event.target.classList.add("hidden");
+    console.log('Card has been thrown out of the stack.');
+    console.log('Throw direction: ' + (event.throwDirection == Direction.LEFT ? 'left' : 'right'));
+    pstack.getCard(event.target).destroy()
+  });
+
+  pstack.on('dragstart', (event) =>{
+    pcurrentCard = event.target;
+  });
+  pstack.on('dragmove', (event) => {
+    // e.target Reference to the element that has been thrown out of the stack.
+    // e.throwDirection Direction in which the element has been thrown (Direction.LEFT, Direction.RIGHT).
+    console.log(event.target);
+    var d = event.throwDirection == Direction.LEFT ? 'left' : 'right'
+    console.log('Yo this shit is moving to the ' + d);
+    if(d == 'left'){
+      event.target.querySelector(".swipe-card-like").classList.add("hidden");
+      event.target.querySelector(".swipe-card-dislike").classList.remove("hidden");
+    }
+    else{
+      event.target.querySelector(".swipe-card-like").classList.remove("hidden");
+      event.target.querySelector(".swipe-card-dislike").classList.add("hidden");
+    }
+
+  });
+
+  // Add event listener for when a card is thrown in the stack, including the spring back into place effect.
+  pstack.on('throwin', () => {
+    console.log('Card has snapped back to the stack.');
+    currentCard.querySelector(".swipe-card-like").classList.add("hidden");
+    currentCard.querySelector(".swipe-card-dislike").classList.add("hidden");
+  });
 };
