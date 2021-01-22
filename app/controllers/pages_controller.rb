@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   before_action :signinRouter
 
   def store
-    @products = Spree::Product.all
+    @products = Spree::Product.where(approved: true)
   end
 
   def swipepage

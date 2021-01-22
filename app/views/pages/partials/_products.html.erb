@@ -6,8 +6,8 @@
     <ul id="products-swipe-card-stack">
       <% @products.each_with_index do |p,i| %>
         <li class="swipe-card">
-          <div class="swipe-card-base">
-            <%= i %>
+          <div class="swipe-card-base <%= p.gender %>">
+            <%= image_tag p.images.first.url('large') %>
           </div>
           <div class="swipe-card-like hidden">
             <i class="fas fa-heart"></i>
