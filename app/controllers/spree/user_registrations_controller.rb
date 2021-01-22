@@ -13,11 +13,10 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(spree_user_params)
-    p = Profile.new
-    p.spree_user_id = resource.id
-    p.save!
-    byebug
     if resource.save
+      p = Profile.new
+      p.spree_user_id = resource.id
+      p.save!
       set_flash_message(:notice, :signed_up)
       sign_in(:spree_user, resource)
       session[:spree_user_signup] = true
