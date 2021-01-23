@@ -1,7 +1,11 @@
-<div class="products-container">
+<div class="products-container" data-controller="products">
   <div class="products-container-sidebar">
+    <div class="products-container-sidebar-toggler">
+      Product Info <i class="fa fa-info-circle"></i>
+    </div>
     <div class="products-container-sidebar-header">
-      <h1>Product Name</h1>
+      <h1 data-products-target="name">Product Name</h1>
+      <h3 data-products-target="price">0.0</h3>
     </div>
     <div class="products-container-sidebar-body">
       <ul>
@@ -17,11 +21,11 @@
   </div>
   <div class="products-section-swiper">
     <div class="product-filters">
-      <div class="form-check form-switch">
+      <div class="form-check form-switch men-switch">
         <input class="form-check-input" type="checkbox" id="men-toggler" checked>
         <label class="form-check-label" for="men-toggler">Men's Clothing</label>
       </div>
-      <div class="form-check form-switch">
+      <div class="form-check form-switch women-switch">
         <input class="form-check-input" type="checkbox" id="women-toggler" checked>
         <label class="form-check-label" for="women-toggler">Women's Clothing</label>
       </div>
@@ -41,7 +45,7 @@
     <ul id="products-swipe-card-stack">
       <% @products.each_with_index do |p,i| %>
       <% product_data = "data-gender=#{p.gender} data-type=#{ProductSpec.where(spree_product_id: p.id, name: 'clothing-type').first.value || "missing"}" %>
-        <li class="swipe-card" <%= product_data %>>
+        <li class="swipe-card" <%= product_data %> data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>">
           <div class="swipe-card-base">
             <%= image_tag p.images.first.url('large') %>
           </div>
@@ -54,5 +58,13 @@
         </li>
       <% end %>
     </ul>
+    <%= simple_form_for(@preference, remote: true, url: add_preference_path) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :value, as: :hidden, input_html: { :data => { :"products-target" => "product" } } %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'preference_submit' %>
+    </div>
+  <% end %>
   </div>
 </div>

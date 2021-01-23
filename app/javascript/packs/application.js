@@ -8,7 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("@fortawesome/fontawesome-free/js/all")
 require("channels")
-
+require("../controllers/index.js")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -33,6 +33,7 @@ require("swing");
 document.addEventListener('turbolinks:load', () => {
   productSwipe();
   productFilter();
+  sidebarToggler();
   disabledLinks();
   lifestyleCollapse();
   profileSwipe();
@@ -197,10 +198,9 @@ const pstack = Swing.Stack(config);
   pstack.on('dragmove', (e) => {
     // e.target Reference to the element that has been thrown out of the stack.
     // e.throwDirection Direction in which the element has been thrown (Direction.LEFT, Direction.RIGHT).
-    console.log(e.target);
     var d = e.throwDirection == Direction.LEFT ? 'left' : 'right'
-    console.log('Yo this shit is moving to the ' + d);
-    console.log('Confidence = ' + e.throwOutConfidence)
+    //console.log('Yo this shit is moving to the ' + d);
+    //console.log('Confidence = ' + e.throwOutConfidence)
     var likeIcon = e.target.querySelector(".swipe-card-like");
     var dislikeIcon = e.target.querySelector(".swipe-card-dislike");
     if(d == 'left'){
@@ -218,6 +218,7 @@ const pstack = Swing.Stack(config);
 
   pstack.on('dragend', (e) =>{
     console.log("DRAG ENDED");
+    e.target.click();
     console.log(e);
   });
 
@@ -226,6 +227,29 @@ const pstack = Swing.Stack(config);
     // e.target Reference to the element that has been thrown out of the stack.
     // e.throwDirection Direction in which the element has been thrown (Direction.LEFT, Direction.RIGHT).
     //e.target.classList.add("hidden");
+    var product_id = $('#profile_spec_value').val()
+    console.log (`PRODUCT: ${product_id}`)
+    if(e.throwDirection == Direction.LEFT){
+      $.ajax({
+        type:'POST',
+        url:'/preferenceAdd',
+        data: `data[product]=${product_id}&data[action]=0`,
+        success:function(){
+          //I assume you want to do something on controller action execution success?
+          console.log("disliked")
+        }
+      });
+    } else {
+      $.ajax({
+        type:'POST',
+        url:'/preferenceAdd',
+        data: `data[product]=${product_id}&data[action]=1`,
+        success:function(){
+          //I assume you want to do something on controller action execution success?
+          console.log("liked")
+        }
+      });
+    }
     pstack.getCard(e.target).throwIn(0,0);
     $(e.target).prependTo($('#products-swipe-card-stack'));
     console.log('Card has been thrown out of the stack.');
@@ -240,7 +264,13 @@ const pstack = Swing.Stack(config);
     pcurrentCard.querySelector(".swipe-card-dislike").classList.add("hidden");
   });
 };
+/*
 
+
+
+
+*/
+//----------------------- Product Filters ----------------------
 var productFilter = function(){
   $('#men-toggler').click(function(){
     if($(this).prop('checked')){
@@ -257,25 +287,13 @@ var productFilter = function(){
     };
   });
   $('#top-toggler').click(function(){
-    if($(this).prop('checked')){
-      $('li[data-type="top"]').removeClass('hidden');
-    } else{
-      $('li[data-type="top"]').addClass('hidden');
-    };
+    genderChecker('top', $(this).prop('checked'));
   });
   $('#pants-toggler').click(function(){
-    if($(this).prop('checked')){
-      $('li[data-type="pants"]').removeClass('hidden');
-    } else{
-      $('li[data-type="pants"]').addClass('hidden');
-    };
+    genderChecker('pants', $(this).prop('checked'));
   });
   $('#shoes-toggler').click(function(){
-    if($(this).prop('checked')){
-      $('li[data-type="shoes"]').removeClass('hidden');
-    } else{
-      $('li[data-type="shoes"]').addClass('hidden');
-    };
+    genderChecker('shoes', $(this).prop('checked'));
   });
   $('.gender-router-men-image').click(function(){
     if($('#women-toggler').prop('checked')){
@@ -287,6 +305,7 @@ var productFilter = function(){
     $('html, body').animate({
      scrollTop: $("#products-section").offset().top
     }, 20);
+    $('#gender-section').hide();
   });
   $('.gender-router-women-image').click(function(){
     if($('#men-toggler').prop('checked')){
@@ -298,5 +317,33 @@ var productFilter = function(){
     $('html, body').animate({
      scrollTop: $("#products-section").offset().top
     }, 20);
+    $('#gender-section').hide();
   });
 };
+
+var genderChecker = function(type, checked){
+  if(checked){
+      if($('#men-toggler').prop('checked')){
+        $('li[data-type=' + type + ']').filter('[data-gender="Men"]').show()
+      }
+      if($('#women-toggler').prop('checked')){
+        $('li[data-type=' + type + ']').filter('[data-gender="Women"]').show()
+      }
+  } else {
+    $('li[data-type=' + type + ']').hide()
+  }
+};
+/*
+
+
+
+
+*/
+//----------------------- Sidebar Toggler ----------------------
+var sidebarToggler = function(){
+  $('.products-container-sidebar-toggler').click(function(){
+    $('.products-container-sidebar').toggleClass('sidebar-active')
+  });
+}
+
+import "controllers"
