@@ -32,6 +32,7 @@ require("swing");
 
 document.addEventListener('turbolinks:load', () => {
   productSwipe();
+  productFilter();
   disabledLinks();
   lifestyleCollapse();
   profileSwipe();
@@ -96,9 +97,11 @@ stack.on('dragmove', (event) => {
   if(d == 'left'){
     event.target.querySelector(".swipe-card-like").classList.add("hidden");
     event.target.querySelector(".swipe-card-dislike").classList.remove("hidden");
+    event.target.querySelector(".swipe-card-dislike").style.opacity = event.throwOutConfidence;
   }
   else{
     event.target.querySelector(".swipe-card-like").classList.remove("hidden");
+    event.target.querySelector(".swipe-card-like").style.opacity = event.throwOutConfidence;
     event.target.querySelector(".swipe-card-dislike").classList.add("hidden");
   }
 
@@ -180,20 +183,12 @@ const config = {
 };
 
 const pstack = Swing.Stack(config);
-var pcurrentCard = "";
+
+  var pcurrentCard = "";
+
   pcards.forEach((targetElement) => {
     // Add card element to the Stack.
     pstack.createCard(targetElement);
-  });
-
-  // Add event listener for when a card is thrown out of the stack.
-  pstack.on('throwout', (e) => {
-    // e.target Reference to the element that has been thrown out of the stack.
-    // e.throwDirection Direction in which the element has been thrown (Direction.LEFT, Direction.RIGHT).
-    e.target.classList.add("hidden");
-    console.log('Card has been thrown out of the stack.');
-    console.log('Throw direction: ' + (e.throwDirection == Direction.LEFT ? 'left' : 'right'));
-    pstack.getCard(e.target).destroy()
   });
 
   pstack.on('dragstart', (e) =>{
@@ -226,6 +221,18 @@ var pcurrentCard = "";
     console.log(e);
   });
 
+    // Add event listener for when a card is thrown out of the stack.
+  pstack.on('throwout', (e) => {
+    // e.target Reference to the element that has been thrown out of the stack.
+    // e.throwDirection Direction in which the element has been thrown (Direction.LEFT, Direction.RIGHT).
+    //e.target.classList.add("hidden");
+    pstack.getCard(e.target).throwIn(0,0);
+    $(e.target).prependTo($('#products-swipe-card-stack'));
+    console.log('Card has been thrown out of the stack.');
+    console.log('Throw direction: ' + (e.throwDirection == Direction.LEFT ? 'left' : 'right'));
+    //pstack.getCard(e.target).destroy()
+  });
+
   // Add event listener for when a card is thrown in the stack, including the spring back into place effect.
   pstack.on('throwin', () => {
     console.log('Card has snapped back to the stack.');
@@ -234,3 +241,62 @@ var pcurrentCard = "";
   });
 };
 
+var productFilter = function(){
+  $('#men-toggler').click(function(){
+    if($(this).prop('checked')){
+      $('li[data-gender="Men"]').removeClass('hidden');
+    } else{
+      $('li[data-gender="Men"]').addClass('hidden');
+    };
+  });
+  $('#women-toggler').click(function(){
+    if($(this).prop('checked')){
+      $('li[data-gender="Women"]').removeClass('hidden');
+    } else{
+      $('li[data-gender="Women"]').addClass('hidden');
+    };
+  });
+  $('#top-toggler').click(function(){
+    if($(this).prop('checked')){
+      $('li[data-type="top"]').removeClass('hidden');
+    } else{
+      $('li[data-type="top"]').addClass('hidden');
+    };
+  });
+  $('#pants-toggler').click(function(){
+    if($(this).prop('checked')){
+      $('li[data-type="pants"]').removeClass('hidden');
+    } else{
+      $('li[data-type="pants"]').addClass('hidden');
+    };
+  });
+  $('#shoes-toggler').click(function(){
+    if($(this).prop('checked')){
+      $('li[data-type="shoes"]').removeClass('hidden');
+    } else{
+      $('li[data-type="shoes"]').addClass('hidden');
+    };
+  });
+  $('.gender-router-men-image').click(function(){
+    if($('#women-toggler').prop('checked')){
+      $('#women-toggler').click();
+    }
+    if(!$('#men-toggler').prop('checked')){
+      $('#men-toggler').click();
+    }
+    $('html, body').animate({
+     scrollTop: $("#products-section").offset().top
+    }, 20);
+  });
+  $('.gender-router-women-image').click(function(){
+    if($('#men-toggler').prop('checked')){
+      $('#men-toggler').click();
+    }
+    if(!$('#women-toggler').prop('checked')){
+      $('#women-toggler').click();
+    }
+    $('html, body').animate({
+     scrollTop: $("#products-section").offset().top
+    }, 20);
+  });
+};

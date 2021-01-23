@@ -17,6 +17,8 @@ class ProductSpecsController < ApplicationController
   def popsave
     if !ProductSpec.where(spree_product_id: params[:spree_product_id], specs_id: params[:specs_id]).exists?
       product_spec = ProductSpec.new(product_spec_params)
+      product_spec.name = Spec.find(product_spec.specs_id).name
+      product_spec.value = Spec.find(product_spec.specs_id).value
     end
     respond_to do |format|
       if product_spec.save

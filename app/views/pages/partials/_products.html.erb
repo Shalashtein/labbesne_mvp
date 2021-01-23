@@ -1,17 +1,48 @@
 <div class="products-container">
   <div class="products-container-sidebar">
-    <div class="product-filters">
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-      </div>
+    <div class="products-container-sidebar-header">
+      <h1>Product Name</h1>
+    </div>
+    <div class="products-container-sidebar-body">
+      <ul>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      </ul>
+    </div>
+    <div class="products-container-sidebar-footer">
+      <button class="btn btn-buy"><i class="fa fa-shopping-cart"></i>Add to Cart</button>
     </div>
   </div>
   <div class="products-section-swiper">
+    <div class="product-filters">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="men-toggler" checked>
+        <label class="form-check-label" for="men-toggler">Men's Clothing</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="women-toggler" checked>
+        <label class="form-check-label" for="women-toggler">Women's Clothing</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="top-toggler" checked>
+        <label class="form-check-label" for="top-toggler">Show Tops</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="pants-toggler" checked>
+        <label class="form-check-label" for="pants-toggler">Show Pants</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="shoes-toggler" checked>
+        <label class="form-check-label" for="shoes-toggler">Show Shoes</label>
+      </div>
+    </div>
     <ul id="products-swipe-card-stack">
       <% @products.each_with_index do |p,i| %>
-        <li class="swipe-card">
-          <div class="swipe-card-base <%= p.gender %>">
+      <% product_data = "data-gender=#{p.gender} data-type=#{ProductSpec.where(spree_product_id: p.id, name: 'clothing-type').first.value || "missing"}" %>
+        <li class="swipe-card" <%= product_data %>>
+          <div class="swipe-card-base">
             <%= image_tag p.images.first.url('large') %>
           </div>
           <div class="swipe-card-like hidden">
@@ -23,12 +54,5 @@
         </li>
       <% end %>
     </ul>
-    <div class="controls">
-      <i class="fa fa-times-circle controls-dislike"></i>
-      <i class="fa fa-times-circle controls-dislike"></i>
-      <i class="fa fa-times-circle controls-dislike"></i>
-      <i class="fa fa-times-circle controls-dislike"></i>
-      <i class="fa fa-times-circle controls-dislike"></i>
-    </div>
   </div>
 </div>
