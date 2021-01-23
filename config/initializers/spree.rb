@@ -94,6 +94,7 @@ Spree.config do |config|
   Spree::PermittedAttributes.product_attributes << [:image]
   Spree::PermittedAttributes.product_attributes << [:gender]
   Spree::PermittedAttributes.product_attributes << [:test]
+  Spree::PermittedAttributes.product_attributes << [:swiped]
   Spree::PermittedAttributes.user_attributes << [:vendorname]
 
   # Gateway credentials can be configured statically here and referenced from

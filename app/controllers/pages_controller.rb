@@ -19,7 +19,8 @@ class PagesController < ApplicationController
       ps.value += params[:data][:action] == "1" ? 1 : -1
       ps.save!
     end
-    byebug
+    p.swiped = true
+    p.save!
   end
 
   def swipepage
