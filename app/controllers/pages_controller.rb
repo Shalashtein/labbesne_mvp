@@ -8,24 +8,11 @@ class PagesController < ApplicationController
   end
 
   def preference
-  #  p = Spree::Product.find(params[:data][:product])
-  #  p.product_specs.each do |product_spec|
-  #    if !ProfileSpec.where(profiles_id: current_spree_user.profile.id, specs_id: product_spec.specs.id).first.nil?
-  #      ps = ProfileSpec.where(profiles_id: current_spree_user.profile.id, specs_id: product_spec.specs.id).first
-  #    else
-  #      ps = ProfileSpec.create(profiles_id: current_spree_user.profile.id, specs_id: product_spec.specs.id, value: 0)
-  #      ps.save!
-  #    end
-  #    ps.value += params[:data][:action] == "1" ? 1 : -1
-  #    ps.save!
-  #  end
-  #  p.swiped = true
-  #  p.save!
-  UpdatePreferencesJob.perform_later(params[:data][:product], current_spree_user.id, params[:data][:action])
+    UpdatePreferencesJob.perform_later(params[:data][:product], current_spree_user.id, params[:data][:action])
   end
 
   def swipepage
-    @products = Spree::Product.where(test: true, gender: current_spree_user.info.gender.capitalize)
+    @products = Spree::Product.where(test: true, gender: current_spree_user.profile.info.gender.capitalize)
   end
 
   def profileRouter

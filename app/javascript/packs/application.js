@@ -217,7 +217,6 @@ const pstack = Swing.Stack(config);
   });
 
   pstack.on('dragend', (e) =>{
-    console.log("DRAG ENDED");
     e.target.click();
     console.log(e);
   });
@@ -251,14 +250,11 @@ const pstack = Swing.Stack(config);
     }
     pstack.getCard(e.target).throwIn(0,0);
     $(e.target).prependTo($('#products-swipe-card-stack'));
-    console.log('Card has been thrown out of the stack.');
-    console.log('Throw direction: ' + (e.throwDirection == Direction.LEFT ? 'left' : 'right'));
     //pstack.getCard(e.target).destroy()
   });
 
   // Add event listener for when a card is thrown in the stack, including the spring back into place effect.
   pstack.on('throwin', () => {
-    console.log('Card has snapped back to the stack.');
     pcurrentCard.querySelector(".swipe-card-like").classList.add("hidden");
     pcurrentCard.querySelector(".swipe-card-dislike").classList.add("hidden");
   });
@@ -329,7 +325,8 @@ var genderChecker = function(type, checked){
         $('li[data-type=' + type + ']').filter('[data-gender="Women"]').show()
       }
   } else {
-    $('li[data-type=' + type + ']').hide().prependTo($('#products-swipe-card-stack'));
+    $('li[data-type=' + type + ']').hide();
+    $('li[data-type=' + type + ']').prependTo($('#out_deck'));
   }
 };
 /*

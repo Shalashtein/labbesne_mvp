@@ -1,6 +1,6 @@
 <div class="products-container" data-controller="products">
   <div class="products-container-sidebar">
-    <div class="products-container-sidebar-toggler">
+    <div class="products-container-sidebar-toggler" data-action="click->products#swipe">
       Product Info <i class="fa fa-info-circle"></i>
     </div>
     <div class="products-container-sidebar-header">
@@ -42,7 +42,7 @@
         <label class="form-check-label" for="shoes-toggler">Show Shoes</label>
       </div>
     </div>
-    <ul id="products-swipe-card-stack">
+    <ul id="products-swipe-card-stack" data-products-target="deck">
       <% @products.each_with_index do |p,i| %>
       <% product_data = "data-gender=#{p.gender} data-type=#{ProductSpec.where(spree_product_id: p.id, name: 'clothing-type').first.value || "missing"}" %>
         <li class="swipe-card" <%= product_data %> data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>">
@@ -58,5 +58,6 @@
         </li>
       <% end %>
     </ul>
+    <ul id="out_deck"></ul>
   </div>
 </div>
