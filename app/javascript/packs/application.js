@@ -227,8 +227,7 @@ const pstack = Swing.Stack(config);
     // e.target Reference to the element that has been thrown out of the stack.
     // e.throwDirection Direction in which the element has been thrown (Direction.LEFT, Direction.RIGHT).
     //e.target.classList.add("hidden");
-    var product_id = $('#profile_spec_value').val()
-    console.log (`PRODUCT: ${product_id}`)
+    var product_id = $('#products-swipe-card-stack li:last-child').data("productid")
     if(e.throwDirection == Direction.LEFT){
       $.ajax({
         type:'POST',
@@ -276,14 +275,14 @@ var productFilter = function(){
     if($(this).prop('checked')){
       $('li[data-gender="Men"]').removeClass('hidden');
     } else{
-      $('li[data-gender="Men"]').addClass('hidden');
+      $('li[data-gender="Men"]').addClass('hidden').prependTo($('#products-swipe-card-stack'));;
     };
   });
   $('#women-toggler').click(function(){
     if($(this).prop('checked')){
       $('li[data-gender="Women"]').removeClass('hidden');
     } else{
-      $('li[data-gender="Women"]').addClass('hidden');
+      $('li[data-gender="Women"]').addClass('hidden').prependTo($('#products-swipe-card-stack'));;
     };
   });
   $('#top-toggler').click(function(){
@@ -330,7 +329,7 @@ var genderChecker = function(type, checked){
         $('li[data-type=' + type + ']').filter('[data-gender="Women"]').show()
       }
   } else {
-    $('li[data-type=' + type + ']').hide()
+    $('li[data-type=' + type + ']').hide().prependTo($('#products-swipe-card-stack'));
   }
 };
 /*

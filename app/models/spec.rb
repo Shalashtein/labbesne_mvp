@@ -1,4 +1,4 @@
 class Spec < ApplicationRecord
-  has_many :profile_specs
-  has_many :product_specs
+  has_one :profile_specs
+  has_one :product_specs
 end
