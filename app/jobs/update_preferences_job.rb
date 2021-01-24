@@ -18,6 +18,7 @@ class UpdatePreferencesJob < ApplicationJob
     end
     p.swiped = true
     p.save!
+    current_user.profile.swiped += 1
     #puts result
   end
 end
