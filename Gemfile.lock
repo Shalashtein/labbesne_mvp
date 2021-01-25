@@ -475,6 +475,7 @@ DEPENDENCIES
   fog-aws
   font-awesome-sass
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.2)
   paperclip-cloudinary
   pg (>= 0.18, < 2.0)

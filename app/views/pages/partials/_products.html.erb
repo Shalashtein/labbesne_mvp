@@ -16,7 +16,13 @@
       </ul>
     </div>
     <div class="products-container-sidebar-footer">
-      <button class="btn btn-buy"><i class="fa fa-shopping-cart"></i>Add to Cart</button>
+      <%= form_for @order, remote: true , url: spree.populate_orders_url, method: :post do |f| %>
+        <%= hidden_field_tag "variant_id" %>
+          <%= hidden_field_tag :quantity, 1%>
+          <%= button_tag class: 'btn btn-buy', id: 'add-to-cart-button', type: :submit do %>
+            <i class="fa fa-shopping-cart"></i>Add to Cart
+          <% end %>
+      <% end %>
     </div>
   </div>
   <div class="products-section-swiper">
@@ -43,19 +49,21 @@
       </div>
     </div>
     <ul id="products-swipe-card-stack" data-products-target="deck">
-      <% @products.each_with_index do |p,i| %>
-      <% product_data = "data-gender=#{p.gender} data-type=#{ProductSpec.where(spree_product_id: p.id, name: 'clothing-type').first.value || "missing"}" %>
-        <li class="swipe-card" <%= product_data %> data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>">
-          <div class="swipe-card-base">
-            <%= image_tag p.images.first.url('large') %>
-          </div>
-          <div class="swipe-card-like hidden">
-            <i class="fas fa-heart"></i>
-          </div>
-          <div class="swipe-card-dislike hidden">
-            <i class="far fa-times-circle"></i>
-          </div>
-        </li>
+      <% for x in 0..10 do%>
+        <% @products_sorted.reverse.each_with_index do |p,i| %>
+          <% product_data = "data-gender=#{p.gender} data-type=#{ProductSpec.where(spree_product_id: p.id, name: 'clothing-type').first.value || "missing"}" %>
+          <li class="swipe-card" <%= product_data %> data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>" data-variant="<%= p.master.id %>">
+            <div class="swipe-card-base">
+              <%= image_tag p.images.first.url('large') %>
+            </div>
+            <div class="swipe-card-like hidden">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="swipe-card-dislike hidden">
+              <i class="far fa-times-circle"></i>
+            </div>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
@@ -63,20 +71,8 @@
       <div class="products-container-cart-toggler">
         <i class="fa fa-shopping-cart"></i> Cart
       </div>
-      <div class="products-container-cart-header">
-        <h1 data-products-target="name">Cart</h1>
-        <h3 data-products-target="price">0.0</h3>
-      </div>
-      <div class="products-container-cart-body">
-        <ul>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-        </ul>
-      </div>
-      <div class="products-container-cart-footer">
-        <button class="btn btn-buy"><i class="fa fa-shopping-cart"></i>Add to Cart</button>
+      <div class="dynamic_cart">
+        <%= render partial: '/pages/partials/cart' %>
       </div>
     </div>
 </div>

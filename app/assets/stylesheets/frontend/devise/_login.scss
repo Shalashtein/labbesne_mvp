@@ -41,6 +41,7 @@
 #spree_user_email, #spree_user_password, #spree_user_password_confirmation{
   background-color: rgba(0,0,0,0) !important;
   color: white;
+  margin: 5px;
   &:-webkit-autofill{
     background-color: rgba(0,0,0,0) !important;
   }
@@ -51,6 +52,14 @@
     background-color: rgba(0,0,0,0) !important;
   }
 }
+#spree_user_remember_me{
+  margin: 5px;
+}
+.login-btn{
+  margin: 5px;
+  width: 100%;
+  color: white;
+}
 .errors{
   color: red;
 }
@@ -58,5 +67,6 @@
   color: white;
 }
 .devise_extras{
+  margin: 5px;
   color: #b0d4ff;
 }

@@ -11,7 +11,7 @@ require("channels")
 require("../controllers/index.js")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
+// them with the image_pack_tag helper in views (e.g <%%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
 //
 // const images = require.context('../images', true)
@@ -34,6 +34,7 @@ document.addEventListener('turbolinks:load', () => {
   productSwipe();
   productFilter();
   sidebarToggler();
+  addToCart();
   cartToggler();
   disabledLinks();
   lifestyleCollapse();
@@ -360,6 +361,24 @@ var cartToggler = function(){
       $('.products-container-cart').toggleClass('cart-active')
       $('.products-container-cart-toggler').toggleClass('toggler-active')
     }
+  });
+}
+var addToCart = function(){
+  $('#edit_order_10').bind('ajax:success', function(e){
+    $('.dynamic_cart').load('/current_cart');
+  });
+  $(document).on('ajax:success','.empty_cart', {} ,function(e){
+    $('.dynamic_cart').load('/current_cart');
+  });
+  $(document).on('ajax:success','.remove_item', {} ,function(e){
+    $('.dynamic_cart').load('/current_cart');
+  });
+  $('.empty_cart').bind('ajax:success', function(e){
+    $('.dynamic_cart').load('/current_cart');
+  });
+  $('.remove_item').bind('ajax:success', function(e){
+    console.log("x");
+    $('.dynamic_cart').load('/current_cart');
   });
 }
 

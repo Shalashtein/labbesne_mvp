@@ -1,0 +1,14 @@
+<div class="products-container-cart-header">
+  <h1 data-products-target="name">Cart</h1><%= link_to "empty", empty_cart_path(order_id: @order.id), remote: true, method: :delete, class: "empty_cart" %>
+
+  <h3 data-products-target="price"><%= "#{@order.total.to_i} LBP" %></h3>
+</div>
+<div class="products-container-cart-body">
+  <%= render partial: 'pages/partials/cart_items' %>
+</div>
+<% unless @order.line_items.empty? %>
+  <div class="products-container-cart-footer">
+    <button class="btn btn-buy">Checkout</button>
+  </div>
+<% end %>
+

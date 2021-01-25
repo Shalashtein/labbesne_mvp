@@ -10,9 +10,11 @@
       <%= content_tag :li, class: ('active' if current == 'Images') do %>
         <%= link_to t('spree.images'), spree.admin_product_images_url(@product) %>
       <% end if can?(:admin, Spree::Image) && !@product.deleted? %>
-      <%= content_tag :li, class: ('active' if current == 'ProductSpecs') do %>
-        <%= link_to "Specifications", main_app.populate_path(spree_product_id: @product.id) %>
-      <% end if can?(:admin, ProductSpec) %>
+      <% unless @product.gallery.images.first.nil? %>
+        <%= content_tag :li, class: ('active' if current == 'ProductSpecs') do %>
+          <%= link_to "Specifications", main_app.populate_path(spree_product_id: @product.id) %>
+        <% end if can?(:admin, ProductSpec) %>
+      <% end %>
        <%= content_tag :li, class: ('active' if current == 'Variants') do %>
         <%= link_to plural_resource_name(Spree::Variant), spree.admin_product_variants_url(@product) %>
       <% end if can?(:admin, Spree::Variant) %>
