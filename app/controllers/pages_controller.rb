@@ -5,7 +5,6 @@ class PagesController < ApplicationController
 
   def store
     @preference = ProfileSpec.new
-    @products = Spree::Product.where(approved: true)
     @products_sorted = Spree::Product.where(approved: true).order(swiped: :desc, id: :desc).page(params[:page])
     @item = Spree::LineItem.new
   end

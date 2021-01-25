@@ -48,24 +48,9 @@
         <label class="form-check-label" for="shoes-toggler">Show Shoes</label>
       </div>
     </div>
-    <ul id="products-swipe-card-stack" data-products-target="deck">
-      <% for x in 0..10 do%>
-        <% @products_sorted.reverse.each_with_index do |p,i| %>
-          <% product_data = "data-gender=#{p.gender} data-type=#{ProductSpec.where(spree_product_id: p.id, name: 'clothing-type').first.value || "missing"}" %>
-          <li class="swipe-card" <%= product_data %> data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>" data-variant="<%= p.master.id %>">
-            <div class="swipe-card-base">
-              <%= image_tag p.images.first.url('large') %>
-            </div>
-            <div class="swipe-card-like hidden">
-              <i class="fas fa-heart"></i>
-            </div>
-            <div class="swipe-card-dislike hidden">
-              <i class="far fa-times-circle"></i>
-            </div>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
+    <div class="dynamic-deck">
+      <%= render partial: 'pages/partials/deck' %>
+    </div>
   </div>
   <div class="products-container-cart">
       <div class="products-container-cart-toggler">

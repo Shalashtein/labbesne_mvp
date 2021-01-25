@@ -105,7 +105,15 @@ body::-webkit-scrollbar-thumb {
   left: 20px;
   z-index: 9999;
 }
-
+.dynamic-deck{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 #products-swipe-card-stack{
     height: 60%;
     width: 80%;

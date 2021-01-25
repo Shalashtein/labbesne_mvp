@@ -4,7 +4,18 @@
   <h3 data-products-target="price"><%= "#{@order.total.to_i} LBP" %></h3>
 </div>
 <div class="products-container-cart-body">
-  <%= render partial: 'pages/partials/cart_items' %>
+  <ul class="cart-items">
+    <% @order.line_items.each do |li| %>
+      <li class="cart-line-item">
+        <div class="cart-line-item-name">
+          <%= link_to "remove", remove_item_path(item_id: li.id), remote: true, method: :delete, class: "remove_item" %>
+          <%= li.product.name %>
+          </div>
+        <div class="cart-line-item-price"><%= "#{li.product.price} x #{li.quantity}" %></div>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
 </div>
 <% unless @order.line_items.empty? %>
   <div class="products-container-cart-footer">
