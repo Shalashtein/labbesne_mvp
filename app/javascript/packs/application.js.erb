@@ -34,7 +34,7 @@ document.addEventListener('turbolinks:load', () => {
   productSwipe();
   productFilter();
   sidebarToggler();
-  addToCart();
+  dynamic();
   cartToggler();
   disabledLinks();
   lifestyleCollapse();
@@ -250,8 +250,8 @@ const pstack = Swing.Stack(config);
         }
       });
     }
-    pstack.getCard(e.target).throwIn(0,0);
-    $(e.target).prependTo($('#products-swipe-card-stack'));
+    //pstack.getCard(e.target).throwIn(0,0);
+    //$(e.target).prependTo($('#products-swipe-card-stack'));
     //pstack.getCard(e.target).destroy()
   });
 
@@ -363,7 +363,11 @@ var cartToggler = function(){
     }
   });
 }
-var addToCart = function(){
+var dynamic = function(){
+  $('.next_deck').bind('ajax:success', function(e){
+    $('.dynamic-deck').load($('.next_deck').attr('href'));
+    console.log("HaHaHa");
+  });
   $('#edit_order_10').bind('ajax:success', function(e){
     $('.dynamic_cart').load('/current_cart');
   });
@@ -380,6 +384,7 @@ var addToCart = function(){
     console.log("x");
     $('.dynamic_cart').load('/current_cart');
   });
+
 }
 
 import "controllers"

@@ -16,12 +16,5 @@
     <%= render partial: 'pages/partials/products' %>
   </div>
 </div>
-<ul>
-  <% @products_sorted.each do |p| %>
-    <li><%= "#{p.name} ==> swiped: #{p.swiped}" %></li>
-  <% end %>
-</ul>
-<%= @products_sorted.reverse.first.name %>
-<%= @products_sorted.reverse.last.name %>
-<%= paginate @products_sorted %>
-<%= link_to_next_page @products_sorted, 'Next Page' %>
+<% page = @products_sorted.current_page + 1 %>
+<%= link_to 'Next Page', deck_path(page: page),remote: true, class: 'next_deck' %>

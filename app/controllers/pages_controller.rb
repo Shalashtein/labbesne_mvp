@@ -2,11 +2,16 @@ class PagesController < ApplicationController
   layout 'application', only: "store"
   before_action :signinRouter
   before_action :setCart
+  before_action :setProducts, only: [:store, :deck]
 
   def store
     @preference = ProfileSpec.new
-    @products_sorted = Spree::Product.where(approved: true).order(swiped: :desc, id: :desc).page(params[:page])
     @item = Spree::LineItem.new
+  end
+
+  def deck
+    params.permit(:page)
+    render partial: 'pages/partials/deck'
   end
 
   def preference
@@ -62,5 +67,9 @@ class PagesController < ApplicationController
 
   def setCart
     @order = current_spree_user.last_incomplete_spree_order || Spree::Order.new
+  end
+
+  def setProducts
+    @products_sorted = Spree::Product.where(approved: true).order(swiped: :desc, id: :desc).page(params[:page])
   end
 end
