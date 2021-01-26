@@ -1,0 +1,8 @@
+<div class="products_cards">
+  <% @products.each do |p| %>
+    <ul>
+      <li><%= p.name %></li>
+    </ul>
+  <% end %>
+</div>
+<%= paginate @products, remote: true %>

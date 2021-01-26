@@ -1,0 +1,69 @@
+.stylist-container{
+  height: 100vh;
+  width: 100vw;
+  background-color: purple;
+  display: flex;
+  justify-content: stretch;
+  &-sidebar{
+    width: 20%;
+    height: 100%;
+    background: rgba(50,10,160,0.7);
+    padding-top: 60px;
+    ul{
+      list-style: none;
+      width: 100%;
+      padding-left: 0;
+      li{
+        width: 100%;
+        background-color: rgba(80,50,150,0.8);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: ghostwhite;
+        height: 100px;
+        border-bottom: 1px solid rgba(50,20,50,0.9);
+        &:hover{
+          border: 2px solid rgba(220,200,220,0.4);
+        }
+      }
+      .stylist-tab-active{
+        background-color: rgba(100,70,170,0.9)
+      }
+    }
+  }
+  &-body{
+    width: 100%;
+    height: 100%;
+  }
+}
+.outfit-generator-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 60px;
+  &-products{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .products_cards{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      height: 90%;
+      overflow-y: auto;
+      ul{
+        list-style: none;
+      }
+    }
+  }
+  &-preview{
+    width: 30%;
+    height: 100%;
+    border-left: 1px solid rgba(30,30,30,0.5);
+  }
+}

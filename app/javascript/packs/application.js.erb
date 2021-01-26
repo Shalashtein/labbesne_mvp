@@ -388,10 +388,17 @@ var dynamic = function(){
     $('.dynamic_cart').load('/current_cart');
   });
   $('.remove_item').bind('ajax:success', function(e){
-    console.log("x");
     $('.dynamic_cart').load('/current_cart');
   });
 
+  $('#styling_outfits_tab').click(function(){
+    $('.stylist-container-body').load('/stylist/outfits');
+    $('.styling_tab').removeClass("stylist-tab-active");
+    $('#styling_outfits_tab').addClass("stylist-tab-active");
+  });
+  $(document).on('ajax:success','.page-link', {} ,function(e){
+    $('.outfit-generator-container-products').load('/stylist/products');
+  });
 }
 
 import "controllers"

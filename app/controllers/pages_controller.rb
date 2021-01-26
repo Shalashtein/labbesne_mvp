@@ -58,6 +58,20 @@ class PagesController < ApplicationController
                              end
   end
 
+  def stylist
+    @products = Spree::Product.where(approved: true).page(params[:page])
+  end
+
+  def stylist_outfits_area
+    @products = Spree::Product.where(approved: true).page(params[:page])
+    render partial: 'pages/partials/outfit_generator'
+  end
+
+  def stylist_products_area
+    @products = Spree::Product.where(approved: true).page(params[:page])
+    render partial: 'pages/partials/outfit_products'
+  end
+
   private
   def signinRouter
     if !spree_user_signed_in?
