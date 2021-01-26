@@ -1,8 +1,8 @@
 <div class="products_cards">
   <% @products.each do |p| %>
     <ul>
-      <li><%= p.name %></li>
+      <li class="stylist_product_card"><%= p.name %></li>
     </ul>
   <% end %>
 </div>
-<%= paginate @products, remote: true %>
+<%= paginate @products, params: {controller: 'pages', action: 'stylist_products_area'}, remote: true %>

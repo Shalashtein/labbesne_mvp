@@ -371,23 +371,19 @@ var cartToggler = function(){
   });
 }
 var dynamic = function(){
+  // Load Products Dynamically when last card swiped
   $(document).on('ajax:success','.next_deck', {} ,function(e){
     $('.dynamic-deck').load($('.next_deck').attr('href'));
   });
-
+  // Dynamic Add to Cart Button
   $('#edit_order_10').bind('ajax:success', function(e){
     $('.dynamic_cart').load('/current_cart');
   });
+  // Removing Items from Cart dynamically
   $(document).on('ajax:success','.empty_cart', {} ,function(e){
     $('.dynamic_cart').load('/current_cart');
   });
   $(document).on('ajax:success','.remove_item', {} ,function(e){
-    $('.dynamic_cart').load('/current_cart');
-  });
-  $('.empty_cart').bind('ajax:success', function(e){
-    $('.dynamic_cart').load('/current_cart');
-  });
-  $('.remove_item').bind('ajax:success', function(e){
     $('.dynamic_cart').load('/current_cart');
   });
 
@@ -397,7 +393,8 @@ var dynamic = function(){
     $('#styling_outfits_tab').addClass("stylist-tab-active");
   });
   $(document).on('ajax:success','.page-link', {} ,function(e){
-    $('.outfit-generator-container-products').load('/stylist/products');
+    console.log("X");
+    $('.outfit-generator-container-products').load($('.page-link').attr('href'));
   });
 }
 

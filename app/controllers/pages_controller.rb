@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_action :signinRouter
   before_action :setCart
   before_action :setProducts, only: [:store, :deck]
+  before_action :setStylist, only: [:stylist, :stylist_outfits_area, :stylist_products_area]
 
   def store
     @preference = ProfileSpec.new
@@ -59,16 +60,15 @@ class PagesController < ApplicationController
   end
 
   def stylist
-    @products = Spree::Product.where(approved: true).page(params[:page])
+
   end
 
   def stylist_outfits_area
-    @products = Spree::Product.where(approved: true).page(params[:page])
     render partial: 'pages/partials/outfit_generator'
   end
 
   def stylist_products_area
-    @products = Spree::Product.where(approved: true).page(params[:page])
+    params.permit(:page)
     render partial: 'pages/partials/outfit_products'
   end
 
@@ -85,5 +85,10 @@ class PagesController < ApplicationController
 
   def setProducts
     @products_sorted = Spree::Product.where(approved: true).order(swiped: :desc, id: :desc).page(params[:page])
+  end
+
+  def setStylist
+    @products = Spree::Product.where(approved: true).page(params[:page])
+    @outfit = Outfit.new(spree_user_id: current_spree_user.id)
   end
 end

@@ -17,7 +17,9 @@
             <a class="nav-link" href="#">Orders</a>
           </li>
         <% elsif current_spree_user.has_spree_role?(:stylist) %>
-
+          <li class="nav-item">
+            <%= link_to "Stylist Dashboard", stylist_path, class: "nav-link" %>
+          </li>
         <% elsif current_spree_user.has_spree_role?(:vendor) %>
 
         <% elsif current_spree_user.has_spree_role?(:admin) %>
