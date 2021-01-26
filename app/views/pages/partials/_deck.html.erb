@@ -1,7 +1,7 @@
 <ul id="products-swipe-card-stack" data-products-target="deck">
   <% @products_sorted.reverse.each_with_index do |p,i| %>
     <% product_data = "data-gender=#{p.gender} data-type=#{ProductSpec.where(spree_product_id: p.id, name: 'clothing-type').first.value || "missing"}" %>
-    <li class="swipe-card" <%= product_data %> data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>" data-variant="<%= p.master.id %>">
+    <li class="swipe-card" <%= product_data %> data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>" data-variant="<%= p.master.id %>" data-queue=<%= i %>>
       <div class="swipe-card-base">
         <%= image_tag p.images.first.url('large') %>
       </div>
@@ -14,4 +14,12 @@
     </li>
   <% end %>
 </ul>
-
+<script type="text/javascript">
+  try {
+    productSwipe();
+  } catch (e) {
+      if (e instanceof ReferenceError) {
+        // Why have you stuck your nose so far into my code
+      }
+  }
+</script>
