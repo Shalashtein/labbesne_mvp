@@ -8,13 +8,7 @@
       <% if spree_user_signed_in? %>
         <% if current_spree_user.spree_roles.empty? %>
           <li class="nav-item">
-            <a class="nav-link" href="#">Style Me</a>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Profile", main_app.profile_router_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Orders</a>
+            <%= link_to "Account", customer_dashboard_path, class: "nav-link" %>
           </li>
         <% elsif current_spree_user.has_spree_role?(:stylist) %>
           <li class="nav-item">
