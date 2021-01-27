@@ -4,5 +4,19 @@
   </div>
   <div class="outfit-generator-container-preview">
     <button class="btn save-outfit">Save Outfit</button>
+    <%= simple_form_for(@product_outfit) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+        <%= f.association :spree_product, as: :hidden, html: {class: 'stylist_product_picked'} %>
+        <%= f.association :outfit, as: :hidden, html: {value: @outfit.id} %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+      <% byebug %>
+    <% end %>
   </div>
 </div>

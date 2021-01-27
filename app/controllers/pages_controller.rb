@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   before_action :setCart
   before_action :setProducts, only: [:store, :deck]
   before_action :setStylist, only: [:stylist, :stylist_outfits_area, :stylist_products_area]
+  before_action :setOutfitProduct, only: [:stylist, :stylist_outfits_area, :stylist_products_area, :stylist_filter]
 
   def store
     @preference = ProfileSpec.new
@@ -106,5 +107,9 @@ class PagesController < ApplicationController
   def setStylist
     @products = Spree::Product.where(approved: true).page(params[:page]).per(6)
     @outfit = Outfit.new(spree_user_id: current_spree_user.id)
+  end
+
+  def setOutfitProduct
+    @product_outfit = ProductOutfit.new
   end
 end
