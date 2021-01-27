@@ -68,7 +68,23 @@ class PagesController < ApplicationController
   end
 
   def stylist_products_area
-    params.permit(:page)
+    stylist_filter
+  end
+
+  def stylist_filter
+    filter = params[:filter]
+    case filter
+      when 'tops'
+        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'top'}).page((params[:page].to_i - 1).to_s).per(6)
+      when 'pants'
+        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'pants'}).page((params[:page].to_i - 1).to_s).per(6)
+      when 'shoes'
+        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'shoes'}).page((params[:page].to_i - 1).to_s).per(6)
+      when 'accessories'
+        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'accessory'}).page((params[:page].to_i - 1).to_s).per(6)
+      else
+        @products = Spree::Product.where(approved: true).page(params[:page]).per(6)
+    end
     render partial: 'pages/partials/outfit_products'
   end
 
@@ -88,7 +104,7 @@ class PagesController < ApplicationController
   end
 
   def setStylist
-    @products = Spree::Product.where(approved: true).page(params[:page])
+    @products = Spree::Product.where(approved: true).page(params[:page]).per(6)
     @outfit = Outfit.new(spree_user_id: current_spree_user.id)
   end
 end

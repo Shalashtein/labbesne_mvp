@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Spree product:</strong>
+  <%= @product_outfit.spree_product_id %>
+</p>
+
+<p>
+  <strong>Outfit:</strong>
+  <%= @product_outfit.outfit_id %>
+</p>
+
+<%= link_to 'Edit', edit_product_outfit_path(@product_outfit) %> |
+<%= link_to 'Back', product_outfits_path %>

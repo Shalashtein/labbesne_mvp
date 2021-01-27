@@ -393,8 +393,12 @@ var dynamic = function(){
     $('#styling_outfits_tab').addClass("stylist-tab-active");
   });
   $(document).on('ajax:success','.page-link', {} ,function(e){
-    console.log("X");
-    $('.outfit-generator-container-products').load($('.page-link').attr('href'));
+    var req = $(this).attr('href') + `&filter=${$('.filter-active').data('type')}`
+    $('.outfit-generator-container-products').load(req);
+  });
+  $(document).on('click','.stylist-filter', {} ,function(e){
+    $('.stylist-filter').removeClass('filter-active');
+    $(this).addClass('filter-active');
   });
 }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_26_193149) do
+ActiveRecord::Schema.define(version: 2021_01_27_134306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,6 +153,15 @@ ActiveRecord::Schema.define(version: 2021_01_26_193149) do
     t.string "refund_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "product_outfits", force: :cascade do |t|
+    t.bigint "spree_product_id", null: false
+    t.bigint "outfit_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["outfit_id"], name: "index_product_outfits_on_outfit_id"
+    t.index ["spree_product_id"], name: "index_product_outfits_on_spree_product_id"
   end
 
   create_table "product_specs", force: :cascade do |t|
@@ -1368,6 +1377,8 @@ ActiveRecord::Schema.define(version: 2021_01_26_193149) do
   add_foreign_key "lifestyles", "profiles", column: "profiles_id"
   add_foreign_key "lifestyles", "social_activities", column: "social_activities_id"
   add_foreign_key "outfits", "spree_users"
+  add_foreign_key "product_outfits", "outfits"
+  add_foreign_key "product_outfits", "spree_products"
   add_foreign_key "product_specs", "specs", column: "specs_id"
   add_foreign_key "product_specs", "spree_products"
   add_foreign_key "profile_specs", "profiles", column: "profiles_id"
