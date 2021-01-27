@@ -61,7 +61,7 @@ class PagesController < ApplicationController
   end
 
   def customer
-    @orders = Spree::Order.where(user_id: current_spree_user.id)
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').uniq
   end
 
   def stylist
