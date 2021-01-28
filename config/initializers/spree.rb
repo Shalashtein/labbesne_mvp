@@ -59,19 +59,7 @@ Spree.config do |config|
   # See https://github.com/solidusio/solidus/pull/3645 for more info.
   config.run_order_validations_on_order_updater = true
 
-  # Roles
-
-  Spree::Role.find_or_create_by(name: 'stylist')
-  Spree::Role.find_or_create_by(name: 'vendor')
-
-  # Permission Sets:
-
-  # Uncomment and customize the following line to add custom permission sets
-  # to a custom users role:
-  config.roles.assign_permissions :vendor, ['Spree::PermissionSets::VendorDashboard']
-
-
-  # Frontend:
+    # Frontend:
 
   # Custom logo for the frontend
   config.logo = "logo.png"
@@ -85,17 +73,6 @@ Spree.config do |config|
 
   # Custom logo for the admin
   config.admin_interface_logo = "logo.png"
-
-
-
-  # New Attributes
-  Spree::PermittedAttributes.product_attributes << [:vendor]
-  Spree::PermittedAttributes.product_attributes << [:approved]
-  Spree::PermittedAttributes.product_attributes << [:image]
-  Spree::PermittedAttributes.product_attributes << [:gender]
-  Spree::PermittedAttributes.product_attributes << [:test]
-  Spree::PermittedAttributes.product_attributes << [:swiped]
-  Spree::PermittedAttributes.user_attributes << [:vendorname]
 
   # Gateway credentials can be configured statically here and referenced from
   # the admin. They can also be fully configured from the admin.

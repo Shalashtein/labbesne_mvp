@@ -8,6 +8,25 @@
 
 Spree::Core::Engine.load_seed if defined?(Spree::Core)
 Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
+# Roles
+
+Spree::Role.find_or_create_by(name: 'stylist')
+Spree::Role.find_or_create_by(name: 'vendor')
+
+# Permission Sets:
+
+# Uncomment and customize the following line to add custom permission sets
+# to a custom users role:
+config.roles.assign_permissions :vendor, ['Spree::PermissionSets::VendorDashboard']
+# New Attributes
+Spree::PermittedAttributes.product_attributes << [:vendor]
+Spree::PermittedAttributes.product_attributes << [:approved]
+Spree::PermittedAttributes.product_attributes << [:image]
+Spree::PermittedAttributes.product_attributes << [:gender]
+Spree::PermittedAttributes.product_attributes << [:test]
+Spree::PermittedAttributes.product_attributes << [:swiped]
+Spree::PermittedAttributes.user_attributes << [:vendorname]
+
 default_specs = [
   ["clothing-type","top"],["clothing-type","pants"],["clothing-type","shoes"],["clothing-type","accessory"],
 
@@ -41,4 +60,54 @@ default_specs.each do |spec|
     Spec.create(name: spec[0], value: spec[1]).save!
     puts "#{spec[0]}: #{spec[1]} created."
   end
+end
+
+unless Spree::User.where(email: "vendor@labbesne.com").exists?
+  @vendor = Spree::User.new
+  @vendor.email = "vendor@labbesne.com"
+  @vendor.password = "123456"
+  @vendor.spree_roles << Spree::Role.where(name: "vendor").first
+  if @vendor.save!
+    puts "Vendor dummy account created with email " + @vendor.email
+  end
+end
+
+body_types = ['V Shape', 'Pear Shape', 'Rectangle Shape', 'Oval Shape', 'Hourglass Shape']
+
+body_types.each do |bt|
+  b = BodyType.new(name: bt)
+  b.save!
+  puts "Created #{b.name} BodyType"
+end
+
+job_types = ['Corporate, Desk Job', 'Corporate, Outdooor Job', 'Service, Uniform Job', 'Service, Casual Dresscode', 'Self-employed', 'Other']
+
+job_types.each do |jt|
+  j = JobType.new(name: jt)
+  j.save!
+  puts "Created #{j.name} JobType"
+end
+
+outdoor_levels = ['Adventurous (Weekly Outdoor Activities)', 'Moderate (Monthly/Seasonal Outdoor Activity)', 'Urban (Barely any Outdoor Activity)']
+
+outdoor_levels.each do |ol|
+  o = OutdoorLevel.new(name: ol)
+  o.save!
+  puts "Created #{o.name} Outdoor Level"
+end
+
+social_activities = ['Daily Socialization', 'Moderate Socialization', 'Occassional Socialization']
+
+social_activities.each do |ol|
+  o = SocialActivity.new(name: ol)
+  o.save!
+  puts "Created #{o.name} SocialActivity"
+end
+
+activity_levels = ['Active Lifestyle (At least an hour of daily physical activity)', 'Moderate Activity (I move around often)', 'Sedentary Lifestyle (I only move when I have to)']
+
+activity_levels.each do |ol|
+  o = ActivityLevel.new(name: ol)
+  o.save!
+  puts "Created #{o.name} ActivityLevel"
 end
