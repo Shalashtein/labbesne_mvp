@@ -2,11 +2,14 @@ module Spree::Admin::ProductsControllerDecorator
 
   def create
     super
-    byebug
   end
 
   def update
     super
+    if @product.sku.empty?
+      @product.sku = skuGenerator(@product.id)
+    end
+    @product.save
   end
 
   def index
@@ -34,6 +37,11 @@ module Spree::Admin::ProductsControllerDecorator
   def vendor
     @search = Spree::Product.ransack(spree_user_id: current_spree_user)
     @collection = Spree::Product.where(spree_user_id: current_spree_user.id)
+  end
+
+  def skuGenerator(product_id)
+    p = Spree::Product.find(product_id)
+    return "L#{p.gender[0].capitalize}#{p.spree_user_id}#{p.id.to_s.rjust(8, '0')}"
   end
 
   Spree::Admin::ProductsController.prepend self

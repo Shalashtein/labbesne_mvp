@@ -55,14 +55,14 @@
         <% end %>
       </div>
 
-      <% if show_rebuild_vat_checkbox? %>
+      <% if show_rebuild_vat_checkbox? && current_spree_user.has_spree_role?(:admin) %>
         <%= render "spree/admin/shared/rebuild_vat_prices_checkbox", form: f, model_name: "product" %>
         <div class="clearfix"></div>
       <% end %>
 
       <div class="row">
 
-        <div data-hook="admin_product_form_cost_price" class="col-12">
+        <div data-hook="admin_product_form_cost_price" class="col-12" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
           <%= f.field_container :cost_price do %>
             <%= f.label :cost_price %>
 
@@ -76,7 +76,7 @@
 
       <div class="clear"></div>
 
-      <div data-hook="admin_product_form_available_on">
+      <div data-hook="admin_product_form_available_on" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
         <%= f.field_container :available_on do %>
           <%= f.label :available_on %>
           <%= f.field_hint :available_on %>
@@ -87,7 +87,7 @@
         <% end %>
       </div>
 
-      <div data-hook="admin_product_form_discontinue_on">
+      <div data-hook="admin_product_form_discontinue_on" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
         <%= f.field_container :discontinue_on do %>
           <%= f.label :discontinue_on %>
           <%= f.field_hint :discontinue_on %>
@@ -98,7 +98,7 @@
         <% end %>
       </div>
 
-      <div data-hook="admin_product_form_promotionable">
+      <div data-hook="admin_product_form_promotionable" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
         <%= f.field_container :promotionable do %>
           <label>
             <%= f.check_box :promotionable %>
@@ -108,7 +108,7 @@
         <% end %>
       </div>
 
-      <div data-hook="admin_product_form_sku">
+      <div data-hook="admin_product_form_sku" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
         <%= f.field_container :sku do %>
           <%= f.label :sku, t('spree.master_sku') %>
           <%= f.text_field :sku, size: 16 %>
@@ -149,16 +149,18 @@
 
       <% end %>
 
-      <div data-hook="admin_product_form_shipping_categories">
+      <div data-hook="admin_product_form_shipping_categories" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
+        <% @default_shipping_category = @shipping_categories.where(name: 'Default').first %>
         <%= f.field_container :shipping_categories do %>
           <%= f.label :shipping_category_id, Spree::ShippingCategory.model_name.human, class: 'required' %>
           <%= f.field_hint :shipping_category %>
-          <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { include_blank: t('spree.match_choices.none') }, { class: 'custom-select' , required: true}) %>
+          <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { include_blank: t('spree.match_choices.none'), selected: @default_shipping_category&.id }, { class: 'custom-select' , required: true}) %>
           <%= f.error_message_on :shipping_category %>
         <% end %>
       </div>
 
-      <div data-hook="admin_product_form_tax_category">
+      <div data-hook="admin_product_form_tax_category" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
+        <% @default_tax_category = @tax_categories.where(name: 'Default').first %>
         <%= f.field_container :tax_category do %>
           <%= f.label :tax_category_id, Spree::TaxCategory.model_name.human %>
           <%= f.field_hint :tax_category, default_tax_category: @default_tax_category&.name %>
@@ -167,27 +169,26 @@
         <% end %>
       </div>
     </div>
-
   </div>
 
   <div class="row">
 
     <div class="col-9">
-      <div data-hook="admin_product_form_taxons">
+      <div data-hook="admin_product_form_taxons" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
         <%= f.field_container :taxons do %>
           <%= f.label :taxon_ids, plural_resource_name(Spree::Taxon) %><br />
           <%= f.hidden_field :taxon_ids, value: @product.taxon_ids.join(',') %>
         <% end %>
       </div>
 
-      <div data-hook="admin_product_form_option_types">
+      <div data-hook="admin_product_form_option_types" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
         <%= f.field_container :option_types do %>
           <%= f.label :option_type_ids, plural_resource_name(Spree::OptionType) %>
           <%= f.hidden_field :option_type_ids, value: @product.option_type_ids.join(',') %>
         <% end %>
       </div>
 
-      <div data-hook="admin_product_form_meta">
+      <div data-hook="admin_product_form_meta" style="<%= !current_spree_user.has_spree_role?(:admin) ? 'display:none;' : ''%>">
         <div data-hook="admin_product_form_meta_title">
           <%= f.field_container :meta_title do %>
             <%= f.label :meta_title %>
@@ -209,8 +210,12 @@
           <% end %>
           <%= f.field_container :vendor do %>
             <%= f.label :spree_user_id, "Vendor" %>
-            <%= f.collection_select(:spree_user_id, Spree::User.select {|u| u.has_spree_role?(:vendor)}, :id, :email, { include_blank: t('spree.match_choices.none') }, { class: 'custom-select' , required: true}) %>
+            <% selected_vendor = current_spree_user.has_spree_role?(:vendor) ? current_spree_user.id : @product.spree_user_id %>
+            <%= f.collection_select(:spree_user_id, Spree::User.select {|u| u.has_spree_role?(:vendor)}, :id, :email, { include_blank: t('spree.match_choices.none'), selected: selected_vendor }, { class: 'custom-select' , required: true}) %>
           <% end %>
+
+          <% if current_spree_user.has_spree_role?(:admin) %>
+
           <% unless @product.product_specs.empty? %>
             <%= f.field_container :approved do %>
               <%= f.label :approved, "Approved?" %>
@@ -220,6 +225,8 @@
           <%= f.field_container :test do %>
             <%= f.label :test, "Test Product?" %>
             <%= f.check_box :test %>
+          <% end %>
+
           <% end %>
         </div>
       </div>
