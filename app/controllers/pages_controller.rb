@@ -61,7 +61,22 @@ class PagesController < ApplicationController
   end
 
   def customer
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').uniq
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete')
+  end
+
+  def customerOrders
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete')
+    render partial: 'pages/partials/customer/orders'
+  end
+
+  def customerProducts
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete')
+    render partial: 'pages/partials/customer/orders'
+  end
+
+  def customerSaved
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete')
+    render partial: 'pages/partials/customer/orders'
   end
 
   def stylist

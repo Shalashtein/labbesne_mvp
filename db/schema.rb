@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_134306) do
+ActiveRecord::Schema.define(version: 2021_01_29_145232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,20 @@ ActiveRecord::Schema.define(version: 2021_01_27_134306) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["profiles_id"], name: "index_infos_on_profiles_id"
+  end
+
+  create_table "interactions", force: :cascade do |t|
+    t.bigint "spree_product_id", null: false
+    t.bigint "spree_user_id", null: false
+    t.boolean "expanded"
+    t.boolean "swiped"
+    t.integer "like_count"
+    t.integer "dislike_count"
+    t.boolean "bought"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spree_product_id"], name: "index_interactions_on_spree_product_id"
+    t.index ["spree_user_id"], name: "index_interactions_on_spree_user_id"
   end
 
   create_table "job_types", force: :cascade do |t|
@@ -1371,6 +1385,8 @@ ActiveRecord::Schema.define(version: 2021_01_27_134306) do
   add_foreign_key "body_measurements", "body_types", column: "body_types_id"
   add_foreign_key "body_measurements", "profiles", column: "profiles_id"
   add_foreign_key "infos", "profiles", column: "profiles_id"
+  add_foreign_key "interactions", "spree_products"
+  add_foreign_key "interactions", "spree_users"
   add_foreign_key "lifestyles", "activity_levels", column: "activity_levels_id"
   add_foreign_key "lifestyles", "job_types", column: "job_types_id"
   add_foreign_key "lifestyles", "outdoor_levels", column: "outdoor_levels_id"

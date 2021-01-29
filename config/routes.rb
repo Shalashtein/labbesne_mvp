@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :interactions
   resources :product_outfits
   resources :outfits
   resources :infos
@@ -40,7 +41,10 @@ Rails.application.routes.draw do
   get '/stylist/outfits', to: 'pages#stylist_outfits_area', as: 'stylist_outfits'
   get '/stylist/products', to: 'pages#stylist_products_area', as: 'stylist_products'
   get 'stylist/products/:filter', to: 'pages#stylist_filter', as: 'stylist_filter'
-  get 'closet', to: 'pages#customer', as:'customer_dashboard'
+  get '/closet', to: 'pages#customer', as:'customer_dashboard'
+  get '/closet/orders', to: 'pages#customerOrders', as:'customer_orders'
+  get '/closet/products', to: 'pages#customerProducts', as:'customer_products'
+  get '/closet/saved', to: 'pages#customerSaved', as:'customer_saved'
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.

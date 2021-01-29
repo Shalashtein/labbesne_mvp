@@ -1,9 +1,9 @@
 <div class="customer-container">
   <div class="customer-container-sidebar">
     <ul class="customer-container-sidebar-tabs">
-      <li class="customer-container-sidebar-tab customer-tab-active">Active Orders</li>
-      <li class="customer-container-sidebar-tab">Order History</li>
-      <li class="customer-container-sidebar-tab">Saved Items</li>
+      <li class="customer-container-sidebar-tab customer-tab-active" data-href="<%= customer_orders_path %>">Active Orders</li>
+      <li class="customer-container-sidebar-tab" data-href="<%= customer_products_path %>">Clothes Bought</li>
+      <li class="customer-container-sidebar-tab" data-href="<%= customer_saved_path %>">Saved Items</li>
     </ul>
   </div>
   <div class="customer-container-main">

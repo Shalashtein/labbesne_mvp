@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Spree product:</strong>
+  <%= @interaction.spree_product_id %>
+</p>
+
+<p>
+  <strong>Spree user:</strong>
+  <%= @interaction.spree_user_id %>
+</p>
+
+<p>
+  <strong>Expanded:</strong>
+  <%= @interaction.expanded %>
+</p>
+
+<p>
+  <strong>Swiped:</strong>
+  <%= @interaction.swiped %>
+</p>
+
+<p>
+  <strong>Like count:</strong>
+  <%= @interaction.like_count %>
+</p>
+
+<p>
+  <strong>Dislike count:</strong>
+  <%= @interaction.dislike_count %>
+</p>
+
+<p>
+  <strong>Bought:</strong>
+  <%= @interaction.bought %>
+</p>
+
+<%= link_to 'Edit', edit_interaction_path(@interaction) %> |
+<%= link_to 'Back', interactions_path %>

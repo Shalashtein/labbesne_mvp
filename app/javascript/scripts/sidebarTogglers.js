@@ -12,7 +12,7 @@ window.sidebarToggler = function(){
   });
 }
 
-var cartToggler = function(){
+window.cartToggler = function(){
   $('.products-container-cart-toggler').click(function(){
     $('.products-container-cart').toggleClass('cart-active')
     $('.products-container-cart-toggler').toggleClass('toggler-active')
