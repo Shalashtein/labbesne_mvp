@@ -26,6 +26,11 @@ class PagesController < ApplicationController
     @products = Spree::Product.where(test: true, gender: current_spree_user.profile.info.gender.capitalize)
   end
 
+  def expandedInfo
+    interaction = Interaction.where(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
+    interaction.expanded = true
+    interaction.save!
+
   def removeItem
     li = Spree::LineItem.find(params[:item_id])
     @order.item_total -= li.price * li.quantity
