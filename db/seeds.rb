@@ -13,11 +13,7 @@ Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
 Spree::Role.find_or_create_by(name: 'stylist')
 Spree::Role.find_or_create_by(name: 'vendor')
 
-# Permission Sets:
 
-# Uncomment and customize the following line to add custom permission sets
-# to a custom users role:
-config.roles.assign_permissions :vendor, ['Spree::PermissionSets::VendorDashboard']
 # New Attributes
 Spree::PermittedAttributes.product_attributes << [:vendor]
 Spree::PermittedAttributes.product_attributes << [:approved]

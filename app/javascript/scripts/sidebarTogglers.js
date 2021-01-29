@@ -3,6 +3,8 @@ window.sidebarToggler = function(){
   $('.products-container-sidebar-toggler').click(function(){
     $('.products-container-sidebar').toggleClass('sidebar-active')
     $('.products-container-sidebar-toggler').toggleClass('toggler-active')
+    product_id = $('#products-swipe-card-stack li:last-child').data('productid')
+    $.get( `/expanded/?product=${product_id}`, function(data) {});
   });
   $('.products-section-swiper').click(function(){
     if($('.products-container-sidebar').hasClass("sidebar-active")){

@@ -66,7 +66,7 @@ class Spree::UserSessionsController < Devise::SessionsController
     if spree_current_user.has_spree_role?(:admin)
       redirect_to '/shop/admin'
     elsif spree_current_user.has_spree_role?(:vendor)
-      redirect_to '/shop/vendor'
+      redirect_to '/vendor'
     else
       redirect_to(session["spree_user_return_to"] || '/')
       session["spree_user_return_to"] = nil

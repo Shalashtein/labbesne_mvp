@@ -12,7 +12,6 @@ class PagesController < ApplicationController
   end
 
   def deck
-    params.permit(:page)
     render partial: 'pages/partials/deck'
   end
 
@@ -27,9 +26,11 @@ class PagesController < ApplicationController
   end
 
   def expandedInfo
-    interaction = Interaction.where(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
+    byebug
+    interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
     interaction.expanded = true
     interaction.save!
+    puts interaction.inspect
   end
 
   def removeItem
@@ -128,7 +129,11 @@ class PagesController < ApplicationController
   end
 
   def setProducts
-    @products_sorted = Spree::Product.where(approved: true).order(swiped: :desc, id: :desc).page(params[:page])
+    if params[:current_page].to_i == Spree::Product.where(approved: true).order(swiped: :desc, id: :desc).page(params[:page]).total_pages
+      @products_sorted = Spree::Product.where(approved: true).except(Spree::Product.where(total_on_hand: 1..)).order(swiped: :desc, id: :desc).page(1)
+    else
+      @products_sorted = Spree::Product.where(approved: true).except(Spree::Product.where(total_on_hand: 1..)).order(swiped: :desc, id: :desc).page(params[:page])
+    end
   end
 
   def setStylist

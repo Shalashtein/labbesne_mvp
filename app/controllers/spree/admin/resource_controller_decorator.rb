@@ -2,10 +2,8 @@ module Spree::Admin::ResourceControllerDecorator
 
     def self.prepended(base)
       base.rescue_from CanCan::AccessDenied do |exception|
-        respond_to do |format|
-          format.json { head :forbidden, content_type: 'text/html' }
-          format.html { redirect_to '/vendor', notice: "Action: #{exception.action} Subject: #{exception.subject}"}
-          format.js   { head :forbidden, content_type: 'text/html' }
+        if !current_spree_user.spree_roles.any?
+          redirect_to '/'
         end
       end
     end

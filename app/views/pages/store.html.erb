@@ -16,5 +16,3 @@
     <%= render partial: 'pages/partials/products' %>
   </div>
 </div>
-<% page = @products_sorted.current_page + 1 %>
-<%= link_to 'Next Page', deck_path(page: page),remote: true, class: 'next_deck' %>

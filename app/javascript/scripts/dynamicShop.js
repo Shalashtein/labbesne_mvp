@@ -1,6 +1,7 @@
 window.dynamicShop = function(){
   $(document).on('ajax:success','.next_deck', {} ,function(e){
-    $('.dynamic-deck').load($('.next_deck').attr('href'));
+    $('#loading').addClass('hidden')
+    //$('.dynamic-deck').load($('.next_deck').attr('href'));
   });
   // Dynamic Add to Cart Button
   $('#edit_order_10').bind('ajax:success', function(e){

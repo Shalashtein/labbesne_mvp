@@ -59,6 +59,12 @@ Spree.config do |config|
   # See https://github.com/solidusio/solidus/pull/3645 for more info.
   config.run_order_validations_on_order_updater = true
 
+  # Permission Sets:
+
+  # Uncomment and customize the following line to add custom permission sets
+  # to a custom users role:
+  config.roles.assign_permissions :vendor, ['Spree::PermissionSets::VendorDashboard']
+
     # Frontend:
 
   # Custom logo for the frontend

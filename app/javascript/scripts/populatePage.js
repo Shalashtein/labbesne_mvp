@@ -1,7 +1,6 @@
 // -------------------- Product Specs Page Form Submissions
 window.populatePage = function(){
   $('#clothing_type_selector_top').click(function(){
-    console.log("click");
     $('.type-top-submit').click();
   });
   $('#clothing_type_selector_pants').click(function(){
