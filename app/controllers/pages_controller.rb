@@ -17,7 +17,9 @@ class PagesController < ApplicationController
   end
 
   def preference
-    UpdatePreferencesJob.perform_later(params[:data][:product], current_spree_user.id, params[:data][:action])
+    interaction = Interaction.where(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
+    interaction.save!
+    UpdatePreferencesJob.perform_later(params[:data][:product].to_i, current_spree_user.id, params[:data][:action], interaction.id)
   end
 
   def swipepage

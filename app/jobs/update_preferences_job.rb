@@ -1,7 +1,7 @@
 class UpdatePreferencesJob < ApplicationJob
   queue_as :default
 
-  def perform(product_id, user_id, action)
+  def perform(product_id, user_id, action, interaction_id)
     p = Spree::Product.find(product_id)
     current_user = Spree::User.find(user_id)
     #result = "User #{current_user.id}: #{action == '1' ? "liked" : "disliked"} Product##{product_id}, updating specs...\n"
@@ -19,6 +19,12 @@ class UpdatePreferencesJob < ApplicationJob
     p.swiped = true
     p.save!
     current_user.profile.swiped += 1
+    i = Interaction.find(interaction_id)
+    i.swiped = true
+    i.like_count += 1 if action == "1"
+    i.dislike_count += 1 if action != "1"
+    i.save!
+    puts i.inspect
     #puts result
   end
 end
