@@ -33,4 +33,9 @@ window.dynamicShop = function(){
       }
     });
   });
+  $(document).on('click', '#checkout-btn', {}, function(){
+    $.get('/order/checkout', function(data){
+      alert(data);
+    });
+  });
 }

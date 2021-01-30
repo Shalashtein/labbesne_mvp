@@ -135,6 +135,18 @@ class PagesController < ApplicationController
     end
   end
 
+  def updateAddress
+
+  end
+
+  def checkout
+    if current_spree_user.addresses.any?
+      respond_with current_spree_user.addresses.first.id
+    else
+      respond_with false
+    end
+  end
+
   private
   def signinRouter
     if !spree_user_signed_in?

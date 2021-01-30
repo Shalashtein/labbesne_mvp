@@ -1,3 +1,49 @@
 .mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right{
   display: none;
 }
+.map-container{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  #info{
+    position: absolute;
+    height: auto;
+    width: 100%;
+    background-color: #4264FB;
+    bottom: 0;
+    padding: 5px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    div{
+      width: 50%;
+      padding: 5px;
+    }
+    #delivery_instruction{
+      width: 90%;
+      height: auto;
+      color: white;
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 5px;
+      padding: 5px;
+    }
+    #address-buttons{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      button{
+        width: 100%;
+        margin: 5px;
+        border-radius: 5px;
+      }
+      .btn-confirm-address{
+        background-color: #f5cc06;
+      }
+      .btn-cancel-checkout{
+        background-color: red;
+      }
+    }
+  }
+
+}
