@@ -11,6 +11,13 @@ const initMapbox = () => {
       center: [35.5018, 33.8938], // starting position
       zoom: 12 // starting zoom
     }).addControl(new mapboxgl.NavigationControl());
+    map.addControl(
+    new mapboxgl.GeolocateControl({
+    positionOptions: {
+    enableHighAccuracy: true
+    },
+    trackUserLocation: true
+    })
   }
 };
 
