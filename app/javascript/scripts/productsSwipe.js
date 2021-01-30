@@ -1,32 +1,39 @@
 //----------------------- Products Swipe UI ----------------------
 window.productSwipe = function(){
   $('#loading').addClass("hidden");
+  if($('#products-swipe-card-stack li:last-child').data("saved")){
+            $('.save_product_button').addClass('save_product_button_saved')
+            $('.save_product_button').html('Saved')
+  } else {
+    $('.save_product_button').removeClass('save_product_button_saved')
+    $('.save_product_button').html('Save for later')
+  }
   // Prepare the cards in the stack for iteration.
-const pcards = [].slice.call(document.querySelectorAll('#products-swipe-card-stack li'));
+  const pcards = [].slice.call(document.querySelectorAll('#products-swipe-card-stack li'));
 
-// An instance of the Stack is used to attach event listeners.
-const config = {
-  /**
-   * Invoked in the event of dragmove.
-   * Returns a value between 0 and 1 indicating the completeness of the throw out condition.
-   * Ration of the absolute distance from the original card position and element width.
-   *
-   * @param {number} xOffset Distance from the dragStart.
-   * @param {number} yOffset Distance from the dragStart.
-   * @param {HTMLElement} element Element.
-   * @returns {number}
-   */
-  throwOutConfidence: (xOffset, yOffset, element) => {
-    const xConfidence = Math.min(Math.abs(xOffset) / element.offsetWidth*1.5, 1);
-    const yConfidence = Math.min(Math.abs(yOffset) / element.offsetHeight, 1);
+  // An instance of the Stack is used to attach event listeners.
+  const config = {
+    /**
+     * Invoked in the event of dragmove.
+     * Returns a value between 0 and 1 indicating the completeness of the throw out condition.
+     * Ration of the absolute distance from the original card position and element width.
+     *
+     * @param {number} xOffset Distance from the dragStart.
+     * @param {number} yOffset Distance from the dragStart.
+     * @param {HTMLElement} element Element.
+     * @returns {number}
+     */
+    throwOutConfidence: (xOffset, yOffset, element) => {
+      const xConfidence = Math.min(Math.abs(xOffset) / element.offsetWidth*1.5, 1);
+      const yConfidence = Math.min(Math.abs(yOffset) / element.offsetHeight, 1);
 
-    return Math.max(xConfidence, yConfidence);
-  },
-  minThrowOutDistance: 1500,
-  maxThrowOutDistance: 2500
-};
+      return Math.max(xConfidence, yConfidence);
+    },
+    minThrowOutDistance: 1500,
+    maxThrowOutDistance: 2500
+  };
 
-const pstack = Swing.Stack(config);
+  const pstack = Swing.Stack(config);
 
   var pcurrentCard = "";
 
@@ -60,11 +67,8 @@ const pstack = Swing.Stack(config);
   });
 
   pstack.on('dragend', (e) =>{
-    e.target.click();
-    console.log(e);
-  });
-
     // Add event listener for when a card is thrown out of the stack.
+  });
   pstack.on('throwout', (e) => {
     // e.target Reference to the element that has been thrown out of the stack.
     // e.throwDirection Direction in which the element has been thrown (Direction.LEFT, Direction.RIGHT).
@@ -81,6 +85,16 @@ const pstack = Swing.Stack(config);
         url:'/preferenceAdd',
         data: `data[product]=${product_id}&data[action]=0`,
         success:function(){
+          e.target.remove();
+          console.log($('#products-swipe-card-stack li:last-child').data("name"))
+          console.log($('#products-swipe-card-stack li:last-child').data("saved"))
+          if($('#products-swipe-card-stack li:last-child').data("saved")){
+            $('.save_product_button').addClass('save_product_button_saved')
+            $('.save_product_button').html('Saved')
+          } else {
+            $('.save_product_button').removeClass('save_product_button_saved')
+            $('.save_product_button').html('Save for later')
+          }
         }
       });
     } else {
@@ -89,6 +103,16 @@ const pstack = Swing.Stack(config);
         url:'/preferenceAdd',
         data: `data[product]=${product_id}&data[action]=1`,
         success:function(){
+          e.target.remove();
+          console.log($('#products-swipe-card-stack li:last-child').data("name"))
+          console.log($('#products-swipe-card-stack li:last-child').data("saved"))
+          if($('#products-swipe-card-stack li:last-child').data("saved")){
+            $('.save_product_button').addClass('save_product_button_saved')
+            $('.save_product_button').html('Saved')
+          } else {
+            $('.save_product_button').removeClass('save_product_button_saved')
+            $('.save_product_button').html('Save for later')
+          }
         }
       });
     }

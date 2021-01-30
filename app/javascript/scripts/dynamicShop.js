@@ -17,15 +17,19 @@ window.dynamicShop = function(){
   $(document).on('click','.save_product_button', {} ,function(e){
     console.log($('#products-swipe-card-stack li:last-child').data("name"))
     console.log($('#products-swipe-card-stack li:last-child').data("saved"))
-    $.post( `/save_product/?product=${$('#products-swipe-card-stack li:last-child').data("productid")}&action_id=${$('.save_product_button').hasClass('save_product_button_saved')}`, function(data) {
+    $.post( `/save_product/?product=${$('#products-swipe-card-stack li:last-child').data("productid")}&action_id=${$('#products-swipe-card-stack li:last-child').data("saved")}`, function(data) {
       if($('#products-swipe-card-stack li:last-child').data("saved")){
+        console.log("unsaving")
         $('.save_product_button').removeClass('save_product_button_saved')
         $('.save_product_button').html('Save for later')
-        $('#products-swipe-card-stack li:last-child').data("saved", false)
+        $('#products-swipe-card-stack li:last-child').removeClass('saved_product')
+        $('#products-swipe-card-stack li:last-child').data("saved", "false")
       } else {
+        console.log("saving")
         $('.save_product_button').addClass('save_product_button_saved')
         $('.save_product_button').html('Saved')
-        $('#products-swipe-card-stack li:last-child').data("saved", true)
+        $('#products-swipe-card-stack li:last-child').addClass('saved_product')
+        $('#products-swipe-card-stack li:last-child').data("saved", "true")
       }
     });
   });
