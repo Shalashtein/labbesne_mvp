@@ -22,3 +22,14 @@
 .next_deck{
   display: none;
 }
+.save_product_button{
+  opacity: 0.6;
+  background-color: yellow;
+  width: 200px;
+}
+.save_product_button_saved{
+  opacity: 1;
+}
+.saved_product{
+   border: 3px solid rgba(255,215,0,0.6)
+}

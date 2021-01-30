@@ -26,7 +26,6 @@ class PagesController < ApplicationController
   end
 
   def expandedInfo
-    byebug
     interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
     interaction.expanded = true
     interaction.save!
@@ -79,8 +78,8 @@ class PagesController < ApplicationController
   end
 
   def customerProducts
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete')
-    render partial: 'pages/partials/customer/orders'
+    @interactions = Interaction.where(spree_user_id: current_spree_user.id, saved: true)
+    render partial: 'pages/partials/customer/products'
   end
 
   def customerSaved
@@ -115,6 +114,25 @@ class PagesController < ApplicationController
         @products = Spree::Product.where(approved: true).page(params[:page]).per(6)
     end
     render partial: 'pages/partials/outfit_products'
+  end
+
+  def saveProduct
+    product_id = params[:product].to_i
+    action = params[:action_id] == 'true'
+    if action
+      interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
+      interaction.saved = true
+      interaction.save!
+      puts interaction.pretty_inspect
+    else
+      interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
+      interaction.saved = false
+      interaction.save!
+      puts interaction.pretty_inspect
+    end
+    respond_to do |format|
+      format.json {interaction.to_json}
+    end
   end
 
   private

@@ -73,6 +73,7 @@ const pstack = Swing.Stack(config);
       $('#loading').removeClass("hidden");
       $('.dynamic-deck').load($('.next_deck').attr('href'));
     }
+
     var product_id = $('#products-swipe-card-stack li:last-child').data("productid")
     if(e.throwDirection == Direction.LEFT){
       $.ajax({
@@ -80,8 +81,6 @@ const pstack = Swing.Stack(config);
         url:'/preferenceAdd',
         data: `data[product]=${product_id}&data[action]=0`,
         success:function(){
-          //I assume you want to do something on controller action execution success?
-          console.log("disliked")
         }
       });
     } else {
@@ -90,8 +89,6 @@ const pstack = Swing.Stack(config);
         url:'/preferenceAdd',
         data: `data[product]=${product_id}&data[action]=1`,
         success:function(){
-          //I assume you want to do something on controller action execution success?
-          console.log("liked")
         }
       });
     }

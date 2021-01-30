@@ -1,0 +1,19 @@
+<div class="active_orders_container">
+  <ul>
+    <% @orders.each do |o| %>
+      <li class="order_card">
+        <div class="header">
+          <i class="fa fa-dot-circle order-status-<%= o.shipment_state == 'shipped' ? 'shipped' : 'pending' %>"></i>
+          <h6><%= "Order ##{o.number}" %></h6>
+        </div>
+        <hr>
+        <div class="body">
+          <ul id="order_info_list">
+            <li><%= "Total: #{o.total.to_i} LBP" %></li>
+            <li><%= "Status: #{o.shipment_state == 'shipped' ? 'shipped' : 'processing'}" %></li>
+          </ul>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
