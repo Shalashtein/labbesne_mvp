@@ -16,7 +16,7 @@
       </ul>
     </div>
     <div class="products-container-sidebar-footer">
-      <%= form_for @order, remote: true , url: spree.populate_orders_url, method: :post do |f| %>
+      <%= form_for @order, remote: true , url: spree.populate_orders_url, method: :post, html: {id: 'add_to_cart'} do |f| %>
         <%= hidden_field_tag "variant_id" %>
           <%= hidden_field_tag :quantity, 1%>
           <%= button_tag class: 'btn btn-buy', id: 'add-to-cart-button', type: :submit do %>
