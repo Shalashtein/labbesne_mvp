@@ -37,6 +37,7 @@ Spree.config do |config|
   # Defaults
 
   config.address_requires_phone = false
+  config.address_requires_state = false
 
   # Set this configuration to `true` to raise an exception when
   # an order is populated with a line item with a mismatching

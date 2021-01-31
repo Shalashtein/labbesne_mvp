@@ -4,7 +4,8 @@ window.dynamicShop = function(){
     //$('.dynamic-deck').load($('.next_deck').attr('href'));
   });
   // Dynamic Add to Cart Button
-  $('#edit_order_10').bind('ajax:success', function(e){
+  $('#edit_order_11').bind('ajax:success', function(e){
+    console.log(e)
     $('.dynamic_cart').load('/current_cart');
   });
   // Removing Items from Cart dynamically

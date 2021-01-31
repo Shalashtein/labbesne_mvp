@@ -28,6 +28,18 @@ class InfosController < ApplicationController
 
     respond_to do |format|
       if @info.save
+        if current_spree_user.ship_address.nil?
+          @address = Spree::Address.create(first_name: @info.name.split(' ').first, last_name: @info.name.split(' ').last, city: '..' ,address1: '..', zipcode: 'N/A', phone: @info.phone, state_name: '', country_id: 127, state_id: 1)
+          @address.save!
+          a = Spree::UserAddress.new(user_id: current_spree_user.id, address_id: @address.id, default: true)
+          a.save!
+        else
+          a = current_spree_user.ship_address
+          a.phone = @info.phone
+          a.first_name = @info.name.split(' ').first
+          a.last_name = @info.name.split(' ').last
+          a.save!
+        end
         format.html { redirect_to profile_router_path, notice: 'Info saved.' }
         format.json { render :show, status: :created, location: @info }
       else

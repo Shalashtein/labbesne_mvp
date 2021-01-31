@@ -9,7 +9,7 @@
     position: absolute;
     height: auto;
     width: 100%;
-    background-color: #4264FB;
+    background-color: rgba(66, 100, 251,0.8);
     bottom: 0;
     padding: 5px;
     color: white;
@@ -17,11 +17,13 @@
     flex-direction: row;
     justify-content: space-around;
     #manual_address{
-      width: 65%;
+      width: 60%;
       padding: 5px;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: space-between;
     }
     #address-buttons{
       display: flex;
@@ -35,9 +37,17 @@
       }
       .btn-confirm-address{
         background-color: #f5cc06;
+        opacity: 0.8;
+        &:hover{
+          opacity: 1;
+        }
       }
       .btn-cancel-checkout{
         background-color: red;
+        opacity: 0.8;
+        &:hover{
+          opacity: 1;
+        }
       }
     }
   }
@@ -51,6 +61,7 @@
   border: 1px solid white;
   border-radius: 5px;
   padding: 5px;
+  width: 100%;
 }
 .map_input_group{
   display: flex;
@@ -58,4 +69,7 @@
   align-items: flex-start;
   justify-content: center;
   margin-right: 10px;
+}
+#delivery_instruction, .instructions_group{
+  width: 100%;
 }
