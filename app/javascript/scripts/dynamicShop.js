@@ -36,7 +36,41 @@ window.dynamicShop = function(){
   });
   $(document).on('click', '#checkout-btn', {}, function(){
     $.get('/order/checkout', function(data){
-      alert(data);
+      if(data["value"] == "none"){
+        alert("Please fill out your profile before ordering.")
+      } else if(data["value"] == "incomplete"){
+        $('#map-section').removeClass('hidden-map')
+        map.resize();
+        setTimeout(function(){
+          $('html, body').animate({
+                scrollTop: $("#map-section").offset().top
+            }, 0);
+        }, 100);
+      } else {
+        $('.address_prompt').show();
+      }
     });
+  });
+  $(document).on('click', '.btn-cancel-checkout', {}, function(){
+    $('#map-section').addClass('hidden-map')
+  });
+  $(document).on('click', '.btn-confirm-address', {}, function(){
+    if(typeof current_marker == "undefined"){
+        alert('Please select your delivery destination on the map');
+    } else {
+      if($('#delivery_street').val().length == 0){
+         alert('Street Name cannot be empty');
+      } else {
+        if($('#delivery_building').val().length == 0){
+         alert('Building Name cannot be empty');
+        } else {
+          if($('#delivery_floor').val().length == 0){
+           alert('Floor Number cannot be empty');
+          } else {
+            alert('All Clear');
+          }
+        }
+      }
+    }
   });
 }

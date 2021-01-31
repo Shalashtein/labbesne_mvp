@@ -242,9 +242,6 @@ body::-webkit-scrollbar-thumb {
     align-items:center;
   }
 }
-.men-switch, .women-switch{
-  display: none;
-}
 .preference_submit{
   display: none;
 }
@@ -279,13 +276,23 @@ body::-webkit-scrollbar-thumb {
     height:25%;
     width: 100%;
     padding: 10px;
-    button{
+    #checkout-btn{
       width: 100%;
       background-color: blue;
       color: white;
       .fa-shopping-cart{
         margin-right: 5px;
       }
+    }
+    .use_old, .use_new{
+      width: 100%;
+      margin-top: 5px;
+      background-color: rgba(150,150,250,0.8);
+    }
+    .use_cancel{
+      width: 100%;
+      margin-top: 5px;
+      background-color: rgba(250,50,50,0.8);
     }
   }
   &-toggler{

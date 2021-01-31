@@ -140,10 +140,14 @@ class PagesController < ApplicationController
   end
 
   def checkout
-    if current_spree_user.addresses.any?
-      respond_with current_spree_user.addresses.first.id
-    else
-      respond_with false
+    respond_to do |format|
+      if current_spree_user.ship_address.nil?
+        format.json { render json: {"value" => "none"}}
+      elsif current_spree_user.ship_address.address2.nil?
+        format.json { render json: {"value" => "incomplete"}}
+      else
+        format.json { render json: {"value" => "complete"}}
+      end
     end
   end
 

@@ -20,6 +20,12 @@
 <% unless @order.line_items.empty? %>
   <div class="products-container-cart-footer">
     <button class="btn btn-buy" id="checkout-btn">Checkout</button>
+    <div class="address_prompt hidden">
+      <p>Please choose an option</p>
+      <button class="btn use_old">Use Saved Address</button>
+      <button class="btn use_new">Choose New Address</button>
+      <button class="btn use_cancel">Cancel Checkout</button>
+    </div>
   </div>
 <% end %>
 
