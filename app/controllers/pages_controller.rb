@@ -136,6 +136,12 @@ class PagesController < ApplicationController
   end
 
   def updateAddress
+    current_spree_user.ship_address.address1 = params[:geo]
+    current_spree_user.ship_address.address2 = params[:address2]
+    current_spree_user.ship_address.lng = params[:lng]
+    current_spree_user.ship_address.lat = params[:lat]
+    current_spree_user.ship_address.save!
+    current_spree_user.ship_address.pretty_inspect
     byebug
   end
 
