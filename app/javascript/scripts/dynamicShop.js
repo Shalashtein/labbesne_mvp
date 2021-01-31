@@ -50,6 +50,17 @@ window.dynamicShop = function(){
       }
     });
   });
+  $(document).on('click', '.use_cancel', {}, function(){
+    $('.address_prompt').hide();
+  });
+  $(document).on('click', '.use_new', {}, function(){
+    $('.address_prompt').hide();
+    $('#map-section').removeClass('hidden-map')
+    map.resize();
+    setTimeout(function(){
+    $('html, body').animate({scrollTop: $("#map-section").offset().top}, 0);
+    }, 100);
+  });
   $(document).on('click', '.btn-cancel-checkout', {}, function(){
     $('#map-section').addClass('hidden-map')
   });
@@ -66,7 +77,19 @@ window.dynamicShop = function(){
           if($('#delivery_floor').val().length == 0){
            alert('Floor Number cannot be empty');
           } else {
-            alert('All Clear');
+            var geocoded_address_req = `https://us1.locationiq.com/v1/reverse.php?key=pk.baf8daf710cdb940c656ca4f03cbcf4f&format=json&lat=${current_marker.getLngLat().lat}&lon=${current_marker.getLngLat().lng}`
+            $.get(geocoded_address_req, function(data){
+              var geocoded_string = ""
+              for (var x in data["address"]){
+                  geocoded_string += x + " " + data["address"][x] + " "
+              }
+              var address2 = `Street Name: ${$('#delivery_street').val()}, Building Name: ${$('#delivery_building').val()}, Floor: ${$('#delivery_floor').val()} `
+              var req = $('.btn-confirm-address').data('path') + `?geo=${geocoded_string}&address2=${address2}&instructions=${$('#delivery_instruction').val()}`
+              $.get(req, function(data){
+                alert("address sent")
+              });
+              console.log(data);
+              });
           }
         }
       }

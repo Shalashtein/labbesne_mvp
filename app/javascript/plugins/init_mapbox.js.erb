@@ -32,7 +32,7 @@ const initMapbox = () => {
     map.on('load', function(){
       map.resize();
     });
-    /*$('.btn-confirm-address').click(function(){
+    window.geocode = function(){
       var geocoded_address_req = `https://us1.locationiq.com/v1/reverse.php?key=pk.baf8daf710cdb940c656ca4f03cbcf4f&format=json&lat=${current_marker.getLngLat().lat}&lon=${current_marker.getLngLat().lng}`
       $.get(geocoded_address_req, function(data){
         console.log(data);
@@ -49,6 +49,9 @@ const initMapbox = () => {
       }else{
         alert("Please select your location first");
       }
+    }
+    /*$('.btn-confirm-address').click(function(){
+
     })*/
   }
 };
