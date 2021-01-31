@@ -3,11 +3,25 @@
      style="width: 100%; height: 100%;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-  <div id="info">
-    <div id="geocoded_address">
-      <label for="delivery_instruction">Delivery Instructions (optional)</label>
-      <input type="text" id="delivery_instruction">
-    </div>
+      <div id="info">
+        <div id="manual_address">
+          <div class="map_input_group">
+            <label for="delivery_street" class="map_label">Street Name</label>
+            <input type="text" id="delivery_street" class="map_inputs">
+          </div>
+            <div class="map_input_group">
+            <label for="delivery_building" class="map_label">Building Name</label>
+          <input type="text" id="delivery_building" class="map_inputs">
+          </div>
+            <div class="map_input_group">
+            <label for="delivery_floor" class="map_label">Floor</label>
+            <input type="text" id="delivery_floor" class="map_inputs">
+            </div>
+          <div class="map_input_group">
+            <label for="delivery_instruction" class="map_label">Delivery Instructions (optional)</label>
+            <input type="text" id="delivery_instruction" class="map_inputs">
+          </div>
+        </div>
     <div id="address-buttons">
       <button class="btn btn-confirm-address" data-path=<%= update_address_path %>>Confirm Address</button>
       <button class="btn btn-cancel-checkout">Cancel Checkout</button>

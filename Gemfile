@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # AWS services
 gem 'aws-sdk-s3'
+gem 'aws-sdk-ses'
 gem 'fog-aws'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

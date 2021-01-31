@@ -8,7 +8,7 @@ Spree.config do |config|
   config.currency = "LBP"
 
   # from address for transactional emails
-  config.mails_from = "store@example.com"
+  config.mails_from = "team@labbesne.com"
 
   # Use combined first and last name attribute in HTML views and API responses
   config.use_combined_first_and_last_name_in_address = true
@@ -35,6 +35,8 @@ Spree.config do |config|
   config.use_custom_cancancan_actions = false
 
   # Defaults
+
+  config.address_requires_phone = false
 
   # Set this configuration to `true` to raise an exception when
   # an order is populated with a line item with a mismatching
