@@ -180,6 +180,7 @@ class PagesController < ApplicationController
       t = Track.new(spree_line_item_id: item.id, vendor_recieved: false, vendor_sent: false, recieved: false, quantity: item.quantity, spree_user_id: Spree::Product.find(Spree::Variant.find(item.variant_id).product_id).spree_user_id)
       t.save!
     end
+    makePaymentCOD
     @order.complete
   end
 
