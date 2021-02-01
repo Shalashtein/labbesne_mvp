@@ -140,19 +140,23 @@ class PagesController < ApplicationController
     current_spree_user.ship_address.address2 = params[:address2]
     current_spree_user.ship_address.lng = params[:lng]
     current_spree_user.ship_address.lat = params[:lat]
-    @order.special_instruction = params[:instructions]
+    @order.special_instructions = params[:instructions]
     @order.save!
     current_spree_user.ship_address.save!
     current_spree_user.ship_address.pretty_inspect
     @order.next if @order.state == 'cart'
     @order.next if @order.state == 'address'
     @order.next if @order.state == 'delivery'
+    makePaymentCOD
+    @order.next if @order.state == 'payment'
   end
 
   def savedAddress
     @order.next if @order.state == 'cart'
     @order.next if @order.state == 'address'
     @order.next if @order.state == 'delivery'
+    makePaymentCOD
+    @order.next if @order.state == 'payment'
   end
 
   def checkout
@@ -171,6 +175,14 @@ class PagesController < ApplicationController
     render partial: 'pages/partials/confirm'
   end
 
+  def finalize
+    @order.line_items.each do |item|
+      t = Track.new(spree_line_item_id: item.id, vendor_recieved: false, vendor_sent: false, recieved: false, quantity: item.quantity, spree_user_id: Spree::Product.find(Spree::Variant.find(item.variant_id).product_id).spree_user_id)
+      t.save!
+    end
+    @order.complete
+  end
+
   private
   def signinRouter
     if !spree_user_signed_in?
@@ -183,10 +195,22 @@ class PagesController < ApplicationController
   end
 
   def setProducts
-    if params[:current_page].to_i == Spree::Product.where(approved: true).order(swiped: :desc, id: :desc).page(params[:page]).total_pages
-      @products_sorted = Spree::Product.where(approved: true).except(Spree::Product.where(total_on_hand: 1..)).order(swiped: :desc, id: :desc).page(1)
+    @products_sorted = Spree::Product.where(approved: true).except(Spree::Product.where(total_on_hand: 1..)).order(swiped: :desc, id: :desc)
+    filterGender
+    if params[:current_page].to_i == @products_sorted.page(1).total_pages
+      @products_sorted = @products_sorted.page(1)
     else
-      @products_sorted = Spree::Product.where(approved: true).except(Spree::Product.where(total_on_hand: 1..)).order(swiped: :desc, id: :desc).page(params[:page])
+      @products_sorted = @products_sorted.page(params[:page])
+    end
+    filterGender
+  end
+
+  def filterGender
+    if !params[:gender].nil?
+      gender = params[:gender] == 'male' ? 'Men' : params[:gender] == 'female' ? 'Women' : 'Unisex'
+      if gender != 'Unisex'
+        @products_sorted = @products_sorted.where(gender: gender)
+      end
     end
   end
 
@@ -197,5 +221,13 @@ class PagesController < ApplicationController
 
   def setOutfitProduct
     @product_outfit = ProductOutfit.new
+  end
+
+  def makePaymentCOD
+    payment = Spree::Payment.new
+    payment.payment_method_id = Spree::PaymentMethod.where(name: 'Cash on Delivery')
+    payment.order_id = @order.id
+    payment.amount = @order.total
+    payment.save
   end
 end

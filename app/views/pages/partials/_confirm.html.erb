@@ -1,1 +1,5 @@
-#TODO
+<ul id="confirmation_items">
+  <% @order.line_items.each do |li| %>
+    <li id="confirmation_item"><div><%= "#{li.product.name} x #{li.quantity}" %></div><div><%= "#{li.quantity * li.product.price} LBP" %></div></li>
+  <% end %>
+</ul>

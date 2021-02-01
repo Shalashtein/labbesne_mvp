@@ -56,7 +56,7 @@ window.dynamicShop = function(){
   $(document).on('click', '.use_old', {}, function(){
     $.get('/order/saved', function(data){
       $('.address_prompt').hide();
-      $('.confirmation-body').load('/order/confirm');
+      $('#confirmation-body').load('/order/confirm');
       $('#confirmation_trigger').click();
     });
   });
@@ -70,6 +70,11 @@ window.dynamicShop = function(){
   });
   $(document).on('click', '.btn-cancel-checkout', {}, function(){
     $('#map-section').addClass('hidden-map')
+  });
+  $(document).on('click', '#finalize_order', {}, function(){
+    $.get('/order/finalize',function(data){
+      alert('Order Placed')
+    })
   });
   $(document).on('click', '.btn-confirm-address', {}, function(){
     if(typeof current_marker == "undefined"){
@@ -93,7 +98,7 @@ window.dynamicShop = function(){
               var address2 = `Street Name: ${$('#delivery_street').val()}, Building Name: ${$('#delivery_building').val()}, Floor: ${$('#delivery_floor').val()} `
               var req = $('.btn-confirm-address').data('path') + `?geo=${geocoded_string}&address2=${address2}&instructions=${$('#delivery_instruction').val()}`
               $.get(req, function(data){
-                $('.confirmation-body').load('/order/confirm');
+                $('#confirmation-body').load('/order/confirm');
                 $('#confirmation_trigger').click();
               });
               });

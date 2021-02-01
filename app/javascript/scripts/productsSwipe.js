@@ -75,7 +75,17 @@ window.productSwipe = function(){
     //e.target.classList.add("hidden");
     if($(e.target).data("queue") == '0'){
       $('#loading').removeClass("hidden");
-      $('.dynamic-deck').load($('.next_deck').attr('href'));
+      var gender = ""
+      if($('#men-toggler').prop('checked') && $('#women-toggler').prop('checked')){
+        gender = "all"
+      } else if ($('#men-toggler').prop('checked')){
+        gender = "male"
+      } else if ($('#women-toggler').prop('checked')){
+        gender = "female"
+      } else{
+        gender = "all"
+      }
+      $('.dynamic-deck').load($('.next_deck').attr('href') + `&gender=${gender}`);
     }
 
     var product_id = $('#products-swipe-card-stack li:last-child').data("productid")
@@ -86,8 +96,6 @@ window.productSwipe = function(){
         data: `data[product]=${product_id}&data[action]=0`,
         success:function(){
           e.target.remove();
-          console.log($('#products-swipe-card-stack li:last-child').data("name"))
-          console.log($('#products-swipe-card-stack li:last-child').data("saved"))
           if($('#products-swipe-card-stack li:last-child').data("saved")){
             $('.save_product_button').addClass('save_product_button_saved')
             $('.save_product_button').html('Saved')
@@ -104,8 +112,6 @@ window.productSwipe = function(){
         data: `data[product]=${product_id}&data[action]=1`,
         success:function(){
           e.target.remove();
-          console.log($('#products-swipe-card-stack li:last-child').data("name"))
-          console.log($('#products-swipe-card-stack li:last-child').data("saved"))
           if($('#products-swipe-card-stack li:last-child').data("saved")){
             $('.save_product_button').addClass('save_product_button_saved')
             $('.save_product_button').html('Saved')

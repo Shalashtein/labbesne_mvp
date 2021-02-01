@@ -2,16 +2,32 @@
 window.productFilter = function(){
   $('#men-toggler').click(function(){
     if($(this).prop('checked')){
-      $('li[data-gender="Men"]').removeClass('hidden');
+      if($('#women-toggler').prop('checked')){
+        $('.dynamic-deck').load(($('.next_deck').attr('href')).slice(0, -1) + (parseInt($('.next_deck').attr('href').slice(-1))-1) + `&gender=all`);
+      } else {
+        $('.dynamic-deck').load(($('.next_deck').attr('href')).slice(0, -1) + (parseInt($('.next_deck').attr('href').slice(-1))-1) + `&gender=male`);
+      }
     } else{
-      $('li[data-gender="Men"]').addClass('hidden').prependTo($('#products-swipe-card-stack'));;
+      if($('#women-toggler').prop('checked')){
+        $('.dynamic-deck').load(($('.next_deck').attr('href')).slice(0, -1) + (parseInt($('.next_deck').attr('href').slice(-1))-1) + `&gender=female`);
+      } else {
+        $('.dynamic-deck').load(($('.next_deck').attr('href')).slice(0, -1) + (parseInt($('.next_deck').attr('href').slice(-1))-1) + `&gender=all`);
+      }
     };
   });
   $('#women-toggler').click(function(){
     if($(this).prop('checked')){
-      $('li[data-gender="Women"]').removeClass('hidden');
+      if($('#men-toggler').prop('checked')){
+        $('.dynamic-deck').load(($('.next_deck').attr('href')).slice(0, -1) + (parseInt($('.next_deck').attr('href').slice(-1))-1) + `&gender=all`);
+      } else {
+        $('.dynamic-deck').load(($('.next_deck').attr('href')).slice(0, -1) + (parseInt($('.next_deck').attr('href').slice(-1))-1) + `&gender=female`);
+      }
     } else{
-      $('li[data-gender="Women"]').addClass('hidden').prependTo($('#products-swipe-card-stack'));;
+      if($('#men-toggler').prop('checked')){
+        $('.dynamic-deck').load(($('.next_deck').attr('href')).slice(0, -1) + (parseInt($('.next_deck').attr('href').slice(-1))-1) + `&gender=male`);
+      } else {
+        $('.dynamic-deck').load(($('.next_deck').attr('href')).slice(0, -1) + (parseInt($('.next_deck').attr('href').slice(-1))-1) + `&gender=all`);
+      }
     };
   });
   $('#top-toggler').click(function(){
@@ -23,7 +39,7 @@ window.productFilter = function(){
   $('#shoes-toggler').click(function(){
     genderChecker('shoes', $(this).prop('checked'));
   });
-  $('.gender-router-men-image').click(function(){
+  /*$('.gender-router-men-image').click(function(){
     if($('#women-toggler').prop('checked')){
       $('#women-toggler').click();
     }
@@ -46,7 +62,7 @@ window.productFilter = function(){
      scrollTop: $("#products-section").offset().top
     }, 20);
     $('#gender-section').hide();
-  });
+  });*/
 };
 
 var genderChecker = function(type, checked){
