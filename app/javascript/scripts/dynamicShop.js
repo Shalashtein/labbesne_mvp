@@ -53,6 +53,13 @@ window.dynamicShop = function(){
   $(document).on('click', '.use_cancel', {}, function(){
     $('.address_prompt').hide();
   });
+  $(document).on('click', '.use_old', {}, function(){
+    $.get('/order/saved', function(data){
+      $('.address_prompt').hide();
+      $('.confirmation-body').load('/order/confirm');
+      $('#confirmation_trigger').click();
+    });
+  });
   $(document).on('click', '.use_new', {}, function(){
     $('.address_prompt').hide();
     $('#map-section').removeClass('hidden-map')
@@ -86,9 +93,9 @@ window.dynamicShop = function(){
               var address2 = `Street Name: ${$('#delivery_street').val()}, Building Name: ${$('#delivery_building').val()}, Floor: ${$('#delivery_floor').val()} `
               var req = $('.btn-confirm-address').data('path') + `?geo=${geocoded_string}&address2=${address2}&instructions=${$('#delivery_instruction').val()}`
               $.get(req, function(data){
-                alert("address sent")
+                $('.confirmation-body').load('/order/confirm');
+                $('#confirmation_trigger').click();
               });
-              console.log(data);
               });
           }
         }

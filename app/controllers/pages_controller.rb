@@ -140,9 +140,19 @@ class PagesController < ApplicationController
     current_spree_user.ship_address.address2 = params[:address2]
     current_spree_user.ship_address.lng = params[:lng]
     current_spree_user.ship_address.lat = params[:lat]
+    @order.special_instruction = params[:instructions]
+    @order.save!
     current_spree_user.ship_address.save!
     current_spree_user.ship_address.pretty_inspect
-    byebug
+    @order.next if @order.state == 'cart'
+    @order.next if @order.state == 'address'
+    @order.next if @order.state == 'delivery'
+  end
+
+  def savedAddress
+    @order.next if @order.state == 'cart'
+    @order.next if @order.state == 'address'
+    @order.next if @order.state == 'delivery'
   end
 
   def checkout
@@ -155,6 +165,10 @@ class PagesController < ApplicationController
         format.json { render json: {"value" => "complete"}}
       end
     end
+  end
+
+  def confirm
+    render partial: 'pages/partials/confirm'
   end
 
   private
