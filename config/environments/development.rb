@@ -17,6 +17,16 @@ Rails.application.configure do
   :bucket => ENV["BUCKET_NAME"]
   }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'email-smtp.eu-west-1.amazonaws.com',
+    user_name: ENV["SES_SMTP_USERNAME"],
+    password: ENV["SES_SMTP_PASSWORD"],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
   config.cache_classes = false
 
   # Do not eager load code on boot.
