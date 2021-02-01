@@ -20,7 +20,7 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
       set_flash_message(:notice, :signed_up)
       sign_in(:spree_user, resource)
       session[:spree_user_signup] = true
-      respond_with resource, location: root_path
+      respond_with resource, location: main_app.root_path
     else
       clean_up_passwords(resource)
       respond_with(resource) do |format|
