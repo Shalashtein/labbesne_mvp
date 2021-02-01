@@ -91,10 +91,10 @@ end
 outdoor_levels = ['Adventurous (Weekly Outdoor Activities)', 'Moderate (Monthly/Seasonal Outdoor Activity)', 'Urban (Barely any Outdoor Activity)']
 
 outdoor_levels.each do |ol|
-  if !OutdoorLevel.where(name: ol).exists?
+  if !OutdoorLevel.where(level: ol).exists?
     o = OutdoorLevel.new(level: ol)
     o.save!
-    puts "Created #{o.name} Outdoor Level"
+    puts "Created #{o.level} Outdoor Level"
   end
 end
 
