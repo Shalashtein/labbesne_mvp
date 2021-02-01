@@ -71,39 +71,49 @@ end
 body_types = ['V Shape', 'Pear Shape', 'Rectangle Shape', 'Oval Shape', 'Hourglass Shape']
 
 body_types.each do |bt|
-  b = BodyType.new(name: bt)
-  b.save!
-  puts "Created #{b.name} BodyType"
+  if !BodyType.where(name: bt).exists?
+    b = BodyType.new(name: bt)
+    b.save!
+    puts "Created #{b.name} BodyType"
+  end
 end
 
 job_types = ['Corporate, Desk Job', 'Corporate, Outdooor Job', 'Service, Uniform Job', 'Service, Casual Dresscode', 'Self-employed', 'Other']
 
 job_types.each do |jt|
-  j = JobType.new(name: jt)
-  j.save!
-  puts "Created #{j.name} JobType"
+  if !JobType.where(name: jt).exists?
+    j = JobType.new(name: jt)
+    j.save!
+    puts "Created #{j.name} JobType"
+  end
 end
 
 outdoor_levels = ['Adventurous (Weekly Outdoor Activities)', 'Moderate (Monthly/Seasonal Outdoor Activity)', 'Urban (Barely any Outdoor Activity)']
 
 outdoor_levels.each do |ol|
-  o = OutdoorLevel.new(name: ol)
-  o.save!
-  puts "Created #{o.name} Outdoor Level"
+  if !OutdoorLevel.where(name: ol).exists?
+    o = OutdoorLevel.new(name: ol)
+    o.save!
+    puts "Created #{o.name} Outdoor Level"
+  end
 end
 
 social_activities = ['Daily Socialization', 'Moderate Socialization', 'Occassional Socialization']
 
-social_activities.each do |ol|
-  o = SocialActivity.new(name: ol)
-  o.save!
-  puts "Created #{o.name} SocialActivity"
+social_activities.each do |sa|
+  if !SocialActivity.where(name: sa).exists?
+    s = SocialActivity.new(name: sa)
+    s.save!
+    puts "Created #{s.name} SocialActivity"
+  end
 end
 
 activity_levels = ['Active Lifestyle (At least an hour of daily physical activity)', 'Moderate Activity (I move around often)', 'Sedentary Lifestyle (I only move when I have to)']
 
-activity_levels.each do |ol|
-  o = ActivityLevel.new(name: ol)
-  o.save!
-  puts "Created #{o.name} ActivityLevel"
+activity_levels.each do |al|
+  if !ActivityLevel.where(name: al).exists?
+    a = ActivityLevel.new(name: al)
+    a.save!
+    puts "Created #{a.name} ActivityLevel"
+  end
 end
