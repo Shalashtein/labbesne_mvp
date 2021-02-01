@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount ForestLiana::Engine => '/forest'
   resources :interactions
   resources :product_outfits
   resources :outfits
