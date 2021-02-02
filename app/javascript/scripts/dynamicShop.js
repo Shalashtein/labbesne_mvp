@@ -36,7 +36,7 @@ window.dynamicShop = function(){
   $(document).on('click', '#checkout-btn', {}, function(){
     $.get('/order/checkout', function(data){
       if(data["value"] == "none"){
-        $('#profile_prompt').show();
+        $('.profile_prompt').show();
       } else if(data["value"] == "incomplete"){
         $('#map-section').removeClass('hidden-map')
         map.resize();
