@@ -8,7 +8,7 @@ Spree.config do |config|
   config.currency = "LBP"
 
   # from address for transactional emails
-  config.mails_from = "team@labbesne.com"
+  config.mails_from = "no-reply@team.labbesne.com"
 
   # Use combined first and last name attribute in HTML views and API responses
   config.use_combined_first_and_last_name_in_address = true
