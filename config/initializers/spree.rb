@@ -19,6 +19,8 @@ Spree.config do |config|
   # Use the legacy address' state validation logic
   config.use_legacy_address_state_validator = false
 
+
+  Spree::Auth::Config[:confirmable] = true
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false
 
