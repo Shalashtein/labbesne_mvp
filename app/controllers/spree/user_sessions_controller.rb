@@ -16,9 +16,13 @@ class Spree::UserSessionsController < Devise::SessionsController
 
 
   def create
+    byebug
     authenticate_spree_user!
-
+    byebug
     if spree_user_signed_in?
+      puts "x\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx"
+      puts "Signed in"
+      puts "x\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx"
       respond_to do |format|
         format.html do
           flash[:success] = I18n.t('spree.logged_in_succesfully')
@@ -33,6 +37,9 @@ class Spree::UserSessionsController < Devise::SessionsController
         format.js { render success_json }
       end
     else
+      puts "x\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx"
+      puts t('devise.failure.invalid')
+      puts "x\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx"
       respond_to do |format|
         format.html do
           flash.now[:error] = t('devise.failure.invalid')
@@ -74,7 +81,7 @@ class Spree::UserSessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    '/'
+    main.root_path
   end
 
   def success_json
