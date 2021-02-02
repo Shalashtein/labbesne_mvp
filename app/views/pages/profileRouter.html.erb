@@ -2,34 +2,35 @@
   <div class="container-links">
     <%= link_to new_info_path do %>
       <div class="router-link-info">
-        <i class="fas fa-address-card"></i>
-        <i class="fas fa-check-circle <%= current_spree_user.profile.info.nil? ? "profile-form-not-done" : "profile-form-done"  %>"></i>
+        <% if current_spree_user.profile.info.nil? %>
+          <i class="fas fa-address-card"></i>
+        <% else %>
+          <i class="fas fa-check-circle"></i>
+        <% end %>
         <p>Basic Info</p>
-        <div class="progress progress-inner">
-          <div class="progress-bar bg-success" role="progressbar" style="width: <%= "#{@measurements_progress}%" %>" aria-valuenow="<%= @measurements_progress %>" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
       </div>
     <% end %>
     <%= link_to new_body_measurement_path, disabled: current_spree_user.profile.info.nil? do %>
       <div class="router-link-measurements">
-        <i class="fas fa-ruler-combined"></i>
-        <i class="fas fa-check-circle <%= current_spree_user.profile.body_measurement.nil? ? "profile-form-not-done" : "profile-form-done"  %>"></i>
+        <% if current_spree_user.profile.info.nil? %>
+          <i class="fas fa-ruler-combined"></i>
+        <% else %>
+          <i class="fas fa-check-circle"></i>
+        <% end %>
         <p>Measurements</p>
-        <div class="progress progress-inner">
-          <div class="progress-bar bg-success" role="progressbar" style="width: <%= "#{@measurements_progress}%" %>" aria-valuenow="<%= @measurements_progress %>" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
       </div>
     <% end %>
     <%= link_to new_lifestyle_path, disabled: current_spree_user.profile.body_measurement.nil? do %>
       <div class="router-link-lifestyle" >
-        <i class="fas fa-glass-cheers"></i>
-        <i class="fas fa-check-circle <%= current_spree_user.profile.lifestyle.nil? ? "profile-form-not-done" : "profile-form-done"  %>"></i>
+        <% if current_spree_user.profile.info.nil? %>
+          <i class="fas fa-glass-cheers"></i>
+        <% else %>
+          <i class="fas fa-check-circle"></i>
+        <% end %>
         <p>Lifestyle</p>
-        <div class="progress progress-inner">
-          <div class="progress-bar bg-success" role="progressbar" style="width: <%= "#{@lifestyle_progress}%" %>" aria-valuenow="<%= @lifestyle_progress %>" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
       </div>
     <% end %>
+    <!--
     <%= link_to swipe_path, disabled: current_spree_user.profile.lifestyle.nil? do %>
       <div class="router-link-preferences hidden">
         <i class="fas fa-heart"></i>
@@ -40,5 +41,7 @@
         </div>
       </div>
      <% end %>
+
+   -->
   </div>
 </div>
