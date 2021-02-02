@@ -12,7 +12,7 @@
     <% end %>
     <%= link_to new_body_measurement_path, disabled: current_spree_user.profile.info.nil? do %>
       <div class="router-link-measurements">
-        <% if current_spree_user.profile.info.nil? %>
+        <% if current_spree_user.profile.body_measurement.nil? %>
           <i class="fas fa-ruler-combined"></i>
         <% else %>
           <i class="fas fa-check-circle"></i>
@@ -22,7 +22,7 @@
     <% end %>
     <%= link_to new_lifestyle_path, disabled: current_spree_user.profile.body_measurement.nil? do %>
       <div class="router-link-lifestyle" >
-        <% if current_spree_user.profile.info.nil? %>
+        <% if current_spree_user.profile.lifestyle.nil? %>
           <i class="fas fa-glass-cheers"></i>
         <% else %>
           <i class="fas fa-check-circle"></i>
