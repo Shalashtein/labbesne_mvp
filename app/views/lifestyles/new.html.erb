@@ -9,7 +9,7 @@
           <%= f.association :profiles, as: :hidden, input_html: { value: current_spree_user.profile.id } %>
           <%= f.association :activity_levels, label: "How physically active are you?" %>
           <%= f.association :social_activities, label: "How social are you?" %>
-          <%= f.association :outdoor_levels, label: "Do you like outdoor activities?"%>
+          <%= f.association :outdoor_levels, label: "Do you like outdoor activities?", label_method: :level%>
         </div>
         <div class="col-sm-12 col-md-6 input-column">
           <%= f.input :studies, label: "Are you a student?"%>

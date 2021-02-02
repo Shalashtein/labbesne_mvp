@@ -28,7 +28,7 @@ class LifestylesController < ApplicationController
 
     respond_to do |format|
       if @lifestyle.save
-        format.html { redirect_to profile_router_path, notice: 'Lifestyle saved.' }
+        format.html { redirect_to store_path, notice: 'Profile Complete' }
         format.json { render :show, status: :created, location: @lifestyle }
       else
         format.html { render :new }
