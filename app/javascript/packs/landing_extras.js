@@ -8,16 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("@fortawesome/fontawesome-free/js/all")
 require("channels")
-require("../controllers/index.js")
-require("../scripts/lifestyleCollapse.js")
-require("../scripts/populatePage.js")
-require("../scripts/disabledLinks.js")
-require("../scripts/productsSwipe.js")
-require("../scripts/productFilters.js")
-require("../scripts/sidebarTogglers.js")
-require("../scripts/dynamicShop.js")
-require("../scripts/dynamicCustomer.js")
-require("../scripts/dynamicStylist.js")
+require("../scripts/landingSwipe.js")
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -41,17 +32,6 @@ require("swing");
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
-  initMapbox();
   productSwipe();
-  productFilter();
-  sidebarToggler();
   dynamicShop();
-  dynamicStylist();
-  dynamicCustomer();
-  cartToggler();
-  disabledLinks();
-  dynamicCustomer();
-  populatePage();
 });
-
-import "controllers"

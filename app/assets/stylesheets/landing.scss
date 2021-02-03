@@ -16,7 +16,7 @@ $gold: #FFD700;
   flex-direction: row;
   justify-content: space-around;
 background: rgb(102,51,153);
-background: linear-gradient(128deg, rgba(102,51,153,1) 35%, rgba(102,51,153,0) 65%);
+background: linear-gradient(135deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2) 80%);
 
   .hero-title{
     color: rgba(250,250,250,0.85)
@@ -41,4 +41,313 @@ background: linear-gradient(128deg, rgba(102,51,153,1) 35%, rgba(102,51,153,0) 6
   }
 }
 .hero-image{
+}
+.next_deck{
+  display: none;
+}
+.products-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  align-items: stretch;
+  background: rgb(102,51,153);
+  background: linear-gradient(45deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2) 80%);
+  position: relative;
+}
+.products-section-swiper{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 20px;
+  position: relative;
+}
+.product-filters{
+  position: absolute;
+  color: white;
+  top: 60px;
+  left: 20px;
+  z-index: 9999;
+}
+.dynamic-deck{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#products-swipe-card-stack{
+    height: 60%;
+    width: 80%;
+    position: relative;
+    list-style-type: none;
+  .swipe-card-base{
+    padding: 5px;
+    background-image: none;
+    background: rgb(230,230,230);
+    background: linear-gradient(135deg, rgba(230,230,230,0.85) 0%, rgba(180,200,201,0.896796218487395) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 3px rgba(50,50,50,0.8);
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0px 0px 5px rgba(20,20,20,0.7));
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  #products-swipe-card-stack{
+    height: 60vh;
+    width: 30vw;
+  }
+  .products-section-swiper{
+    justify-content: center;
+    padding-bottom: 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #products-swipe-card-stack{
+    height: 65vh;
+    width: 30vw;
+  }
+}
+@media only screen and (min-width: 992px) {
+  #products-swipe-card-stack{
+    height: 70vh;
+    width: 25%;
+  }
+}
+.swipe-card{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(80,80,80,0.8);
+  border-radius: 8px;
+}
+.swipe-card-like, .swipe-card-dislike{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.7;
+  justify-content: space-around;
+}
+.swipe-card-like{
+  color: $gold;
+  font-size: 6rem;
+}
+.swipe-card-dislike{
+  color: maroon;
+  font-size: 6rem;
+}
+.hidden{
+  display: none;
+}
+.manual-swipe-buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.manual-like{
+  border-radius: 50%;
+  font-size: 4rem;
+  width: 80px;
+  height: 80px;
+  color: rgb(190,194,203);
+  text-align: center;
+  padding: 10px;
+  transition: all .2s ease-in-out;
+  &:hover{
+    transform: scale(1.1);
+    color: green;
+  }
+}
+.manual-dislike{
+  border-radius: 50%;
+  font-size: 4rem;
+  width: 80px;
+  height: 80px;
+  color: rgb(190,194,203);
+  text-align: center;
+  padding: 10px;
+  transition: all .2s ease-in-out;
+  &:hover{
+    transform: scale(1.1);
+    color: maroon;
+  }
+}
+.controls{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 60%;
+  height: 10%;
+  .controls-icon{
+    color: silver;
+    font-size: 4rem;
+  }
+  .control-option{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+  }
+}
+.preference_submit{
+  display: none;
+}
+.products-container-cart{
+  position: absolute;
+  top: 0;
+  right: -30%;
+  width:30%;
+  height: 100%;
+  background: change-color($royal, $alpha: 0.9, $lightness: 70 );
+  transition-duration: 0.5s;
+  z-index: 90000;
+  &-header{
+    height:25%;
+    width: 100%;
+    text-align:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #212529a3;
+  }
+  &-body{
+    height:50%;
+    width: 100%;
+    padding: 5px;
+    padding-right: 10px;
+    color: rgba(10,10,10,0.8);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  &-footer{
+    height:25%;
+    width: 100%;
+    padding: 10px;
+    #checkout-btn{
+      width: 100%;
+      background-color: blue;
+      color: white;
+      .fa-shopping-cart{
+        margin-right: 5px;
+      }
+    }
+    .use_old, .use_new{
+      width: 100%;
+      margin-top: 5px;
+      background-color: rgba(150,150,250,0.8);
+    }
+    .use_cancel{
+      width: 100%;
+      margin-top: 5px;
+      background-color: rgba(250,50,50,0.8);
+    }
+  }
+  &-toggler{
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    padding: 5px;
+    top:10px;
+    left: -150px;
+    background-color: rgba(220,220,250,0.3);
+    box-shadow: 1px 1px 5px rgba(40,40,40,0.8);
+    color: white;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+#add-to-cart-button:hover{
+  color: #b5b5e0 !important;
+}
+.cart-active{
+  right: 0;
+}
+@media only screen and (max-width: 600px) {
+  .products-container-cart{
+    width: 90%;
+    right: -90%;
+  }
+  .cart-active{
+    right: 5px;
+  }
+}
+.cart-items{
+  list-style-type: none;
+  .cart-line-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.save_product_button{
+  opacity: 0.6;
+  background-color: $gold;
+  width: 200px;
+  border: none;
+  box-shadow: 1px 1px 2px rgba(50,50,50,0.8);
+  color: $royal;
+}
+.save_product_button_saved{
+  opacity: 1;
+}
+.saved_product{
+   border: 3px solid $gold
+}
+.onboard{
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  p{
+    color: $gold;
+    text-shadow: 1px 1px 1px black;
+  }
+  input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    margin-bottom: 5px;
+    width: 80%;
+    color: white;
+    padding:5px;
+    text-align: center;
+    &:focus{
+      border-bottom: 2px solid white;
+      outline: none;
+    }
+  }
+  button{
+    background-color: $gold;
+    border-radius: 3px;
+    border: none;
+    width: 150px;
+    box-shadow: 1px 1px 2px black;
+  }
+}
+.hidden{
+  display: none !important;
 }

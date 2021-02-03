@@ -1,14 +1,18 @@
 class PagesController < ApplicationController
   layout 'application', only: "store"
   layout 'landing', only: 'landing'
-  before_action :signinRouter, except: 'landing'
-  before_action :setCart, except: 'landing'
-  before_action :setProducts, only: [:store, :deck]
+  before_action :signinRouter, except: [:landing, :guestSwiped]
+  before_action :setCart, except: [:landing, :guestSwiped]
+  before_action :setProducts, only: [:store, :deck, :landing]
   before_action :setStylist, only: [:stylist, :stylist_outfits_area, :stylist_products_area]
   before_action :setOutfitProduct, only: [:stylist, :stylist_outfits_area, :stylist_products_area, :stylist_filter]
 
   def landing
+    @swiped = session[:swiped] || false
+  end
 
+  def guestSwiped
+    session[:swiped] = true
   end
 
   def store
