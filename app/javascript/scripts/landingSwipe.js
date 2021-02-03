@@ -92,7 +92,9 @@ window.productSwipe = function(){
 };
 window.dynamicShop = function(){
   $(document).ready(function(){
-    $('.hero-image').removeClass('hidden');
+    if(screen.width > 600){
+      $('.hero-image').removeClass('hidden');
+    }
   });
   $(document).on('click','.save_product_button', {} ,function(e){
       $.fn.toggleText = function(t1, t2){

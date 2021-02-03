@@ -39,11 +39,14 @@ background: linear-gradient(135deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2)
   .hero-image{
     filter: drop-shadow(0 0 2px grey);
     position: absolute;
-    bottom: -2rem;
+    bottom: 0;
     right: 5rem;
   }
 }
-.hero-image{
+@media only screen and (max-width: 600px) {
+  img .hero-image{
+    display: none !important;
+  }
 }
 .next_deck{
   display: none;
