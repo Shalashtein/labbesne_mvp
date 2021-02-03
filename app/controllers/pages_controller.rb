@@ -1,10 +1,15 @@
 class PagesController < ApplicationController
   layout 'application', only: "store"
-  before_action :signinRouter
-  before_action :setCart
+  layout 'landing', only: 'landing'
+  before_action :signinRouter, except: 'landing'
+  before_action :setCart, except: 'landing'
   before_action :setProducts, only: [:store, :deck]
   before_action :setStylist, only: [:stylist, :stylist_outfits_area, :stylist_products_area]
   before_action :setOutfitProduct, only: [:stylist, :stylist_outfits_area, :stylist_products_area, :stylist_filter]
+
+  def landing
+
+  end
 
   def store
     @preference = ProfileSpec.new
@@ -187,7 +192,7 @@ class PagesController < ApplicationController
   private
   def signinRouter
     if !spree_user_signed_in?
-      redirect_to spree.login_path
+      redirect_to landing_path
     end
   end
 

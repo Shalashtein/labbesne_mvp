@@ -19,6 +19,7 @@ require("../scripts/sidebarTogglers.js")
 require("../scripts/dynamicShop.js")
 require("../scripts/dynamicCustomer.js")
 require("../scripts/dynamicStylist.js")
+require("../scripts/gestures.js")
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.

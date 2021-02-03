@@ -1,0 +1,44 @@
+@import "default";
+$royal: #663399;
+$gold: #FFD700;
+
+.site-header{
+  position: fixed;
+  top: 0;
+  .header-brand > h1{
+    color: rgb(255,255,255);
+  }
+}
+.hero{
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+background: rgb(102,51,153);
+background: linear-gradient(128deg, rgba(102,51,153,1) 35%, rgba(102,51,153,0) 65%);
+
+  .hero-title{
+    color: rgba(250,250,250,0.85)
+  }
+  .hero-paragraph{
+    color: rgba(230,230,230,0.9)
+  }
+  .btn-try{
+    background-color: $gold;
+    color: rgb(30,30,30) !important;
+    box-shadow: 1px 1px 2px rgba(50,50,50,0.9);
+    opacity: 0.8;
+    &:hover{
+      opacity: 1;
+    }
+  }
+  .hero-image{
+    filter: drop-shadow(0 0 2px grey);
+    position: absolute;
+    bottom: -2rem;
+    right: 5rem;
+  }
+}
+.hero-image{
+}

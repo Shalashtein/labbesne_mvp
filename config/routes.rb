@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :profiles
   resources :tracks
 
+  get '/touchdown', to: 'pages#landing', as: 'landing'
   get '/unapproved', to: 'spree/admin/products#unapproved'
   get '/vendor', to: 'spree/admin/products#vendor'
   get '/vendor/orders', to: 'spree/admin/products#tracks'
