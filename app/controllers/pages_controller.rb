@@ -8,7 +8,13 @@ class PagesController < ApplicationController
   before_action :setOutfitProduct, only: [:stylist, :stylist_outfits_area, :stylist_products_area, :stylist_filter]
 
   def landing
+    @preregistration = Preregistration.new
     @swiped = session[:swiped] || false
+    if @swiped && !session[:email].nil?
+      @email = session[:email]
+    else
+      @email = nil
+    end
   end
 
   def guestSwiped

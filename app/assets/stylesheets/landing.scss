@@ -1,6 +1,9 @@
 @import "default";
 $royal: #663399;
 $gold: #FFD700;
+html {
+  scroll-behavior: smooth;
+}
 
 .site-header{
   position: fixed;
@@ -326,18 +329,29 @@ background: linear-gradient(135deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2)
     color: $gold;
     text-shadow: 1px 1px 1px black;
   }
-  input{
+  .new_preregistration{
+    width: 100%;
+  }
+  .preregistration_email{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+  #preregistration_email{
     background-color: transparent;
     border: none;
     border-bottom: 1px solid white;
     margin-bottom: 5px;
-    width: 80%;
+    width: 40%;
     color: white;
     padding:5px;
     text-align: center;
+    transition: all 0.5s ease;
     &:focus{
       border-bottom: 2px solid white;
       outline: none;
+      width: 80%;
     }
   }
   button{
@@ -350,4 +364,8 @@ background: linear-gradient(135deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2)
 }
 .hidden{
   display: none !important;
+}
+.saved_email{
+  width: 100% !important;
+  color: rgba(200,200,200,0.8) !important;
 }

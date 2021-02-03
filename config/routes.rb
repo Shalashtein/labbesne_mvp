@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :preregistrations
   resources :interactions
   resources :product_outfits
   resources :outfits

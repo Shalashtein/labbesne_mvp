@@ -24,7 +24,7 @@
                   </div>
                 </div>
             </div>
-          <%= image_tag 'https://labbesne.s3.eu-west-3.amazonaws.com/labbesne/assets/unnamed-removebg-preview.png', class: 'hero-image' %>
+          <%= image_tag 'https://labbesne.s3.eu-west-3.amazonaws.com/labbesne/assets/unnamed-removebg-preview.png', class: 'hero-image hidden' %>
         </section>
         <section class="swiper" id="swipe-section">
           <div class="products-container" data-controller="products">
@@ -35,9 +35,30 @@
                 </div>
               <% end %>
               <div class="onboard <%= 'hidden' unless @swiped %>">
-                <p>Signup for updates to continue shopping and unlock more features</p>
-                <input type="email" placeholder="Email">
-                <button>Register</button>
+                <% if @email.nil? %>
+                      <p id="preregistration_text">Signup for updates to continue shopping and unlock more features</p>
+                    <% else %>
+                       <p>We'll keep you in the loop</p>
+                    <% end %>
+                <%= simple_form_for(@preregistration, method: :get, remote: true) do |f| %>
+                  <%= f.error_notification %>
+                  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+                  <div class="form-inputs">
+                    <% if @email.nil? %>
+                      <%= f.input :email, label: false, placeholder: "Email" %>
+                    <% else %>
+                      <%= f.input :email, label: false, input_html: {value: @email, class: 'saved_email'}, disabled: true %>
+                    <% end %>
+                  </div>
+
+                  <div class="form-actions">
+                    <%= f.button :submit, class: 'hidden preregistration-submit'%>
+                  </div>
+                <% end %>
+                <% if @email.nil? %>
+                  <button id="pre-dummy">Register</button>
+                <% end %>
                 </div>
             </div>
           </div>

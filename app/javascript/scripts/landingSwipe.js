@@ -91,6 +91,9 @@ window.productSwipe = function(){
   });
 };
 window.dynamicShop = function(){
+  $(document).ready(function(){
+    $('.hero-image').removeClass('hidden');
+  });
   $(document).on('click','.save_product_button', {} ,function(e){
       $.fn.toggleText = function(t1, t2){
     if (this.text() == t1) this.text(t2);
@@ -100,5 +103,10 @@ window.dynamicShop = function(){
     $(this).toggleText('Save for later', 'Saved');
     $('.save_product_button').toggleClass('save_product_button_saved');
     $('#products-swipe-card-stack li:last-child').toggleClass('saved_product');
+  });
+  $('#pre-dummy').click(function(){
+    $('.preregistration-submit').click();
+    $('#preregistration_text').html("We'll keep you in the loop");
+    $('#pre-dummy').remove();
   });
 }
