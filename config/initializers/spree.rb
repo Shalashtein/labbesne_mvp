@@ -20,7 +20,7 @@ Spree.config do |config|
   config.use_legacy_address_state_validator = false
 
   # CHANGE WHEN YOU FIX SMTP
-  Spree::Auth::Config[:confirmable] = false
+  Spree::Auth::Config[:confirmable] = true
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false
 
