@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/Shalashtein/solidus_auth_devise.git
+  revision: 9fed35b0a5126bc3299c8b282556247a6d839503
+  specs:
+    solidus_auth_devise (2.5.3)
+      deface (~> 1.0)
+      devise (~> 4.1)
+      devise-encryptable (= 0.2.0)
+      paranoia (~> 2.4)
+      solidus_core (>= 2.6, < 4)
+      solidus_support (~> 0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -350,13 +362,6 @@ GEM
       kaminari-activerecord (~> 1.1)
       responders
       solidus_core (= 2.11.4)
-    solidus_auth_devise (2.5.3)
-      deface (~> 1.0)
-      devise (~> 4.1)
-      devise-encryptable (= 0.2.0)
-      paranoia (~> 2.4)
-      solidus_core (>= 2.6, < 4)
-      solidus_support (~> 0.5)
     solidus_backend (2.11.4)
       autoprefixer-rails
       coffee-rails
@@ -495,7 +500,7 @@ DEPENDENCIES
   simple_form
   skylight
   solidus
-  solidus_auth_devise
+  solidus_auth_devise!
   solidus_paypal_commerce_platform
   spring
   spring-watcher-listen (~> 2.0.0)
