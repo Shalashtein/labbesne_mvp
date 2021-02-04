@@ -8,6 +8,9 @@ class PagesController < ApplicationController
   before_action :setOutfitProduct, only: [:stylist, :stylist_outfits_area, :stylist_products_area, :stylist_filter]
 
   def landing
+    if spree_user_signed_in?
+      redirect_to root_path
+    end
     @preregistration = Preregistration.new
     @swiped = session[:swiped] || false
     if @swiped && !session[:email].nil?
