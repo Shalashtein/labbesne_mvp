@@ -18,8 +18,8 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-background: rgb(102,51,153);
-background: linear-gradient(135deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2) 80%);
+  background: rgb(102,51,153);
+  background: linear-gradient(135deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.9) 80%);
 
   .hero-title{
     color: rgba(250,250,250,0.85)
@@ -58,7 +58,7 @@ background: linear-gradient(135deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2)
   overflow: hidden;
   align-items: stretch;
   background: rgb(102,51,153);
-  background: linear-gradient(45deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2) 80%);
+  background: linear-gradient(45deg, rgba(102,51,153,1) 50%, rgba(100,49,151,0.9) 80%);
   position: relative;
 }
 .products-section-swiper{
@@ -371,4 +371,22 @@ background: linear-gradient(135deg, rgba(102,51,153,1) 50%, rgba(102,51,153,0.2)
 .saved_email{
   width: 100% !important;
   color: rgba(200,200,200,0.8) !important;
+}
+@media only screen and (max-width: 500px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .btn-try{
+    width: 60%;
+    margin: auto;
+  }
+  .onboard{
+    padding: 5px;
+    p{
+      text-align: center;
+    }
+  }
 }

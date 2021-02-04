@@ -13,8 +13,6 @@ class Spree::UserSessionsController < Devise::SessionsController
   # it after someone has successfully logged in.
   after_action :set_current_order, only: :create
 
-
-
   def create
     authenticate_spree_user!
     if spree_user_signed_in?
