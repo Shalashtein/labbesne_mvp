@@ -27,7 +27,7 @@ window.productSwipe = function(){
       if(screen.width > 500){
         x = 1.5;
       } else {
-        x = 2.15;
+        x = 2.5;
       }
       const xConfidence = Math.min(Math.abs(xOffset) / element.offsetWidth * x, 1);
       const yConfidence = Math.min(Math.abs(yOffset) / element.offsetHeight, 1);
