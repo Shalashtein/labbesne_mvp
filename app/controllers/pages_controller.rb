@@ -202,6 +202,15 @@ class PagesController < ApplicationController
     @order.complete
   end
 
+  def popupMessage
+    if params[:message] == 'orderdone'
+      @message = `Order Placed\n You can check its state in your closet`
+    else
+      @message = `What in God's name?`
+    end
+    render partial: 'pages/partials/message', locals: {message: @message}
+  end
+
   private
   def signinRouter
     if !spree_user_signed_in?
@@ -244,9 +253,10 @@ class PagesController < ApplicationController
 
   def makePaymentCOD
     payment = Spree::Payment.new
-    payment.payment_method_id = Spree::PaymentMethod.where(name: 'Cash on Delivery')
+    payment.payment_method_id = Spree::PaymentMethod.where(name: 'Cash on Delivery').first.id
     payment.order_id = @order.id
     payment.amount = @order.total
-    payment.save
+    payment.save!
+    @order.save
   end
 end

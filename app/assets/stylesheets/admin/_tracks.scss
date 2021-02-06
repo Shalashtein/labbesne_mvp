@@ -5,9 +5,12 @@ fieldset .filter-actions{
 .tracks-card-container{
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 .tracks-card{
   margin: 5px;
+  width:20%;
   &-red{
     box-shadow: 0px 2px 4px 1px rgba(255,0,0,0.87);
   }

@@ -9,9 +9,10 @@
     <% v = Spree::Variant.find(li.variant_id) %>
     <% p = Spree::Product.find(v.product_id) %>
     <div class="card tracks-card <%= t.vendor_recieved? ? 'tracks-card-yellow' : 'tracks-card-red' %>" style="width: 18rem;">
-      <img class="card-img-top" src=<%= p.gallery.images.first.attachment.url %> alt="Card image cap">
+      <img class="card-img-top" src=<%= p.gallery.images.first.attachment.url %> alt="Card image cap" style="width: 100%; height: 100%; object-fit: contain;">
       <div class="card-body">
         <h5 class="card-title"><%= p.name %></h5>
+        <h5><%= Spree::User.find(p.spree_user_id).email %></h5>
         <p class="card-text"><%= "Quantity: #{t.quantity}" %></p>
         <div class="tracks-card-buttons">
           <% if current_spree_user.has_spree_role?(:admin) %>

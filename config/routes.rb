@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get '/vendor/orders', to: 'spree/admin/products#tracks'
   patch '/vendor/orders/:id/vendorRecieved', to: 'tracks#vendorRecieved', as: 'vendor_recieved'
   patch '/vendor/orders/:id/vendorSent', to: 'tracks#vendorSent', as: 'vendor_sent'
-  patch '/vendor/orders/:id/Recieved',to: 'tracks#Recieved', as: 'recieved'
+  patch '/vendor/orders/:id/recieved', to: 'tracks#recieved', as: 'recieved'
   get '/profileforms', to: 'pages#profileRouter', as: 'profile_router'
   get '/profile/measurements', to: 'pages#measurements'
   get '/profile/swipe', to: 'pages#swipepage', as: 'swipe'
@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get '/order/saved', to: 'pages#savedAddress', as: 'saved_address'
   get '/order/finalize', to: 'pages#finalize', as: 'finalize_order'
   get '/guestSwiped', to: 'pages#guestSwiped'
+  post '/popupmessage', to: 'pages#popupMessage', as: 'message'
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.

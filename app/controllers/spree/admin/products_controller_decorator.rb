@@ -25,9 +25,9 @@ module Spree::Admin::ProductsControllerDecorator
   def tracks
     if Track.any?
       @tracks = if current_spree_user.has_spree_role?(:admin)
-                  Track.where(recieved: false)
+                  Track.where(recieved: false).order(created_at: :desc)
                 else
-                  Track.where(spree_user_id: current_spree_user.id, recieved: false)
+                  Track.where(spree_user_id: current_spree_user.id, vendor_sent: false).order(created_at: :desc)
                 end
     else
       @tracks = []

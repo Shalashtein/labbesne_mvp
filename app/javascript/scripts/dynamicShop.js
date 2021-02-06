@@ -73,7 +73,29 @@ window.dynamicShop = function(){
   });
   $(document).on('click', '#finalize_order', {}, function(){
     $.get('/order/finalize',function(data){
-      alert('Order Placed')
+      $('.dynamic_cart').load('/current_cart');
+      $([document.documentElement, document.body]).animate({
+          scrollTop: $("#products-section").offset().top
+      }, 0);
+      var confirmation_modal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {});
+      $('.close_confirmation_modal').click();
+      $('#map-section').addClass('hidden-map')
+      $.post('/popupmessage/?message=orderdone',function(){
+        $('.products-container-sidebar').removeClass('sidebar-active')
+        $('.products-container-sidebar-toggler').removeClass('toggler-active')
+        $('.products-container-cart').removeClass('cart-active')
+        $('.products-container-cart-toggler').removeClass('toggler-active')
+        $('.message_box').removeClass('popup_hidden');
+        $('#popup_close').click(function(){
+          $('#message_box').addClass('popup_hidden');
+        });
+        $('.message_box').click(function(){
+          $('.message_box').addClass('popup_hidden');
+        });
+        setTimeout(function(){
+         $('.message_box').addClass('popup_hidden');
+        }, 3000);
+      });
     })
   });
   $(document).on('click', '.btn-confirm-address', {}, function(){

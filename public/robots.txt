@@ -1,9 +1,9 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
 User-agent: *
-Disallow: /checkout
-Disallow: /cart
-Disallow: /orders
-Disallow: /user
-Disallow: /account
-Disallow: /api
-Disallow: /password
+Disallow: /shop/checkout
+Disallow: /shop/cart
+Disallow: /shop/orders
+Disallow: /shop/user
+Disallow: /shop/account
+Disallow: /shop/api
+Disallow: /shop/password
