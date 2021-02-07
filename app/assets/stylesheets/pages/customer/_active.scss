@@ -20,8 +20,8 @@
       list-style: none;
       li{
         width: 100%;
-        background-color: cadetblue;
-        color: white;
+        background-color: $gold;
+        color: $royal;
         opacity: 0.5;
         height: 20%;
         display: flex;
@@ -46,6 +46,7 @@
     .active_orders_container{
       width: 100%;
       height: 100%;
+      overflow-y: scroll;
       ul{
         width: 100%;
         height: auto;
@@ -67,6 +68,7 @@
           padding: 5px;
           &:hover{
             background-color: rgba(200,250,250,0.5);
+            cursor: pointer;
           }
           .header{
             width: 100%;
