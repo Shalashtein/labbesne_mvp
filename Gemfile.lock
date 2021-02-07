@@ -86,7 +86,7 @@ GEM
     awesome_nested_set (3.3.1)
       activerecord (>= 4.0.0, < 7.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.423.0)
+    aws-partitions (1.424.0)
     aws-sdk-core (3.112.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -98,9 +98,6 @@ GEM
     aws-sdk-s3 (1.88.0)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
-      aws-sigv4 (~> 1.1)
-    aws-sdk-ses (1.37.0)
-      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
@@ -247,7 +244,7 @@ GEM
     msgpack (1.4.2)
     multi_json (1.15.0)
     netrc (0.11.0)
-    nio4r (2.5.4)
+    nio4r (2.5.5)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
@@ -479,7 +476,6 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   aws-sdk-s3
-  aws-sdk-ses
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)

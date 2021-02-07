@@ -8,7 +8,8 @@ Paperclip::Attachment.default_options.merge!(
       aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
       aws_secret_access_key: ENV["AWS_SECRET_KEY_ID"],
       region: ENV["S3_REGION_NAME"],
-      preserve_files: false ,
+      s3_region: ENV["S3_REGION_NAME"],
+      preserve_files: false,
     },
     fog_directory: ENV["BUCKET_NAME"]
   )
