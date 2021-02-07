@@ -1,5 +1,5 @@
 //----------------------- Products Swipe UI ----------------------
-window.productSwipe = function(){
+window.landingSwipe = function(){
   if($('#products-swipe-card-stack li:last-child').data("saved")){
             $('.save_product_button').addClass('save_product_button_saved')
             $('.save_product_button').html('Saved')
