@@ -1,0 +1,2828 @@
+/* line 1, app/assets/stylesheets/_default.css */
+html {
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+body {
+  margin: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+article, aside, footer, header, nav, section {
+  display: block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+figcaption, figure, main {
+  display: block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+figure {
+  margin: 1em 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+b, strong {
+  font-weight: inherit;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+b, strong {
+  font-weight: bolder;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+code, kbd, samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+dfn {
+  font-style: italic;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+small {
+  font-size: 80%;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+sub {
+  bottom: -0.25em;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+sup {
+  top: -0.5em;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+audio, video {
+  display: inline-block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+img {
+  border-style: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+button, input, optgroup, select, textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+button, input {
+  overflow: visible;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+button, select {
+  text-transform: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+button, html [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+progress {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+textarea {
+  overflow: auto;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+[type="checkbox"], [type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+[type="number"]::-webkit-inner-spin-button, [type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+[type="search"]::-webkit-search-cancel-button, [type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+details, menu {
+  display: block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+summary {
+  display: list-item;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+canvas {
+  display: inline-block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+template {
+  display: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+[hidden] {
+  display: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+html {
+  box-sizing: border-box;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+body {
+  background: #fff;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+hr {
+  border: 0;
+  display: block;
+  height: 1px;
+  background: #E9EDF3;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+ul {
+  list-style: disc;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+ol {
+  list-style: decimal;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+li > ul, li > ol {
+  margin-bottom: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+dl {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+dt {
+  font-weight: 600;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+dd {
+  margin-left: 24px;
+  margin-bottom: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+figure {
+  margin: 24px 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+figcaption {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+img, svg {
+  display: block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+table {
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+tr {
+  border-bottom: 1px solid #E9EDF3;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+th {
+  text-align: left;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+th, td {
+  padding: 10px 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+th:first-child, td:first-child {
+  padding-left: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+th:last-child, td:last-child {
+  padding-right: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+html {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+body {
+  color: #6B7A90;
+  font-size: 1rem;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+body, button, input, select, textarea {
+  font-family: "Heebo", sans-serif;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+a {
+  color: #535FD7;
+  text-decoration: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+a:hover, a:active {
+  outline: 0;
+  text-decoration: underline;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  clear: both;
+  color: #182538;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 600;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h1, .h1 {
+  font-size: 38px;
+  line-height: 48px;
+  letter-spacing: -0.1px;
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  h1, .h1 {
+    font-size: 44px;
+    line-height: 54px;
+    letter-spacing: 0px;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h2, .h2 {
+  font-size: 32px;
+  line-height: 42px;
+  letter-spacing: -0.1px;
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  h2, .h2 {
+    font-size: 38px;
+    line-height: 48px;
+    letter-spacing: -0.1px;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h3, .h3, blockquote {
+  font-size: 24px;
+  line-height: 34px;
+  letter-spacing: -0.1px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h4, h5, h6, .h4, .h5, .h6 {
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.1px;
+}
+
+@media (max-width: 640px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .h1-mobile {
+    font-size: 38px;
+    line-height: 48px;
+    letter-spacing: -0.1px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .h2-mobile {
+    font-size: 32px;
+    line-height: 42px;
+    letter-spacing: -0.1px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .h3-mobile {
+    font-size: 24px;
+    line-height: 34px;
+    letter-spacing: -0.1px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .h4-mobile, .h5-mobile, .h6-mobile {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.1px;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-light {
+  color: #8595AE;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-light a {
+  color: #8595AE;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-light h1, .text-light h2, .text-light h3, .text-light h4, .text-light h5, .text-light h6, .text-light .h1, .text-light .h2, .text-light .h3, .text-light .h4, .text-light .h5, .text-light .h6 {
+  color: #fff !important;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-sm {
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: -0.1px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-xs {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.1px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h1, h2, .h1, .h2 {
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h3, .h3 {
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+h4, h5, h6, .h4, .h5, .h6 {
+  margin-top: 24px;
+  margin-bottom: 4px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+dfn, cite, em, i {
+  font-style: italic;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+blockquote {
+  color: #6B7A90;
+  font-style: italic;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  margin-left: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+blockquote::before {
+  content: "\201C";
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+blockquote::after {
+  content: "\201D";
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+blockquote p {
+  display: inline;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+address {
+  color: #6B7A90;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #E9EDF3;
+  padding: 24px 0;
+  margin: 0 0 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+pre, pre h1, pre h2, pre h3, pre h4, pre h5, pre h6, pre .h1, pre .h2, pre .h3, pre .h4, pre .h5, pre .h6 {
+  font-family: "Courier 10 Pitch", Courier, monospace;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+pre, code, kbd, tt, var {
+  background: #F8F9FB;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+pre {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 24px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+code, kbd, tt, var {
+  font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+  font-size: 16px;
+  padding: 2px 4px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+abbr, acronym {
+  cursor: help;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+mark, ins {
+  text-decoration: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+small {
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: -0.1px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+b, strong {
+  font-weight: 600;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+button, input, select, textarea, label {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.container, .container-sm {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 481px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .container, .container-sm {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.container {
+  max-width: 1128px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.container-sm {
+  max-width: 848px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.container .container-sm {
+  max-width: 800px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  word-wrap: normal !important;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.screen-reader-text:focus {
+  border-radius: 2px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  display: block;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0px;
+  font-weight: 600;
+  line-height: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: #535FD7 !important;
+  border: none;
+  height: auto;
+  left: 8px;
+  padding: 16px 32px;
+  top: 8px;
+  width: auto;
+  z-index: 100000;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.list-reset {
+  list-style: none;
+  padding: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-left {
+  text-align: left;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-center {
+  text-align: center;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-right {
+  text-align: right;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-primary {
+  color: #535FD7;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.text-secondary {
+  color: #61EFFD;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.has-top-divider {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.has-top-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  height: 1px;
+  background: #E9EDF3;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.has-bottom-divider {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.has-bottom-divider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  height: 1px;
+  background: #E9EDF3;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-0 {
+  margin: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-0 {
+  margin-top: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-0 {
+  margin-right: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-0 {
+  margin-bottom: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-0 {
+  margin-left: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-8 {
+  margin: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-8 {
+  margin-top: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-8 {
+  margin-right: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-8 {
+  margin-left: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-16 {
+  margin: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-16 {
+  margin-top: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-16 {
+  margin-right: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-16 {
+  margin-left: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-24 {
+  margin: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-24 {
+  margin-top: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-24 {
+  margin-right: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-24 {
+  margin-bottom: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-24 {
+  margin-left: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-32 {
+  margin: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-32 {
+  margin-top: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-32 {
+  margin-right: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-32 {
+  margin-bottom: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-32 {
+  margin-left: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-40 {
+  margin: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-40 {
+  margin-top: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-40 {
+  margin-right: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-40 {
+  margin-left: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-48 {
+  margin: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-48 {
+  margin-top: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-48 {
+  margin-right: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-48 {
+  margin-bottom: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-48 {
+  margin-left: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-56 {
+  margin: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-56 {
+  margin-top: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-56 {
+  margin-right: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-56 {
+  margin-bottom: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-56 {
+  margin-left: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.m-64 {
+  margin: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mt-64 {
+  margin-top: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mr-64 {
+  margin-right: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.mb-64 {
+  margin-bottom: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.ml-64 {
+  margin-left: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-0 {
+  padding: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-0 {
+  padding-top: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-0 {
+  padding-right: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-0 {
+  padding-bottom: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-0 {
+  padding-left: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-8 {
+  padding: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-8 {
+  padding-top: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-8 {
+  padding-right: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-8 {
+  padding-bottom: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-8 {
+  padding-left: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-16 {
+  padding: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-16 {
+  padding-top: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-16 {
+  padding-right: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-16 {
+  padding-bottom: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-16 {
+  padding-left: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-24 {
+  padding: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-24 {
+  padding-top: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-24 {
+  padding-right: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-24 {
+  padding-bottom: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-24 {
+  padding-left: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-32 {
+  padding: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-32 {
+  padding-top: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-32 {
+  padding-right: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-32 {
+  padding-bottom: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-32 {
+  padding-left: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-40 {
+  padding: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-40 {
+  padding-top: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-40 {
+  padding-right: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-40 {
+  padding-bottom: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-40 {
+  padding-left: 40px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-48 {
+  padding: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-48 {
+  padding-top: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-48 {
+  padding-right: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-48 {
+  padding-bottom: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-48 {
+  padding-left: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-56 {
+  padding: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-56 {
+  padding-top: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-56 {
+  padding-right: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-56 {
+  padding-bottom: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-56 {
+  padding-left: 56px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.p-64 {
+  padding: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pt-64 {
+  padding-top: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pr-64 {
+  padding-right: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pb-64 {
+  padding-bottom: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.pl-64 {
+  padding-left: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.sr .has-animations .is-revealing {
+  visibility: hidden;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input, .textarea {
+  background-color: #182538;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E9EDF3;
+  border-radius: 2px;
+  color: #6B7A90;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input::-webkit-input-placeholder, .textarea::-webkit-input-placeholder {
+  color: #6B7A90;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input:-ms-input-placeholder, .textarea:-ms-input-placeholder {
+  color: #6B7A90;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input::-ms-input-placeholder, .textarea::-ms-input-placeholder {
+  color: #6B7A90;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input::-moz-placeholder, .textarea::-moz-placeholder {
+  color: #6B7A90;
+}
+.input:-ms-input-placeholder, .textarea:-ms-input-placeholder {
+  color: #6B7A90;
+}
+.input::placeholder, .textarea::placeholder {
+  color: #6B7A90;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input::-ms-input-placeholder, .textarea::-ms-input-placeholder {
+  color: #6B7A90;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input:-ms-input-placeholder, .textarea:-ms-input-placeholder {
+  color: #6B7A90;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input:hover, .textarea:hover {
+  border-color: #d9e0ea;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input:active, .input:focus, .textarea:active, .textarea:focus {
+  outline: none;
+  border-color: #E9EDF3;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input[disabled], .textarea[disabled] {
+  cursor: not-allowed;
+  background-color: #F8F9FB;
+  border-color: #F8F9FB;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  font-size: 16px;
+  letter-spacing: -0.1px;
+  line-height: 20px;
+  padding: 13px 16px;
+  height: 48px;
+  box-shadow: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.input .inline-input {
+  display: inline;
+  width: auto;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.textarea {
+  display: block;
+  min-width: 100%;
+  resize: vertical;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.textarea .inline-textarea {
+  display: inline;
+  width: auto;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.field-grouped > .control:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"] {
+  outline: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  opacity: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"] + label {
+  display: inline-flex;
+  position: relative;
+  line-height: 36px;
+  padding-left: 78px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"] + label::before, .switch[type="checkbox"] + label::after {
+  content: '';
+  position: absolute;
+  display: block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"] + label::before {
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 36px;
+  border-radius: 18px;
+  background: #E9EDF3;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"] + label::after {
+  top: 6px;
+  left: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background: #fff;
+  transition: all .15s ease-out;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"]:checked + label::before {
+  background: #535FD7;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"]:checked + label::after {
+  left: 34px;
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .field-grouped {
+    display: flex;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .field-grouped > .control {
+    flex-shrink: 0;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .field-grouped > .control.control-expanded {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .field-grouped > .control:not(:last-child) {
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button {
+  display: inline-flex;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0px;
+  font-weight: 600;
+  line-height: 16px;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  background-color: #E9EDF3;
+  color: #535FD7 !important;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  justify-content: center;
+  padding: 16px 32px;
+  height: 48px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button:hover {
+  background: #ecf0f5;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button:active {
+  outline: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button::before {
+  border-radius: 2px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-shadow {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-shadow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+  mix-blend-mode: multiply;
+  transition: box-shadow .15s ease;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-shadow:hover::before {
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.35);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-sm {
+  padding: 8px 24px;
+  height: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-sm.button-shadow::before {
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-sm.button-shadow:hover::before {
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.35);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-primary {
+  color: #fff !important;
+  background-color: #535FD7;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-primary:hover {
+  background: #5763d8;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-primary.button-shadow::before {
+  box-shadow: 0 8px 16px rgba(83, 95, 215, 0.25);
+  mix-blend-mode: normal;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-primary.button-shadow:hover::before {
+  box-shadow: 0 8px 16px rgba(83, 95, 215, 0.35);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-primary .button-sm.button-shadow::before {
+  box-shadow: 0 4px 16px rgba(83, 95, 215, 0.25);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-primary .button-sm.button-shadow:hover::before {
+  box-shadow: 0 4px 16px rgba(83, 95, 215, 0.35);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.button-block {
+  display: flex;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.site-header {
+  position: relative;
+  padding: 24px 0;
+  z-index: 2;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: -140px;
+  right: -100px;
+  width: 1440px;
+  height: 324px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .site-header::before {
+  background-image: url("../images/header-illustration-dark.svg");
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.site-header-inner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.header-links {
+  display: inline-flex;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.header-links li {
+  display: inline-flex;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.header-links a:not(.button) {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.1px;
+  font-weight: 600;
+  color: #8595AE;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 16px;
+  padding: 8px 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.header-links a:not(.button):hover, .header-links a:not(.button):active {
+  color: #fff;
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .site-header::before {
+    display: none;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero {
+  text-align: center;
+  padding-top: 48px;
+  padding-bottom: 88px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero-copy {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero-paragraph {
+  margin-bottom: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero-cta {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 80px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-toggle {
+  color: rgba(107, 122, 144, 0.64);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.header-illustration {
+  display: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.header-illustration img, .header-illustration svg {
+  max-width: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.header-illustration-image {
+  display: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero-media {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero-media-illustration {
+  position: absolute;
+  top: -10%;
+  left: -15px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero-media-illustration img, .hero-media-illustration svg {
+  max-width: 136%;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero-media-container {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.hero-media-image {
+  margin: 0 auto;
+  box-shadow: 48px 16px 48px rgba(24, 37, 56, 0.12);
+  border-radius: 4px;
+  transform: perspective(1000px) rotateY(16deg) rotateX(2deg) rotateZ(-7deg) scaleY(0.95) translatex(2%);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .hero-media-image {
+  box-shadow: 48px 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 639px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-cta > * {
+    display: flex;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-cta > * + * {
+    margin-top: 32px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .lights-toggle {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero {
+    text-align: left;
+    padding-top: 88px;
+    padding-bottom: 120px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-copy {
+    padding-top: 40px;
+    padding-right: 48px;
+    min-width: 448px;
+    max-width: 512px;
+    z-index: 1;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-title {
+    margin-bottom: 16px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-paragraph {
+    margin-bottom: 32px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-cta .button {
+    min-width: 170px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-cta .button:first-child {
+    margin-right: 32px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .header-illustration {
+    display: block;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-media {
+    z-index: 0;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .hero-media img, .hero-media svg {
+    max-width: none;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .header-illustration-image {
+    display: block;
+    position: absolute;
+    top: -168px;
+    left: -722px;
+    width: 1440px;
+    height: 324px;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.features-wrap {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.features-image {
+  position: relative;
+  margin-top: 64px;
+  margin-bottom: 112px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.features-illustration {
+  position: absolute;
+  top: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 136%;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.features-box {
+  margin: 0 auto;
+  box-shadow: 48px 16px 48px rgba(24, 37, 56, 0.12);
+  transform: perspective(1000px) rotateY(10deg) translateY(2%);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .features-box {
+  box-shadow: 48px 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.feature {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.feature:last-of-type {
+  margin-bottom: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.feature-icon {
+  display: inline-flex;
+  margin-bottom: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.feature-icon img, .feature-icon svg {
+  max-width: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.feature-title {
+  position: relative;
+  margin-bottom: 26px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.feature-title::after {
+  content: '';
+  width: 32px;
+  height: 2px;
+  position: absolute;
+  bottom: -14px;
+  left: calc(50% - 16px);
+  background: #E9EDF3;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .feature-title::after {
+  background: #304057;
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .features {
+    position: relative;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .features .section-inner {
+    padding-bottom: 100px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .features .section-paragraph {
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .features::before {
+    content: '';
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    left: 0;
+    top: 168px;
+    background: linear-gradient(to bottom, rgba(83, 95, 215, 0), rgba(83, 95, 215, 0.04));
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .lights-off .features::before {
+    display: none;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .feature {
+    text-align: left;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .feature-inner {
+    display: flex;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .feature-icon {
+    display: block;
+    margin-top: 8px;
+    margin-right: 32px;
+    margin-bottom: 0;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .feature-title::after {
+    left: 0;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.cta {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.cta .section-inner {
+  padding-bottom: 64px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.cta .section-paragraph {
+  margin-bottom: 32px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.cta::before {
+  content: '';
+  position: absolute;
+  bottom: -32px;
+  left: calc(50% - 720px);
+  height: 263px;
+  width: 1440px;
+  background-image: url("../images/cta-illustration-light.svg");
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .cta::before {
+  background-image: url("../images/cta-illustration-dark.svg");
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.cta-cta {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 639px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .cta-cta .button {
+    display: flex;
+  }
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .cta .section-inner {
+    padding-bottom: 128px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .cta .section-paragraph {
+    margin-bottom: 40px;
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .cta::before {
+    bottom: 0;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .cta-cta .button {
+    min-width: 170px;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-boxed {
+  background: #E9EDF3;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.body-wrap {
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.boxed-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  box-shadow: 0 16px 48px rgba(255, 255, 255, 0.5);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+main {
+  flex: 1 0 auto;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.section-inner {
+  position: relative;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .section-inner {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.site-footer {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  background: #182538;
+  color: #6B7A90;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.site-footer a {
+  color: #6B7A90;
+  text-decoration: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.site-footer a:hover, .site-footer a:active {
+  text-decoration: underline;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.site-footer::before {
+  display: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .site-footer::before {
+  display: block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.site-footer-inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.footer-brand, .footer-links, .footer-social-links, .footer-copyright {
+  flex: none;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.footer-brand, .footer-links, .footer-social-links {
+  margin-bottom: 24px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.footer-links li + li, .footer-social-links li + li {
+  margin-left: 16px;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.footer-social-links li {
+  display: inline-flex;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.footer-social-links li a {
+  padding: 8px;
+}
+
+@media (min-width: 641px) {
+  /* line 1, app/assets/stylesheets/_default.css */
+  .site-footer-inner {
+    justify-content: space-between;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .footer-brand, .footer-links, .footer-social-links, .footer-copyright {
+    flex: 50%;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .footer-brand, .footer-copyright {
+    justify-content: flex-start;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .footer-links, .footer-social-links {
+    justify-content: flex-end;
+  }
+  /* line 1, app/assets/stylesheets/_default.css */
+  .footer-links {
+    order: 1;
+    margin-bottom: 0;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"] + label::before {
+  background: #41a5ea;
+  background: linear-gradient(to right, #2FEAFC 0, #535FD7 100%);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"] + label::after {
+  background: #fff;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.switch[type="checkbox"]:checked + label::before {
+  background: #ff9d34;
+  background: linear-gradient(to right, #FFBC48 0, #FE7E1F 100%);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.asset-light, .asset-dark {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-loaded .asset-light, .is-loaded .asset-dark {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.asset-dark {
+  display: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off {
+  color: #8595AE;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .asset-light {
+  display: none;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .asset-dark {
+  display: block;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off a {
+  color: #8595AE;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off h1, .lights-off h2, .lights-off h3, .lights-off h4, .lights-off h5, .lights-off h6, .lights-off .h1, .lights-off .h2, .lights-off .h3, .lights-off .h4, .lights-off .h5, .lights-off .h6 {
+  color: #fff !important;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off.is-boxed {
+  background: #202d3f;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .body-wrap {
+  background: #182538;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .boxed-container {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off hr {
+  display: block;
+  height: 1px;
+  background: #304057;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .has-top-divider {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .has-top-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  height: 1px;
+  background: #304057;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .has-bottom-divider {
+  position: relative;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.lights-off .has-bottom-divider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  height: 1px;
+  background: #304057;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+body, a, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  transition: color .25s ease;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-boxed, .body-wrap, .has-top-divider, .has-bottom-divider::after, hr::after, .feature-title::after {
+  transition: background .25s ease;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.boxed-container {
+  transition: box-shadow .15s ease;
+}
+
+@-webkit-keyframes fadeInLogo {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes fadeInLogo {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@-webkit-keyframes fadeInLeftMedia {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translate3d(40px, 10px, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeftMedia {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translate3d(40px, 10px, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeInLeftIllustration {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translate3d(40px, 10px, 0);
+  }
+}
+
+@keyframes fadeInLeftIllustration {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translate3d(40px, 10px, 0);
+  }
+}
+
+@-webkit-keyframes fadeUpBox {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translate3d(-40px, 20px, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUpBox {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translate3d(-40px, 20px, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-loaded .header-logo-image {
+  -webkit-animation: fadeInLogo 0.35s both cubic-bezier(0.3, 0, 0.2, 1);
+  animation: fadeInLogo 0.35s both cubic-bezier(0.3, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-loaded .hero-media-image {
+  -webkit-animation: fadeInLeftMedia 1s 0.2s both cubic-bezier(0.3, 0, 0.2, 1);
+  animation: fadeInLeftMedia 1s 0.2s both cubic-bezier(0.3, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-loaded .hero-media-illustration-image {
+  -webkit-animation: fadeInLeftIllustration 1s 0.2s both cubic-bezier(0.3, 0, 0.2, 1);
+  animation: fadeInLeftIllustration 1s 0.2s both cubic-bezier(0.3, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-loaded .features-box {
+  -webkit-animation: fadeUpBox 1s 0.2s both cubic-bezier(0.3, 0, 0.2, 1);
+  animation: fadeUpBox 1s 0.2s both cubic-bezier(0.3, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-loaded .header-illustration-image {
+  -webkit-animation: fadeIn 1s both cubic-bezier(0.3, 0, 0.2, 1);
+  animation: fadeIn 1s both cubic-bezier(0.3, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* line 1, app/assets/stylesheets/_default.css */
+.is-loaded .features-illustration {
+  -webkit-animation: fadeIn 1s 0.2s both cubic-bezier(0.3, 0, 0.2, 1);
+  animation: fadeIn 1s 0.2s both cubic-bezier(0.3, 0, 0.2, 1);
+  will-change: transform;
+}
+/* line 4, app/assets/stylesheets/landing.scss */
+html {
+  scroll-behavior: smooth;
+}
+
+/* line 8, app/assets/stylesheets/landing.scss */
+.site-header {
+  position: fixed;
+  top: 0;
+}
+
+/* line 11, app/assets/stylesheets/landing.scss */
+.site-header .header-brand > h1 {
+  color: white;
+}
+
+/* line 15, app/assets/stylesheets/landing.scss */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: rebeccapurple;
+  background: linear-gradient(135deg, rebeccapurple 50%, rgba(102, 51, 153, 0.9) 80%);
+}
+
+/* line 24, app/assets/stylesheets/landing.scss */
+.hero .hero-title {
+  color: rgba(250, 250, 250, 0.85);
+}
+
+/* line 27, app/assets/stylesheets/landing.scss */
+.hero .hero-paragraph {
+  color: rgba(230, 230, 230, 0.9);
+}
+
+/* line 30, app/assets/stylesheets/landing.scss */
+.hero .btn-try {
+  background-color: #FFD700;
+  color: #1e1e1e !important;
+  box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.9);
+  opacity: 0.8;
+}
+
+/* line 35, app/assets/stylesheets/landing.scss */
+.hero .btn-try:hover {
+  opacity: 1;
+}
+
+/* line 39, app/assets/stylesheets/landing.scss */
+.hero .hero-image {
+  filter: drop-shadow(0 0 2px grey);
+  position: absolute;
+  bottom: 0;
+  right: 5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  /* line 47, app/assets/stylesheets/landing.scss */
+  img .hero-image {
+    display: none !important;
+  }
+}
+
+/* line 51, app/assets/stylesheets/landing.scss */
+.next_deck {
+  display: none;
+}
+
+/* line 54, app/assets/stylesheets/landing.scss */
+.products-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  align-items: stretch;
+  background: rebeccapurple;
+  background: linear-gradient(45deg, rebeccapurple 50%, rgba(100, 49, 151, 0.9) 80%);
+  position: relative;
+}
+
+/* line 64, app/assets/stylesheets/landing.scss */
+.products-section-swiper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 20px;
+  position: relative;
+}
+
+/* line 75, app/assets/stylesheets/landing.scss */
+.product-filters {
+  position: absolute;
+  color: white;
+  top: 60px;
+  left: 20px;
+  z-index: 9999;
+}
+
+/* line 82, app/assets/stylesheets/landing.scss */
+.dynamic-deck {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* line 91, app/assets/stylesheets/landing.scss */
+#products-swipe-card-stack {
+  height: 60%;
+  width: 80%;
+  position: relative;
+  list-style-type: none;
+}
+
+/* line 96, app/assets/stylesheets/landing.scss */
+#products-swipe-card-stack .swipe-card-base {
+  padding: 5px;
+  background-image: none;
+  background: #e6e6e6;
+  background: linear-gradient(135deg, rgba(230, 230, 230, 0.85) 0%, rgba(180, 200, 201, 0.896796) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  box-shadow: 1px 1px 3px rgba(50, 50, 50, 0.8);
+}
+
+/* line 109, app/assets/stylesheets/landing.scss */
+#products-swipe-card-stack img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  filter: drop-shadow(0px 0px 5px rgba(20, 20, 20, 0.7));
+}
+
+@media only screen and (min-width: 500px) {
+  /* line 118, app/assets/stylesheets/landing.scss */
+  #products-swipe-card-stack {
+    height: 60vh;
+    width: 30vw;
+  }
+  /* line 122, app/assets/stylesheets/landing.scss */
+  .products-section-swiper {
+    justify-content: center;
+    padding-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 128, app/assets/stylesheets/landing.scss */
+  #products-swipe-card-stack {
+    height: 65vh;
+    width: 30vw;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  /* line 134, app/assets/stylesheets/landing.scss */
+  #products-swipe-card-stack {
+    height: 70vh;
+    width: 25%;
+  }
+}
+
+/* line 139, app/assets/stylesheets/landing.scss */
+.swipe-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(80, 80, 80, 0.8);
+  border-radius: 8px;
+}
+
+/* line 148, app/assets/stylesheets/landing.scss */
+.swipe-card-like, .swipe-card-dislike {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.7;
+  justify-content: space-around;
+}
+
+/* line 160, app/assets/stylesheets/landing.scss */
+.swipe-card-like {
+  color: #FFD700;
+  font-size: 6rem;
+}
+
+/* line 164, app/assets/stylesheets/landing.scss */
+.swipe-card-dislike {
+  color: maroon;
+  font-size: 6rem;
+}
+
+/* line 168, app/assets/stylesheets/landing.scss */
+.hidden {
+  display: none;
+}
+
+/* line 171, app/assets/stylesheets/landing.scss */
+.manual-swipe-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* line 176, app/assets/stylesheets/landing.scss */
+.manual-like {
+  border-radius: 50%;
+  font-size: 4rem;
+  width: 80px;
+  height: 80px;
+  color: #bec2cb;
+  text-align: center;
+  padding: 10px;
+  transition: all .2s ease-in-out;
+}
+
+/* line 185, app/assets/stylesheets/landing.scss */
+.manual-like:hover {
+  transform: scale(1.1);
+  color: green;
+}
+
+/* line 190, app/assets/stylesheets/landing.scss */
+.manual-dislike {
+  border-radius: 50%;
+  font-size: 4rem;
+  width: 80px;
+  height: 80px;
+  color: #bec2cb;
+  text-align: center;
+  padding: 10px;
+  transition: all .2s ease-in-out;
+}
+
+/* line 199, app/assets/stylesheets/landing.scss */
+.manual-dislike:hover {
+  transform: scale(1.1);
+  color: maroon;
+}
+
+/* line 204, app/assets/stylesheets/landing.scss */
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 60%;
+  height: 10%;
+}
+
+/* line 210, app/assets/stylesheets/landing.scss */
+.controls .controls-icon {
+  color: silver;
+  font-size: 4rem;
+}
+
+/* line 214, app/assets/stylesheets/landing.scss */
+.controls .control-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* line 220, app/assets/stylesheets/landing.scss */
+.preference_submit {
+  display: none;
+}
+
+/* line 223, app/assets/stylesheets/landing.scss */
+.products-container-cart {
+  position: absolute;
+  top: 0;
+  right: -30%;
+  width: 30%;
+  height: 100%;
+  background: rgba(179, 140, 217, 0.9);
+  transition-duration: 0.5s;
+  z-index: 90000;
+}
+
+/* line 232, app/assets/stylesheets/landing.scss */
+.products-container-cart-header {
+  height: 25%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #212529a3;
+}
+
+/* line 241, app/assets/stylesheets/landing.scss */
+.products-container-cart-body {
+  height: 50%;
+  width: 100%;
+  padding: 5px;
+  padding-right: 10px;
+  color: rgba(10, 10, 10, 0.8);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* line 250, app/assets/stylesheets/landing.scss */
+.products-container-cart-footer {
+  height: 25%;
+  width: 100%;
+  padding: 10px;
+}
+
+/* line 254, app/assets/stylesheets/landing.scss */
+.products-container-cart-footer #checkout-btn {
+  width: 100%;
+  background-color: blue;
+  color: white;
+}
+
+/* line 258, app/assets/stylesheets/landing.scss */
+.products-container-cart-footer #checkout-btn .fa-shopping-cart {
+  margin-right: 5px;
+}
+
+/* line 262, app/assets/stylesheets/landing.scss */
+.products-container-cart-footer .use_old, .products-container-cart-footer .use_new {
+  width: 100%;
+  margin-top: 5px;
+  background-color: rgba(150, 150, 250, 0.8);
+}
+
+/* line 267, app/assets/stylesheets/landing.scss */
+.products-container-cart-footer .use_cancel {
+  width: 100%;
+  margin-top: 5px;
+  background-color: rgba(250, 50, 50, 0.8);
+}
+
+/* line 273, app/assets/stylesheets/landing.scss */
+.products-container-cart-toggler {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  padding: 5px;
+  top: 10px;
+  left: -150px;
+  background-color: rgba(220, 220, 250, 0.3);
+  box-shadow: 1px 1px 5px rgba(40, 40, 40, 0.8);
+  color: white;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* line 290, app/assets/stylesheets/landing.scss */
+#add-to-cart-button:hover {
+  color: #b5b5e0 !important;
+}
+
+/* line 293, app/assets/stylesheets/landing.scss */
+.cart-active {
+  right: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  /* line 297, app/assets/stylesheets/landing.scss */
+  .products-container-cart {
+    width: 90%;
+    right: -90%;
+  }
+  /* line 301, app/assets/stylesheets/landing.scss */
+  .cart-active {
+    right: 5px;
+  }
+}
+
+/* line 305, app/assets/stylesheets/landing.scss */
+.cart-items {
+  list-style-type: none;
+}
+
+/* line 307, app/assets/stylesheets/landing.scss */
+.cart-items .cart-line-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* line 313, app/assets/stylesheets/landing.scss */
+.save_product_button {
+  opacity: 0.6;
+  background-color: #FFD700;
+  width: 200px;
+  border: none;
+  box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.8);
+  color: #663399;
+}
+
+/* line 321, app/assets/stylesheets/landing.scss */
+.save_product_button_saved {
+  opacity: 1;
+}
+
+/* line 324, app/assets/stylesheets/landing.scss */
+.saved_product {
+  border: 3px solid #FFD700;
+}
+
+/* line 327, app/assets/stylesheets/landing.scss */
+.onboard {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* line 331, app/assets/stylesheets/landing.scss */
+.onboard p {
+  color: #FFD700;
+  text-shadow: 1px 1px 1px black;
+}
+
+/* line 335, app/assets/stylesheets/landing.scss */
+.onboard .new_preregistration {
+  width: 100%;
+}
+
+/* line 338, app/assets/stylesheets/landing.scss */
+.onboard .preregistration_email {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+/* line 344, app/assets/stylesheets/landing.scss */
+.onboard #preregistration_email {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  margin-bottom: 5px;
+  width: 40%;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+/* line 354, app/assets/stylesheets/landing.scss */
+.onboard #preregistration_email:focus {
+  border-bottom: 2px solid white;
+  outline: none;
+  width: 80%;
+}
+
+/* line 360, app/assets/stylesheets/landing.scss */
+.onboard button {
+  background-color: #FFD700;
+  border-radius: 3px;
+  border: none;
+  width: 150px;
+  box-shadow: 1px 1px 2px black;
+}
+
+/* line 368, app/assets/stylesheets/landing.scss */
+.hidden {
+  display: none !important;
+}
+
+/* line 371, app/assets/stylesheets/landing.scss */
+.saved_email {
+  width: 100% !important;
+  color: rgba(200, 200, 200, 0.8) !important;
+}
+
+@media only screen and (max-width: 500px) {
+  /* line 376, app/assets/stylesheets/landing.scss */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  /* line 382, app/assets/stylesheets/landing.scss */
+  .btn-try {
+    width: 60%;
+    margin: auto;
+  }
+  /* line 386, app/assets/stylesheets/landing.scss */
+  .onboard {
+    padding: 5px;
+  }
+  /* line 388, app/assets/stylesheets/landing.scss */
+  .onboard p {
+    text-align: center;
+  }
+}

@@ -1,6 +1,5 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
   # Paperclip => S3
   config.paperclip_defaults = {
   :storage => :s3,
