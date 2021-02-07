@@ -58,6 +58,5 @@ document.addEventListener('turbolinks:load', () => {
   if (body.classList.contains('has-animations')) {
     window.addEventListener('load', revealAnimations)
   }
-  productSwipe();
-  dynamicShop();
+  landingSwipe();
 });
