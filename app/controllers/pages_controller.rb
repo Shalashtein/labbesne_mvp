@@ -101,8 +101,8 @@ class PagesController < ApplicationController
   end
 
   def customerSaved
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete')
-    render partial: 'pages/partials/customer/orders'
+    @interactions = Interaction.where(spree_user_id: current_spree_user.id, saved: true)
+    render partial: 'pages/partials/customer/saved'
   end
 
   def stylist
