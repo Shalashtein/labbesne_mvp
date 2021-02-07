@@ -87,16 +87,16 @@ class PagesController < ApplicationController
   end
 
   def customer
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete')
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').where.not(shipment_state: 'shipped').order(created_at: :desc)
   end
 
   def customerOrders
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete')
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').where.not(shipment_state: 'shipped').order(created_at: :desc)
     render partial: 'pages/partials/customer/orders'
   end
 
   def customerProducts
-    @interactions = Interaction.where(spree_user_id: current_spree_user.id, saved: true)
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete', shipment_state: 'shipped').order(created_at: :desc)
     render partial: 'pages/partials/customer/products'
   end
 

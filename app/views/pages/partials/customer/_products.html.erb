@@ -1,9 +1,12 @@
 <div class="saved_products_container">
   <ul>
-    <% @interactions.each do |i| %>
-      <li class="order_card">
-       <%= image_tag Spree::Product.find(i.spree_product_id).images.first.url("large") %>
-      </li>
+    <% @orders.each do |o| %>
+      <% o.line_items.each do |i| %>
+        <li class="order_card">
+         <%= image_tag Spree::Product.find(i.spree_product_id).images.first.url("large") %>
+        </li>
+      <% end %>
     <% end %>
+    <% byebug %>
   </ul>
 </div>
