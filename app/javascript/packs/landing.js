@@ -55,6 +55,10 @@ document.addEventListener('turbolinks:load', () => {
     })
   }
 
+  $(document).ready(function(){
+    $('.hero-image').removeClass('hidden');
+  })
+
   if (body.classList.contains('has-animations')) {
     window.addEventListener('load', revealAnimations)
   }
