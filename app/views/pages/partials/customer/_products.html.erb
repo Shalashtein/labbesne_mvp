@@ -3,10 +3,11 @@
     <% @orders.each do |o| %>
       <% o.line_items.each do |i| %>
         <li class="order_card">
-         <%= image_tag Spree::Product.find(i.spree_product_id).images.first.url("large") %>
+          <% unless Spree::Variant.find(i.variant_id).nil? %>
+            <%= image_tag Spree::Variant.find(i.variant_id).product.images.first.url("large") %>
+          <% end %>
         </li>
       <% end %>
     <% end %>
-    <% byebug %>
   </ul>
 </div>
