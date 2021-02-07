@@ -2,7 +2,6 @@
   <ul>
     <% @interactions.each do |i| %>
       <li class="order_card">
-        <div class="add_to_cart_saved">Add to Cart</div>
         <%= image_tag Spree::Product.find(i.spree_product_id).images.first.url("large") %>
       </li>
     <% end %>
