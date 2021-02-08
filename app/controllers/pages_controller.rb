@@ -105,6 +105,22 @@ class PagesController < ApplicationController
     render partial: 'pages/partials/customer/saved'
   end
 
+  def unsave
+    interaction = Interaction.find(params[:i])
+    interaction.saved = false
+    interaction.save
+    @interactions = Interaction.where(spree_user_id: current_spree_user.id, saved: true)
+    render partial: 'pages/partials/customer/saved'
+  end
+
+  def closet_cart
+    li = Spree::LineItem.new
+    li.order_id = @order
+    li.variant_id = params[:p]
+    li.save
+    byebug
+  end
+
   def stylist
 
   end

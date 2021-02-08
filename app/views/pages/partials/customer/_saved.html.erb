@@ -3,6 +3,8 @@
     <% @interactions.each do |i| %>
       <li class="order_card">
         <%= image_tag Spree::Product.find(i.spree_product_id).images.first.url("large") %>
+        <button class="unsave" data-i=<%= "#{i.id}" %>>Remove</button>
+        <button class="closet_cart" data-p=<%= "#{Spree::Variant.where(product_id: i.spree_product_id).first.id}" %>><i class="fa fa-cart-plus"></i></button>
       </li>
     <% end %>
   </ul>

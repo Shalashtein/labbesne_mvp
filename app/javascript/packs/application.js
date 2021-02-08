@@ -36,6 +36,7 @@ require("../scripts/sidebarTogglers.js")
 require("../scripts/dynamicShop.js")
 require("../scripts/dynamicCustomer.js")
 require("../scripts/dynamicStylist.js")
+require("../scripts/unsave.js")
 
 import { initMapbox } from '../plugins/init_mapbox';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
@@ -56,6 +57,8 @@ document.addEventListener('turbolinks:load', () => {
   disabledLinks();
   dynamicCustomer();
   populatePage();
+  unsave();
+  closet_cart();
 });
 
 import "controllers"

@@ -39,30 +39,6 @@ window.productFilter = function(){
   $('#shoes-toggler').click(function(){
     genderChecker('shoes', $(this).prop('checked'));
   });
-  /*$('.gender-router-men-image').click(function(){
-    if($('#women-toggler').prop('checked')){
-      $('#women-toggler').click();
-    }
-    if(!$('#men-toggler').prop('checked')){
-      $('#men-toggler').click();
-    }
-    $('html, body').animate({
-     scrollTop: $("#products-section").offset().top
-    }, 20);
-    $('#gender-section').hide();
-  });
-  $('.gender-router-women-image').click(function(){
-    if($('#men-toggler').prop('checked')){
-      $('#men-toggler').click();
-    }
-    if(!$('#women-toggler').prop('checked')){
-      $('#women-toggler').click();
-    }
-    $('html, body').animate({
-     scrollTop: $("#products-section").offset().top
-    }, 20);
-    $('#gender-section').hide();
-  });*/
 };
 
 var genderChecker = function(type, checked){
