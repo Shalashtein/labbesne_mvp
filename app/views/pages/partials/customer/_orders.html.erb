@@ -1,19 +1,22 @@
 <div class="active_orders_container">
-  <ul>
-    <% @orders.each do |o| %>
-      <li class="order_card">
-        <div class="header">
-          <i class="fa fa-dot-circle order-status-<%= o.shipment_state == 'shipped' ? 'shipped' : 'pending' %>"></i>
-          <h6><%= "Order ##{o.number}" %></h6>
+  <div class="accordion accordion-flush" id="orders_accordion">
+    <% @orders.each_with_index do |o,i| %>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="<%= "flush-heading#{i}" %>">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="<%= "#flush-collapse#{i}" %>" aria-expanded="false" aria-controls="<%= "flush-collapse#{i}" %>">
+            <%= "Order ##{o.number}" %>
+          </button>
+        </h2>
+          <div id="<%= "flush-collapse#{i}" %>" class="accordion-collapse collapse" aria-labelledby="<%= "flush-heading#{i}" %>" data-bs-parent="#orders_accordion">
+            <div class="accordion-body">
+              <ul>
+                <% o.line_items.each do |li| %>
+                  <li><%= "#{li.product.name} x #{li.quantity}" %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
         </div>
-        <hr>
-        <div class="body">
-          <ul id="order_info_list">
-            <li><%= "Total: #{o.total.to_i} LBP" %></li>
-            <li><%= "Status: #{o.shipment_state == 'shipped' ? 'shipped' : 'processing'}" %></li>
-          </ul>
-        </div>
-      </li>
     <% end %>
-  </ul>
+  </div>
 </div>

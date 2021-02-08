@@ -115,10 +115,9 @@ class PagesController < ApplicationController
 
   def closet_cart
     li = Spree::LineItem.new
-    li.order_id = @order
+    li.order_id = @order.id
     li.variant_id = params[:p]
     li.save
-    byebug
   end
 
   def stylist
