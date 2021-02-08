@@ -35,14 +35,15 @@ window.productSwipe = function(){
 
       return Math.max(xConfidence, yConfidence);
     },
-    minThrowOutDistance: 1500,
-    maxThrowOutDistance: 2500
+    minThrowOutDistance: screen.width/2+200,
+    maxThrowOutDistance: screen.width/2+500
   };
 
   const pstack = Swing.Stack(config);
 
   var pcurrentCard = "";
-
+  var t0 = 0.0;
+  var t1 = 0.0;
   pcards.forEach((targetElement) => {
     // Add card element to the Stack.
     pstack.createCard(targetElement);
@@ -50,6 +51,7 @@ window.productSwipe = function(){
 
   pstack.on('dragstart', (e) =>{
     pcurrentCard = e.target;
+    t0 = performance.now();
   });
   pstack.on('dragmove', (e) => {
     // e.target Reference to the element that has been thrown out of the stack.
@@ -74,6 +76,11 @@ window.productSwipe = function(){
 
   pstack.on('dragend', (e) =>{
     // Add event listener for when a card is thrown out of the stack.
+    t1 = performance.now();
+    const swipe_duration = t1 - t0
+    //if(swipe_duration < 80){
+    //  e.throwDirection == Direction.LEFT ? pstack.getCard(e.target).throwOut(-1*screen.width/2,0) : pstack.getCard(e.target).throwOut(screen.width/2,0)
+    //}
   });
   pstack.on('throwout', (e) => {
     // e.target Reference to the element that has been thrown out of the stack.

@@ -22,6 +22,7 @@ Spree::PermittedAttributes.product_attributes << [:gender]
 Spree::PermittedAttributes.product_attributes << [:test]
 Spree::PermittedAttributes.product_attributes << [:swiped]
 Spree::PermittedAttributes.user_attributes << [:vendorname]
+Spree::PermittedAttributes.user_attributes << [:vendorSKU]
 
 default_specs = [
   ["clothing-type","top"],["clothing-type","pants"],["clothing-type","shoes"],["clothing-type","accessory"],
