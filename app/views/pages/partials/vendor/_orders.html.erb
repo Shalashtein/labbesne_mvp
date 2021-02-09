@@ -1,0 +1,23 @@
+<% unless @tracks.empty? %>
+  <div class="accordion accordion-flush" id="vendor_order_accordion">
+    <% @tracks.each_with_index do |o,i| %>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="accordion_<%= i %>">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vendor_body_<%= i %>" aria-expanded="false" aria-controls="vendor_body_<%= i %>">
+            <%= "Order Number ##{Spree::Order.find(o.first.to_i).number}" %>
+          </button>
+        </h2>
+        <div id="vendor_body_<%= i %>" class="accordion-collapse collapse" aria-labelledby="accordion_<%= i %>" data-bs-parent="#vendor_order_accordion">
+          <div class="accordion-body">
+            <button class="btn btn-primary">Mark as ready</button>
+            <ul>
+              <% o.last.each do |t| %>
+                <li><%= t %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
