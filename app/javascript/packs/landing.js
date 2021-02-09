@@ -54,13 +54,12 @@ document.addEventListener('turbolinks:load', () => {
       viewFactor: 0.2
     })
   }
-
-  $(document).ready(function(){
-    $('.hero-image').removeClass('hidden');
-  })
-
   if (body.classList.contains('has-animations')) {
     window.addEventListener('load', revealAnimations)
   }
-  landingSwipe();
+  $(document).ready(function(){
+    $('.hero-image').fadeIn(500, function(){});
+    $('.dynamic-deck').fadeIn(500, function(){});
+    landingSwipe();
+  })
 });

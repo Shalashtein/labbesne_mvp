@@ -7,6 +7,8 @@ class PagesController < ApplicationController
   before_action :setStylist, only: [:stylist, :stylist_outfits_area, :stylist_products_area]
   before_action :setOutfitProduct, only: [:stylist, :stylist_outfits_area, :stylist_products_area, :stylist_filter]
 
+  # LANDING #############################################################
+
   def landing
     if spree_user_signed_in?
       redirect_to root_path
@@ -23,6 +25,32 @@ class PagesController < ApplicationController
   def guestSwiped
     session[:swiped] = true
   end
+
+  # END OF LANDING #############################################################
+  #
+  # Profile Router #############################################################
+
+  def profileRouter
+    @measurements_progress = if current_spree_user.profile.body_measurement.nil?
+                              0
+                             else
+                              100
+                             end
+    @lifestyle_progress = if current_spree_user.profile.lifestyle.nil?
+                              0
+                             else
+                              100
+                             end
+    @info_progress = if current_spree_user.profile.info.nil?
+                              0
+                             else
+                              100
+                             end
+  end
+
+  # End of profile router #############################################################
+  #
+  # Main Store #############################################################
 
   def store
     @preference = ProfileSpec.new
@@ -66,87 +94,6 @@ class PagesController < ApplicationController
 
   def returnCart
     render partial: 'pages/partials/cart'
-  end
-
-  def profileRouter
-    @measurements_progress = if current_spree_user.profile.body_measurement.nil?
-                              0
-                             else
-                              100
-                             end
-    @lifestyle_progress = if current_spree_user.profile.lifestyle.nil?
-                              0
-                             else
-                              100
-                             end
-    @info_progress = if current_spree_user.profile.info.nil?
-                              0
-                             else
-                              100
-                             end
-  end
-
-  def customer
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').where.not(shipment_state: 'shipped', state: 'returned').order(created_at: :desc)
-  end
-
-  def customerOrders
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').where.not(shipment_state: 'shipped', state: 'returned').order(created_at: :desc)
-    render partial: 'pages/partials/customer/orders'
-  end
-
-  def customerProducts
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete', shipment_state: 'shipped', payment_state: 'paid').where.not(state: 'returned').order(created_at: :desc)
-    render partial: 'pages/partials/customer/products'
-  end
-
-  def customerSaved
-    @interactions = Interaction.where(spree_user_id: current_spree_user.id, saved: true)
-    render partial: 'pages/partials/customer/saved'
-  end
-
-  def unsave
-    interaction = Interaction.find(params[:i])
-    interaction.saved = false
-    interaction.save
-    @interactions = Interaction.where(spree_user_id: current_spree_user.id, saved: true)
-    render partial: 'pages/partials/customer/saved'
-  end
-
-  def closet_cart
-    li = Spree::LineItem.new
-    li.order_id = @order.id
-    li.variant_id = params[:p]
-    li.save
-  end
-
-  def stylist
-
-  end
-
-  def stylist_outfits_area
-    render partial: 'pages/partials/outfit_generator'
-  end
-
-  def stylist_products_area
-    stylist_filter
-  end
-
-  def stylist_filter
-    filter = params[:filter]
-    case filter
-      when 'tops'
-        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'top'}).page((params[:page].to_i - 1).to_s).per(6)
-      when 'pants'
-        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'pants'}).page((params[:page].to_i - 1).to_s).per(6)
-      when 'shoes'
-        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'shoes'}).page((params[:page].to_i - 1).to_s).per(6)
-      when 'accessories'
-        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'accessory'}).page((params[:page].to_i - 1).to_s).per(6)
-      else
-        @products = Spree::Product.where(approved: true).page(params[:page]).per(6)
-    end
-    render partial: 'pages/partials/outfit_products'
   end
 
   def saveProduct
@@ -225,6 +172,90 @@ class PagesController < ApplicationController
     end
     render partial: 'pages/partials/message', locals: {message: @message}
   end
+
+  # End of main store #############################################################
+  #
+  # Customer Dashboard #############################################################
+
+  def customer
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').where.not(shipment_state: 'shipped', state: 'returned').order(created_at: :desc)
+  end
+
+  def customerOrders
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').where.not(shipment_state: 'shipped', state: 'returned').order(created_at: :desc)
+    render partial: 'pages/partials/customer/orders'
+  end
+
+  def customerProducts
+    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete', shipment_state: 'shipped', payment_state: 'paid').where.not(state: 'returned').order(created_at: :desc)
+    render partial: 'pages/partials/customer/products'
+  end
+
+  def customerSaved
+    @interactions = Interaction.where(spree_user_id: current_spree_user.id, saved: true)
+    render partial: 'pages/partials/customer/saved'
+  end
+
+  def unsave
+    interaction = Interaction.find(params[:i])
+    interaction.saved = false
+    interaction.save
+    @interactions = Interaction.where(spree_user_id: current_spree_user.id, saved: true)
+    render partial: 'pages/partials/customer/saved'
+  end
+
+  def closet_cart
+    li = Spree::LineItem.new
+    li.order_id = @order.id
+    li.variant_id = params[:p]
+    li.save
+  end
+
+  # End of Customer Dashboard #############################################################
+  #
+  # Vendor Dashboard #############################################################
+
+  def vendor
+    @products = Spree::Product.where(spree_user_id: current_spree_user)
+    @tracks = Track.where(spree_user_id: current_spree_user)
+  end
+
+  # End of vendor dashboard #############################################################
+  #
+  # Stylist Dashboard #############################################################
+
+  def stylist
+
+  end
+
+  def stylist_outfits_area
+    render partial: 'pages/partials/outfit_generator'
+  end
+
+  def stylist_products_area
+    stylist_filter
+  end
+
+  def stylist_filter
+    filter = params[:filter]
+    case filter
+      when 'tops'
+        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'top'}).page((params[:page].to_i - 1).to_s).per(6)
+      when 'pants'
+        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'pants'}).page((params[:page].to_i - 1).to_s).per(6)
+      when 'shoes'
+        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'shoes'}).page((params[:page].to_i - 1).to_s).per(6)
+      when 'accessories'
+        @products = Spree::Product.joins(:product_specs).where(approved: true, product_specs: {name: 'clothing-type', value: 'accessory'}).page((params[:page].to_i - 1).to_s).per(6)
+      else
+        @products = Spree::Product.where(approved: true).page(params[:page]).per(6)
+    end
+    render partial: 'pages/partials/outfit_products'
+  end
+
+  # End of stylist dashboard #############################################################
+  #
+  # Shared #############################################################
 
   private
   def signinRouter

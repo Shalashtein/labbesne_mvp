@@ -1,0 +1,5 @@
+<% unless @tracks.empty? %>
+  <% @tracks.each do |t| %>
+    <% render partial: 'pages/partials/vendor/order_card', locals: {track: t} %>
+  <% end %>
+<% end %>

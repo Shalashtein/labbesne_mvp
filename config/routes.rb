@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   get '/order/finalize', to: 'pages#finalize', as: 'finalize_order'
   get '/guestSwiped', to: 'pages#guestSwiped'
   post '/popupmessage', to: 'pages#popupMessage', as: 'message'
+  get '/vendor/dashboard', to: 'pages#vendor', as: 'vendor_dashboard'
 
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.

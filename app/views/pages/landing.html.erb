@@ -24,13 +24,13 @@
                   </div>
                 </div>
             </div>
-          <%= image_tag 'https://labbesne.s3.eu-west-3.amazonaws.com/labbesne/assets/unnamed-removebg-preview.png', class: 'hero-image hidden', id: 'hero-image' %>
+          <%= image_tag 'https://labbesne.s3.eu-west-3.amazonaws.com/labbesne/assets/unnamed-removebg-preview.png', class: 'hero-image', id: 'hero-image' %>
         </section>
         <section class="swiper" id="swipe-section">
           <div class="products-container" data-controller="products">
             <div class="products-section-swiper">
               <% unless @swiped %>
-                <div class="dynamic-deck">
+                <div class="dynamic-deck" style="display: none;">
                   <%= render partial: 'pages/partials/deck' %>
                 </div>
               <% end %>
