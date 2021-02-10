@@ -1,0 +1,21 @@
+.vendor_accordion_body > div{
+  position: relative;
+  width: 100%;
+  .vendor_mark_ready{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+.vendor_line_item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  height: 100px;
+  img{
+    height: 100%;
+    object-fit: contain;
+  }
+}
