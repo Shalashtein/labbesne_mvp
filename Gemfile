@@ -38,6 +38,7 @@ gem 'kaminari'
 gem 'solidus'
 # Upload images to Cloudinary
 gem 'paperclip-cloudinary'
+gem 'appsignal'
 
 gem "skylight"
 group :development, :test do

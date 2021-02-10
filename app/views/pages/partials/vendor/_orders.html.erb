@@ -7,12 +7,12 @@
             <%= "Order Number ##{Spree::Order.find(o.first.to_i).number}" %>
           </button>
         </h2>
-        <div id="vendor_body_<%= i %>" class="accordion-collapse collapse" aria-labelledby="accordion_<%= i %>" data-bs-parent="#vendor_order_accordion">
+        <div id="vendor_body_<%= i %>" class="accordion-collapse collapse vendor_accordion_body" aria-labelledby="accordion_<%= i %>" data-bs-parent="#vendor_order_accordion">
           <div class="accordion-body">
-            <button class="btn btn-primary">Mark as ready</button>
+            <button class="btn btn-primary vendor_mark_ready">Mark as ready</button>
             <ul>
               <% o.last.each do |t| %>
-                <li><%= t %></li>
+                <li class="vendor_line_item"><%= t %></li>
               <% end %>
             </ul>
           </div>

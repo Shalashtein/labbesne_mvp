@@ -216,9 +216,9 @@ class PagesController < ApplicationController
   # Vendor Dashboard #############################################################
 
   def vendor
-    @products = Spree::Product.where(spree_user_id: current_spree_user)
-    # TODO
-    @tracks = Track.where(spree_user_id: 2).group_by {|t| t.spree_order_id}
+    @products = @products || Spree::Product.where(spree_user_id: current_spree_user)
+    # TODO change the id to current_spree_user
+    @tracks = @tracks ||Track.where(spree_user_id: 2).group_by {|t| t.spree_order_id}
   end
 
   # End of vendor dashboard #############################################################
