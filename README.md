@@ -250,12 +250,6 @@ at the next step:
 gh api user/emails | jq -r '.[].email'
 ```
 
-Run the git installer:
-
-```bash
-cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
-```
-
 Please now **quit** all your opened terminal windows.
 
 ### Sublime Text auto-configuration
@@ -339,30 +333,7 @@ You should see something starting with `ruby 2.6.6p`. If not, ask a teacher.
 
 ## Installing some gems
 
----
-
-<details>
-  <summary>Click here if you are in :cn: <bold>China</bold></summary>
-
-
-  &nbsp;
-
-  :warning: If you are in China, you should update the way we'll install gem with the following commands.
-
-```bash
-# China only!
-gem sources --remove https://rubygems.org/
-gem sources -a https://gems.ruby-china.com/
-gem sources -l
-# *** CURRENT SOURCES ***
-# https://gems.ruby-china.com/
-# Ruby-china.com must be in the list now
-```
-</details>
-
----
-
-All, please run the following line:
+Run the following line:
 
 ```bash
 gem install rake bundler rspec rubocop rubocop-performance pry pry-byebug colored http
@@ -412,7 +383,7 @@ When the command returns, run
 node -v
 ```
 
-You should see `v14.15.0`. If not, ask a teacher.
+You should see `v14.15.0`.
 
 
 ## PostgreSQL
@@ -443,7 +414,7 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 
 ### Install video codec H264
 
-On our pedagogical platform (Kitt, you'll soon discover it!), we have some videos. By default Firefox on Linux cannot play them as they use an unsupported codec (H264). To get those videos working for you, you need to run this:
+By default Firefox on Linux cannot play them as they use an unsupported codec (H264). To get those videos working for you, you need to run this:
 
 ```bash
 sudo apt install libavcodec-extra -y
@@ -462,54 +433,12 @@ sudo apt install libavcodec-extra -y
 ```bash
 sudo apt install tree ncdu htop tig
 ```
+## Working locally on Labbesne
 
+`git clone` the Labbesne repository
+`cd` to the directory
+run `bundle install` to install the gems Labbesne uses
+run `yarn install` to install the JS dependencies
+run `rake db:migrate` to migrate the labbesne_development database you created in PostgresQL
+run `rake db:seed` to seed the database with necessary data
 
-## Check-up
-
-Let's check if you successfully installed everything.
-
-Quit all opened Terminal, open a new one and run the following commands:
-
-```bash
-curl -Ls https://raw.githubusercontent.com/lewagon/setup/master/check.rb > _.rb && ruby _.rb || rm _.rb
-```
-
-It should tell you if your workstation is ready :) If not, ask a teacher.
-
-
-## Alumni
-:warning: If you have received an email from Le Wagon inviting you to sign up on Kitt (our learning platform), you can safely skip this step. Instead, please follow the instructions in the email you received if you haven't done so already.
-If you are unsure about what to do, you can follow [this link](https://kitt.lewagon.com/). If you are already logged in, you can safely skip this section. If you are not logged in, click on `Enter Kitt as a Student`. If you manage to login, you can safely skip this step. Otherwise ask a teacher whether you should have received an email or follow the instructions below.
-
-Register as a Wagon alumni by going to [kitt.lewagon.com/onboarding](http://kitt.lewagon.com/onboarding). Select your batch, sign in with GitHub and enter all your information.
-
-Your teacher will then validate that you are indeed part of the batch. You can ask him to do it as soon as you completed the registration form.
-
-Once the teacher has approved your profile, go to your email inbox. You should have 2 emails:
-
-- One from Slack, inviting you to the Le Wagon Alumni slack community (where you'll chat with your buddies and all the previous alumni). Click on **Join** and fill the information.
-- One from GitHub, inviting you to `lewagon` team. **Accept it** otherwise you won't be able to access the lecture slides.
-
-
-## Slack
-
-[Install Slack for Linux (beta)](https://get.slack.help/hc/en-us/articles/212924728-Slack-for-Linux-beta-).
-
-Launch the app and sign in to `lewagon-alumni` organization.
-
-Make sure you upload a picture there.
-
-You can also sign in to Slack on your iPhone or Android device!
-
-The idea is that you'll have Slack open all day, so that you can share useful links / ask for help / decide where to go to lunch / etc.
-
-In case of remote tickets, you will use Slack audio or video call to get help. To ensure that everything is working fine, [test your camera and microphone](https://lewagon-alumni.slack.com/help/test/calls). If your browser is asking your permission to access your microphone and camera, click on yes.
-
-After the test are finished, you should have green "All clear" messages at least for your microphone and camera. If not, ask a teacher.
-![](images/slack_mic_cam_all_green.png)
-
-
-
-
-`git clone` the repository
-`cd` into the directory
