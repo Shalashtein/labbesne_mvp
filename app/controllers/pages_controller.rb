@@ -218,7 +218,24 @@ class PagesController < ApplicationController
   def vendor
     @products = @products || Spree::Product.where(spree_user_id: current_spree_user)
     # TODO change the id to current_spree_user
-    @tracks = @tracks ||Track.where(spree_user_id: 2).group_by {|t| t.spree_order_id}
+    @tracks = @tracks ||Track.where(spree_user_id: 2, vendor_sent: false).group_by {|t| t.spree_order_id}
+  end
+
+  def vendor_order_ready
+    order = Spree::Order.find(params[:o])
+    order.line_items.where(spree_user_id: current_spree_user.id).each do |li|
+      track = Track.find_by(spree_line_item_id: li.id)
+      track.vendor_recieved = true
+      track.save
+      puts track.inspect
+    end
+  end
+
+  def vendor_order_picked
+    li = Spree::LineItem.find(params[:i])
+    track = Track.find_by(spree_line_item_id: li.id)
+    track.vendor_sent = true
+    track.save
   end
 
   # End of vendor dashboard #############################################################

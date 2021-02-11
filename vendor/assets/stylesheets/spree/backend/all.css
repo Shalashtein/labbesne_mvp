@@ -8,3 +8,9 @@
  *= require_tree .
  *= require spree/backend/solidus_paypal_commerce_platform
 */
+.admin_mark_shipped{
+    background: transparent;
+    border: none;
+    height: 100%;
+    object-fit: contain;
+  }
