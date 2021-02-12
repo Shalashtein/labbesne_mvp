@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# Latest Stable Rails
 gem 'rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
@@ -33,14 +33,22 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+
+# Pagination
 gem 'kaminari'
-# Solidus
+
+# Solidus shop api
 gem 'solidus'
+
 # Upload images to Cloudinary
 gem 'paperclip-cloudinary'
+
+# Monitoring
 gem 'appsignal'
 
-gem "skylight"
+# PDF Generator
+gem 'invoice_printer'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

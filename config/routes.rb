@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   patch '/vendor/orders/:id/vendorRecieved', to: 'tracks#vendorRecieved', as: 'vendor_recieved'
   patch '/vendor/orders/:id/vendorSent', to: 'tracks#vendorSent', as: 'vendor_sent'
   patch '/vendor/orders/:id/recieved', to: 'tracks#recieved', as: 'recieved'
+  patch '/vendor/orders/:id/delivered', to: 'tracks#delivered', as: 'delivered'
   get '/profileforms', to: 'pages#profileRouter', as: 'profile_router'
   get '/profile/measurements', to: 'pages#measurements'
   get '/profile/swipe', to: 'pages#swipepage', as: 'swipe'
