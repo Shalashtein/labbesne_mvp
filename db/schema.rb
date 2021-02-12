@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_184921) do
+ActiveRecord::Schema.define(version: 2021_02_12_110634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1390,6 +1390,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_184921) do
     t.bigint "spree_user_id", default: 1, null: false
     t.integer "quantity", limit: 2
     t.bigint "spree_order_id"
+    t.boolean "delivered", default: false
     t.index ["spree_line_item_id"], name: "index_tracks_on_spree_line_item_id"
     t.index ["spree_order_id"], name: "index_tracks_on_spree_order_id"
     t.index ["spree_user_id"], name: "index_tracks_on_spree_user_id"
