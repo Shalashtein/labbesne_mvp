@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   layout 'application', only: "store"
   layout 'landing', only: 'landing'
+  layout 'slip', only: 'slip'
   before_action :signinRouter, except: [:landing, :guestSwiped]
   before_action :setCart, except: [:landing, :guestSwiped]
   before_action :setProducts, only: [:store, :deck, :landing]
@@ -218,17 +219,23 @@ class PagesController < ApplicationController
   def vendor
     @products = @products || Spree::Product.where(spree_user_id: current_spree_user)
     # TODO change the id to current_spree_user
-    @tracks = @tracks ||Track.where(spree_user_id: 2, vendor_sent: false).group_by {|t| t.spree_order_id}
+    @tracks = @tracks ||Track.where(spree_user_id: 2, recieved: false).joins(:order).where(spree_orders: {state: 'complete'}).group_by {|t| t.spree_order_id}
   end
 
   def vendor_order_ready
-    order = Spree::Order.find(params[:o])
-    order.line_items.where(spree_user_id: current_spree_user.id).each do |li|
+    Spree::LineItem.where(order_id: params[:o]).joins(:variant).joins(:product).where(spree_products: {spree_user_id: current_spree_user.id}).each do |li|
       track = Track.find_by(spree_line_item_id: li.id)
       track.vendor_recieved = true
       track.save
-      puts track.inspect
     end
+  end
+
+  def slip
+    @order = Spree::Order.find(params[:o])
+    @customer = Spree::User.find(@order.user_id)
+    @tracks = Track.where(spree_order_id: params[:o], spree_user_id: params[:v]).joins(:item).uniq
+    @ship_barcode = Barby::Code128B.new('Abe is my lord and saviour').to_png(height: 170)
+    @order_barcode = Barby::Code128B.new(@order.number).to_png
   end
 
   def vendor_order_picked

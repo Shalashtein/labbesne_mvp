@@ -1,0 +1,64 @@
+<div id="slip_container">
+  <div class="slip_header">
+    <div class="slip_logo"><h1>Labbesne</h1></div>
+    <div class="slip_order_code">
+      <div class="slip_order_barcode">
+        <%= image_tag "data:image/png;base32,#{Rack::Utils.escape(@ship_barcode)}"%>
+      </div>
+      <div class="slip_order_code_number">
+        Abe
+      </div>
+    </div>
+    <div class="slip_header_extras">
+      +961 1 696969 <br>
+      team@labbesne.com <br>
+      order# <%= @order.number %> <br>
+      <%= image_tag "data:image/png;base32,#{Rack::Utils.escape(@order_barcode)}"%>
+    </div>
+  </div>
+  <div class="slip_from_to">
+    <div class="slip_from">
+      <h3>Supplier:</h3>
+      <h6>Name: sdkjfdsjfn</h6>
+       <h6>Phone: sdkjfdsjfn</h6>
+      <ul>
+        <li>Lebanon, Beirut</li>
+        <li>Zabre St. Baydat Bldg.</li>
+        <li><a href="sdfd">Google Maps Link</a></li>
+      </ul>
+    </div>
+    <div class="slip_to">
+      <h3>Customer:</h3>
+      <h6>Name: <%= @customer.profile.info.name %></h6>
+       <h6>Phone: <%= @customer.profile.info.phone %></h6>
+      <ul>
+        <li><%= @customer.ship_address.address2 %></li>
+        <li><%= @customer.ship_address.address1 %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="slip_items">
+    <table style="width:100%">
+      <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+      <% @tracks.each do |t| %>
+        <tr>
+          <td><%= t.item.product.name %></td>
+          <td><%= t.item.quantity %></td>
+          <td><%= t.item.product.price %></td>
+          <td><%= t.item.total %></td>
+          <td><%= t.item.id %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="slip_footer">
+    I hereby confirm recieving all order items* <br>
+    You have 2 days to check and return the items in case of any issues
+  </div>
+</div>
+

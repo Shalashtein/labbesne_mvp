@@ -46,9 +46,9 @@ gem 'paperclip-cloudinary'
 # Monitoring
 gem 'appsignal'
 
-# PDF Generator
-gem 'invoice_printer'
-
+# Barcode  Generator
+gem 'barby'
+gem 'chunky_png'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
