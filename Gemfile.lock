@@ -10,6 +10,14 @@ GIT
       solidus_core (>= 2.6, < 4)
       solidus_support (~> 0.5)
 
+GIT
+  remote: https://github.com/solidusio-contrib/solidus_reports.git
+  revision: 23b9f9327bba586109cce6eaa7643f86cbd6be59
+  specs:
+    solidus_reports (1.0.0)
+      solidus_core (>= 2.5, < 3)
+      solidus_support (~> 0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -500,6 +508,7 @@ DEPENDENCIES
   solidus
   solidus_auth_devise!
   solidus_paypal_commerce_platform
+  solidus_reports!
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

@@ -10,9 +10,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    div {
-      width: 20%;
-    }
     .slip_order_code{
       display: flex;
       flex-direction: column;
@@ -24,20 +21,15 @@
         justify-content: center;
         img{
         }
+        .slip_order_code_number{
+          width: 100%;
+        }
       }
     }
     .slip_header_extras{
       display: flex;
       flex-direction: column;
       align-items: center;
-      .barby-barcode{
-        height: 50%;
-      }
-      .on{
-        border-color: black;
-        border-width: 1px;
-        background-color: black;
-      }
     }
   }
   .slip_from_to{

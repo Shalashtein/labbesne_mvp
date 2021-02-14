@@ -6,7 +6,7 @@
         <%= image_tag "data:image/png;base32,#{Rack::Utils.escape(@ship_barcode)}"%>
       </div>
       <div class="slip_order_code_number">
-        Abe
+        <%= "Shipment: #{@shipment.number}" %>
       </div>
     </div>
     <div class="slip_header_extras">
@@ -45,15 +45,26 @@
         <th>Price</th>
         <th>Total</th>
       </tr>
-      <% @tracks.each do |t| %>
+      <% @shipment.line_items.each do |li| %>
         <tr>
-          <td><%= t.item.product.name %></td>
-          <td><%= t.item.quantity %></td>
-          <td><%= t.item.product.price %></td>
-          <td><%= t.item.total %></td>
-          <td><%= t.item.id %></td>
+          <td><%= li.product.name %></td>
+          <td><%= li.quantity %></td>
+          <td><%= li.product.price %></td>
+          <td><%= li.total %></td>
         </tr>
       <% end %>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Shipping Fee</th>
+        <th><%= @shipment.amount %></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Total</th>
+        <th><%= number_with_delimiter(@shipment.total_with_items.to_i, :delimiter => ',') + " LBP"%></th>
+      </tr>
     </table>
   </div>
   <div class="slip_footer">

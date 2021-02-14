@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
-  layout 'application', only: "store"
-  layout 'landing', only: 'landing'
-  layout 'slip', only: 'slip'
+  layout :resolve_layout
   before_action :signinRouter, except: [:landing, :guestSwiped]
   before_action :setCart, except: [:landing, :guestSwiped]
   before_action :setProducts, only: [:store, :deck, :landing]
@@ -128,7 +126,6 @@ class PagesController < ApplicationController
     @order.next if @order.state == 'cart'
     @order.next if @order.state == 'address'
     @order.next if @order.state == 'delivery'
-    makePaymentCOD
     @order.next if @order.state == 'payment'
   end
 
@@ -136,7 +133,6 @@ class PagesController < ApplicationController
     @order.next if @order.state == 'cart'
     @order.next if @order.state == 'address'
     @order.next if @order.state == 'delivery'
-    makePaymentCOD
     @order.next if @order.state == 'payment'
   end
 
@@ -157,10 +153,7 @@ class PagesController < ApplicationController
   end
 
   def finalize
-    @order.line_items.each do |item|
-      t = Track.new(spree_order_id: @order.id, spree_line_item_id: item.id, vendor_recieved: false, vendor_sent: false, recieved: false, quantity: item.quantity, spree_user_id: Spree::Product.find(Spree::Variant.find(item.variant_id).product_id).spree_user_id)
-      t.save!
-    end
+    @shipments = @order.shipments
     makePaymentCOD
     @order.complete
   end
@@ -219,31 +212,34 @@ class PagesController < ApplicationController
   def vendor
     @products = @products || Spree::Product.where(spree_user_id: current_spree_user)
     # TODO change the id to current_spree_user
+    @shipments = Spree::Shipment.where(stock_location_id: current_spree_user.stock_locations.first.id, state: "pending").joins(:order).where(spree_orders: {state: 'complete'}).order(created_at: :asc)
     @tracks = @tracks ||Track.where(spree_user_id: 2, recieved: false).joins(:order).where(spree_orders: {state: 'complete'}).group_by {|t| t.spree_order_id}
   end
 
   def vendor_order_ready
-    Spree::LineItem.where(order_id: params[:o]).joins(:variant).joins(:product).where(spree_products: {spree_user_id: current_spree_user.id}).each do |li|
-      track = Track.find_by(spree_line_item_id: li.id)
-      track.vendor_recieved = true
-      track.save
-    end
+    s = Spree::Shipment.find(params[:s])
+    s.order.vendor_state = true
+    s.save!
+    s.update_state if Spree::Shipment.find(params[:s]).state == 'pending'
   end
 
   def slip
-    @order = Spree::Order.find(params[:o])
+    @shipment = Spree::Shipment.find(params[:s])
+    @order = @shipment.order
     @customer = Spree::User.find(@order.user_id)
-    @tracks = Track.where(spree_order_id: params[:o], spree_user_id: params[:v]).joins(:item).uniq
-    @ship_barcode = Barby::Code128B.new('Abe is my lord and saviour').to_png(height: 170)
+    @ship_barcode = Barby::Code128B.new(@shipment.number).to_png(height: 100, width: 200)
     @order_barcode = Barby::Code128B.new(@order.number).to_png
   end
 
-  def vendor_order_picked
-    li = Spree::LineItem.find(params[:i])
-    track = Track.find_by(spree_line_item_id: li.id)
-    track.vendor_sent = true
-    track.save
+ def vendor_info
+  if current_spree_user.profile.nil?
+    p = Profile.new(spree_user_id: current_spree_user.id)
+    p.save!
   end
+  @info = current_spree_user.profile.info.nil? ? Info.new : current_spree_user.profile.info
+  @location =
+  render partial: 'pages/partials/vendor/info'
+ end
 
   # End of vendor dashboard #############################################################
   #
@@ -323,11 +319,27 @@ class PagesController < ApplicationController
   end
 
   def makePaymentCOD
-    payment = Spree::Payment.new
-    payment.payment_method_id = Spree::PaymentMethod.where(name: 'Cash on Delivery').first.id
-    payment.order_id = @order.id
-    payment.amount = @order.total
-    payment.save!
+    @shipments.each do |s|
+      payment = Spree::Payment.new
+      payment.payment_method_id = Spree::PaymentMethod.where(name: 'Cash on Delivery').first.id
+      payment.order_id = @order.id
+      payment.amount = s.total_with_items
+      payment.save!
+    end
     @order.save
   end
+
+   def resolve_layout
+    case action_name
+    when "store"
+      "application"
+    when "landing"
+      "landing"
+    when "slip"
+      "slip"
+    else
+      "application"
+    end
+  end
+
 end
