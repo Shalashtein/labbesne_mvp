@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_160357) do
+ActiveRecord::Schema.define(version: 2021_02_14_031455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1058,7 +1058,9 @@ ActiveRecord::Schema.define(version: 2021_02_13_160357) do
     t.boolean "fulfillable", default: true, null: false
     t.string "code"
     t.boolean "check_stock_on_transfer", default: true
+    t.bigint "spree_user_id"
     t.index ["country_id"], name: "index_spree_stock_locations_on_country_id"
+    t.index ["spree_user_id"], name: "index_spree_stock_locations_on_spree_user_id"
     t.index ["state_id"], name: "index_spree_stock_locations_on_state_id"
   end
 
@@ -1418,6 +1420,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_160357) do
   add_foreign_key "spree_products", "spree_users"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
+  add_foreign_key "spree_stock_locations", "spree_users"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
   add_foreign_key "spree_wallet_payment_sources", "spree_users", column: "user_id"

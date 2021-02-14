@@ -8,6 +8,7 @@ module Spree::Admin::UsersControllerDecorator
           if @user.has_spree_role?(:vendor)
             sl = Spree::StockLocation.new
             sl.name = @user.email
+            sl.spree_user_id = @user.id
             sl.save!
             @user.confirm
             @user.stock_locations << sl
