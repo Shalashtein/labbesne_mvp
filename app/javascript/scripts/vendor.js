@@ -60,10 +60,22 @@ window.vendor_product_pagination = function(){
       $(this).closest('li').find('.btn-vendor-save').removeClass('hidden')
     });
     $('.btn-vendor-save').on('click',function(){
+      $(this).closest('li').find('.loading_area_save_product').removeClass('hidden')
+      p = $(this).data('p')
+      $.each($(this).closest('li').find('.vendor_product_details'),function(){
+        if($(this).data('prev') != $(this).val()){
+          req = `/vendor/product/edit?type=${$(this).data('type')}&val=${$(this).val()}&p=${p}`
+          alert(req)
+          $.post(req, function(){
+            console.log("updated... in theory")
+          })
+        }
+      });
       $(this).closest('li').find('.vendor_unlock').addClass('hidden')
       $(this).closest('li').find('.vendor_lock').removeClass('hidden')
       $(this).closest('li').find('.vendor_product_details').prop('disabled', true)
       $(this).addClass('hidden')
+      $(this).closest('li').find('.loading_area_save_product').addClass('hidden')
     });
   })
 }

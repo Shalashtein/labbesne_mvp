@@ -257,6 +257,47 @@ class PagesController < ApplicationController
   render partial: 'pages/partials/vendor/products_list'
  end
 
+ def edit_product
+  product = Spree::Product.find(params[:p])
+  case params[:type]
+  when 'name'
+    product.name = params[:value]
+    product.save!
+  when 'vendorSKU'
+    product.vendorSKU = params[:value]
+    product.save!
+  when 'price'
+    price = product.prices.where(country_iso: "LB") || Spree::Price.create(variant_id: Spree::Variant.find_by(product_id: product.id, amount: params[:value],currency: "LBP", country_code: "LB"))
+    price.amount = params[:value]
+    price.save!
+  when 'gender'
+    product.gender = params[:value]
+    product.save!
+  when 'brand'
+    product.brand = params[:value]
+    product.save!
+  when 'fabric'
+    product.fabric = params[:value]
+    product.save!
+  when 'sizes'
+    product.sizes = params[:value]
+    product.save!
+  when 'description'
+    product.description = params[:value]
+    product.save!
+  when 'stock'
+    stock = product.stock_items.find_by(stock_location_id: current_spree_user.stock_locations.first.id)
+    stock.adjust_count_on_hand params[:value]
+    stock.save!
+    product.save!
+  end
+ end
+
+ def create_product
+  p = Spree::Product.new
+
+ end
+
  def vendor_analytics
   render partial: 'pages/partials/vendor/analytics'
  end

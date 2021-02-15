@@ -132,3 +132,11 @@
     flex-direction: row;
   }
 }
+.loading_area_save_product{
+  position: absolute;
+  display: flex;
+  flex-direction: reverse-column;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+}

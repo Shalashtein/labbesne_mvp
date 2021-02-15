@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   get '/vendor/slip', to: 'pages#slip', as: 'slip'
   get '/vendor/products', to: 'pages#vendor_products', as: 'vendor_products'
   get '/vendor/search', to: 'pages#vendor_search'
+  post '/vendor/product/edit', to: 'pages#edit_product'
   get '/vendor/analytics', to: 'pages#vendor_analytics', as: 'vendor_analytics'
   get '/vendor/profile', to: 'pages#vendor_info', as: 'vendor_profile'
   post '/vendor/profile_change', to: 'pages#vendor_info_change', as: 'edit_vendor_profile'
