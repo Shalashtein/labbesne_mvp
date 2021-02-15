@@ -52,9 +52,18 @@ window.vendor_product_pagination = function(){
       req = `search?sku=${$(this).val()}&page=${$(this).data('page')}`
        $('.dynamic_vendor_products_list').load(req)
     });
-    $('.vendor_lock').on('click',function(){
+    $(document).on('click', '.vendor_lock', function(){
       $(this).addClass('hidden');
       $(this).next().removeClass('hidden');
+      $(this).closest('li').attr('data-locked', 'false')
+      $(this).closest('li').find('.vendor_product_details').prop('disabled', false)
+      $(this).closest('li').find('.btn-vendor-save').removeClass('hidden')
+    });
+    $('.btn-vendor-save').on('click',function(){
+      $(this).closest('li').find('.vendor_unlock').addClass('hidden')
+      $(this).closest('li').find('.vendor_lock').removeClass('hidden')
+      $(this).closest('li').find('.vendor_product_details').prop('disabled', true)
+      $(this).addClass('hidden')
     });
   })
 }
