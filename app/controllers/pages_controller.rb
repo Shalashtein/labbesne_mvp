@@ -210,10 +210,12 @@ class PagesController < ApplicationController
   # Vendor Dashboard #############################################################
 
   def vendor
-    @products = @products || Spree::Product.where(spree_user_id: current_spree_user)
-    # TODO change the id to current_spree_user
     @shipments = Spree::Shipment.where(stock_location_id: current_spree_user.stock_locations.first.id, state: "pending").joins(:order).where(spree_orders: {state: 'complete'}).order(created_at: :asc)
-    @tracks = @tracks ||Track.where(spree_user_id: 2, recieved: false).joins(:order).where(spree_orders: {state: 'complete'}).group_by {|t| t.spree_order_id}
+  end
+
+  def vendor_orders
+    @shipments = Spree::Shipment.where(stock_location_id: current_spree_user.stock_locations.first.id, state: "pending").joins(:order).where(spree_orders: {state: 'complete'}).order(created_at: :asc)
+    render partial: 'pages/partials/vendor/orders'
   end
 
   def vendor_order_ready
@@ -227,8 +229,9 @@ class PagesController < ApplicationController
     @shipment = Spree::Shipment.find(params[:s])
     @order = @shipment.order
     @customer = Spree::User.find(@order.user_id)
-    @ship_barcode = Barby::Code128B.new(@shipment.number).to_png(height: 100, width: 200)
-    @order_barcode = Barby::Code128B.new(@order.number).to_png
+    @ship_barcode = Barby::Code128B.new(@shipment.number).to_png(height: 100)
+    @order_barcode = Barby::Code128A.new(@order.number).to_image(height: 60)
+    @vendor = Spree::User.find(@shipment.stock_location.spree_user_id)
   end
 
  def vendor_info
@@ -237,8 +240,40 @@ class PagesController < ApplicationController
     p.save!
   end
   @info = current_spree_user.profile.info.nil? ? Info.new : current_spree_user.profile.info
-  @location =
   render partial: 'pages/partials/vendor/info'
+ end
+
+ def vendor_products
+  @products = Spree::Product.where(spree_user_id: current_spree_user).page(params[:page]).per(5)
+  render partial: 'pages/partials/vendor/products'
+ end
+
+ def vendor_search
+  if params[:sku] == ''
+    @products = Spree::Product.where(spree_user_id: current_spree_user).page(params[:page]).per(5)
+  else
+    @products = Spree::Product.where(spree_user_id: current_spree_user, vendorSKU: params[:sku]).page(params[:page]).per(5)
+  end
+  render partial: 'pages/partials/vendor/products_list'
+ end
+
+ def vendor_analytics
+  render partial: 'pages/partials/vendor/analytics'
+ end
+
+ def vendor_info_change
+  @location = Spree::StockLocation.find_by(spree_user_id: current_spree_user.id)
+  case params[:input]
+  when "name"
+    @location.admin_name = params[:value]
+    @location.save!
+  when "phone"
+    @location.phone = params[:value]
+    @location.save!
+  when "address"
+    @location.address1 = params[:value]
+    @location.save!
+  end
  end
 
   # End of vendor dashboard #############################################################

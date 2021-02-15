@@ -19,12 +19,11 @@
   <div class="slip_from_to">
     <div class="slip_from">
       <h3>Supplier:</h3>
-      <h6>Name: sdkjfdsjfn</h6>
-       <h6>Phone: sdkjfdsjfn</h6>
+      <h6>Name: <%= @shipment.stock_location.admin_name %></h6>
+       <h6>Phone: <%= @shipment.stock_location.phone %></h6>
       <ul>
         <li>Lebanon, Beirut</li>
-        <li>Zabre St. Baydat Bldg.</li>
-        <li><a href="sdfd">Google Maps Link</a></li>
+        <li><%= @shipment.stock_location.address1 %></li>
       </ul>
     </div>
     <div class="slip_to">
@@ -72,4 +71,6 @@
     You have 2 days to check and return the items in case of any issues
   </div>
 </div>
-
+<script>
+  window.print()
+</script>

@@ -12,7 +12,8 @@ Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
 
 Spree::Role.find_or_create_by(name: 'stylist')
 Spree::Role.find_or_create_by(name: 'vendor')
-
+Spree::Property.find_or_create_by(name: 'brand', presentation: 'Brand')
+Spree::Property.find_or_create_by(name: 'fabric', presentation: 'Fabric')
 
 # New Attributes
 Spree::PermittedAttributes.product_attributes << [:vendor]

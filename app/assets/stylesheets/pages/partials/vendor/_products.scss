@@ -1,0 +1,116 @@
+.vendor_products_container{
+  width: 100%;
+  height: 100%;
+}
+#vendor_products_list{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  .vendor_products_row{
+    position: relative;
+    width: 100%;
+    background: rgba(200,200,200,0.7);
+    border-bottom: 1px solid rgba(250,250,250,0.7);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .vendor_product_row_image{
+      height: 150px;
+      display: flex;
+      flex-direction: row;
+      object-fit: contain;
+    }
+    .row_info_section{
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      div{
+        width: 100%;
+        height: 50%;
+      }
+    }
+    .vendor_lock, .vendor_unlock{
+      color: $royal;
+      font-size: 1.4rem;
+      position: absolute;
+      top: 0.4rem;
+      left: 0.4rem;
+    }
+  }
+}
+.row_image_section{
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .stock_section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    input{
+      border: none;
+      background: transparent;
+      width: 60%;
+      text-align: center;
+    }
+  }
+}
+.vendor_products_action_row{
+  width: 100%;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  input{
+    border-radius: 8px;
+    background-color: transparent;
+    border: none;
+    color:white;
+    &:focus{
+      outline: none;
+    }
+  }
+  .btn_new_product{
+    background-color: $gold;
+  }
+}
+
+.search_form_sku{
+  border: 1px solid white;
+  border-radius: 8px;
+  margin-right: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+}
+.vendor_product_details{
+  border:none;
+  background: transparent;
+  &:focus{
+    background-color: rgba(255,255,255,0.2);
+    outline: none;
+  }
+}
+.row_description_section{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  textarea{
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid rgba(250,250,250,0.1);
+    flex-grow: 1;
+    font-size: 0.8rem;
+    color: white;
+    &:focus{
+      outline: none;
+    }
+  }
+}

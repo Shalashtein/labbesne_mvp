@@ -1,0 +1,34 @@
+  <ul id="vendor_products_list">
+    <% @products.each do |p| %>
+      <li class="vendor_products_row">
+        <i class="fa fa-lock vendor_lock"></i>
+        <i class="fa fa-unlock vendor_unlock hidden"></i>
+        <div class="row_image_section">
+          <%= image_tag p.images.first.url('small'), class: 'vendor_product_row_image' %>
+          <div class="stock_section">
+            <label for="">Stock</label>
+            <input class="vendor_product_details" type="number" value="<%= p.total_on_hand %>">
+          </div>
+          <button class="btn btn-primary">Save</button>
+        </div>
+        <div class="row_info_section">
+          <h2><input class="vendor_product_details" type="text" value="<%= p.name %>"></h2>
+          <h6>SKU: <input class="vendor_product_details" type="text" value="<%= p.vendorSKU %>"></h6>
+          <ul>
+            <li>Price: <input class="vendor_product_details" type="text" value="<%= p.price %>"></li>
+            <li>Gender: <input class="vendor_product_details" type="text" value="<%= p.gender %>"></li>
+            <li>Brand: <input class="vendor_product_details" type="text" value="<%= Spree::ProductProperty.find_by(product_id: p.id, property_id: Spree::Property.find_by(name: 'brand')) %>"></li>
+            <li>Fabric: <input class="vendor_product_details" type="text" value="<%= Spree::ProductProperty.find_by(product_id: p.id, property_id: Spree::Property.find_by(name: 'fabric')) %>"></li>
+            <li>Sizes: <input class="vendor_product_details" type="text" value="<%= Spree::ProductProperty.find_by(product_id: p.id, property_id: Spree::Property.find_by(name: 'sizes')) %>"></li>
+          </ul>
+        </div>
+        <div class="row_description_section">
+          <h4>Description:</h4>
+          <textarea><%= p.description %></textarea>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<script>
+  vendor_product_pagination()
+</script>

@@ -12,7 +12,49 @@ window.vendor = function(){
     $('.vendor_tab').removeClass('vendor_active_tab')
     $(this).addClass('vendor_active_tab')
   });
+  $(document).on('click','.vendor_tab_orders', {} ,function(e){
+    $('.vendor_main').load('orders')
+  });
+  $(document).on('click','.vendor_tab_products', {} ,function(e){
+    $('.vendor_main').load('products')
+  });
+  $(document).on('click','.vendor_tab_analytics', {} ,function(e){
+    $('.vendor_main').load('orders')
+  });
   $(document).on('click','.vendor_tab_account', {} ,function(e){
     $('.vendor_main').load('profile')
   });
+  $(document).on('focusout','.vendor_info_input', {} ,function(e){
+    $('.loading_area').removeClass('hidden');
+    value = ''
+    input = $(this).data('action')
+    if(input == 'address'){
+       $(".vendor_address").each(function(index) {
+        value = value + $(this).val() + " "
+      });
+    } else {
+      value = $(this).val()
+    }
+    req = `/vendor/profile_change?value=${value}&input=${input}`
+    $.post(req,function(){
+      $('.loading_area').addClass('hidden');
+    })
+  });
+}
+window.vendor_product_pagination = function(){
+  $(document).ready(function(){
+    $('a.page-link').click(function(e){
+      e.preventDefault()
+      req = 'products?page=' + $(this)[0].href.slice(-1)
+      $('.vendor_main').load(req)
+    });
+    $("#vendor_search").on("change paste keyup", function() {
+      req = `search?sku=${$(this).val()}&page=${$(this).data('page')}`
+       $('.dynamic_vendor_products_list').load(req)
+    });
+    $('.vendor_lock').on('click',function(){
+      $(this).addClass('hidden');
+      $(this).next().removeClass('hidden');
+    });
+  })
 }
