@@ -309,6 +309,37 @@ class PagesController < ApplicationController
   render partial: 'pages/partials/vendor/new_product'
  end
 
+ def vendor_new_product
+  name = params[:name]
+  vendorSKU = params[:vendorSKU]
+  price = params[:price]
+  gender = params[:gender]
+  product = Spree::Product.new
+  brand = params[:brand]
+  fabric = params[:fabric]
+  sizes = params[:sizes]
+  product.name = name
+  product.vendorSKU = vendorSKU
+  product.gender = gender
+  product.price = price
+  product.shipping_category = Spree::ShippingCategory.find_by(name: "Default")
+  product.tax_category = Spree::TaxCategory.find_by(name: "Default")
+  product.spree_user_id = current_spree_user.id
+  product.save!
+  pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Brand').id)
+  pp.value = brand
+  pp.save!
+  pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Fabric').id)
+  pp.value = fabric
+  pp.save!
+  pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Sizes').id)
+  pp.value = sizes
+  pp.save!
+  respond_to do |format|
+    format.json { render json: {"vid" => product.variants_including_master.first.id, "id" => product.id}, status: 200}
+  end
+ end
+
  def vendor_analytics
   render partial: 'pages/partials/vendor/analytics'
  end

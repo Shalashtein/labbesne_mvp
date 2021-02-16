@@ -71,7 +71,6 @@ window.vendor_product_pagination = function(){
           }
           req = `/vendor/product/edit?type=${$(this).data('type')}&val=${val}&p=${p}`
           butt = $(this)
-          alert(req)
           $.post(req, function(){
             butt.closest('li').find('.loading_area_save_product').addClass('hidden')
           });
@@ -103,5 +102,59 @@ window.vendor_product_pagination = function(){
     $(document).on('click', ".vendor_product_row_image", function(){
       $(this).closest('li').find('.vendor_image_input').click();
     });
-  })
+    $(document).on('click', ".btn_new_product", function(){
+      $('#new_vendor_product_row').removeClass('hidden');
+    });
+    $(document).on('click', ".btn-vendor-new-save", function(){
+      $('#new_product_loader').removeClass('hidden')
+      inputs = []
+      $.each($(this).closest('li').find('.vendor_product_details'),function(){
+        if($(this).val().length == 0){
+          inputs.push($(this))
+        }
+      });
+      if($(this).closest('li').find('#new_stock').val() == 0){
+        inputs.push($(this).closest('li').find('#new_stock'))
+      }
+      if($('#new_attachment').val().length == 0){
+        inputs.push($('#new_attachment'))
+        $(this).closest('li').find('.vendor_upload_image').addClass('vendor_missing_input')
+      }
+      if(isNaN(parseInt($('#vendor_new_product_price').val()))){
+        inputs.push($('#vendor_new_product_price'))
+      }
+      $.each(inputs, function(){
+        $(this).addClass('vendor_missing_input')
+      });
+      if(inputs.length == 0){
+        name = $(this).closest('li').find('#vendor_new_product_name').val()
+        vendorSKU = $(this).closest('li').find('#vendor_new_sku').val()
+        brand = $(this).closest('li').find('#vendor_new_product_brand').val()
+        gender = $(this).closest('li').find('#vendor_new_product_gender').val()
+        price = $(this).closest('li').find('#vendor_new_product_price').val()
+        fabric = $(this).closest('li').find('#vendor_new_product_fabric').val()
+        sizes = $(this).closest('li').find('#vendor_new_product_sizes').val()
+        req = `/vendor/product/new?name=${name}&vendorSKU=${vendorSKU}&gender=${gender}&price=${price}&brand=${brand}&fabric=${fabric}&sizes=${sizes}`
+        $.post(req, function(r){
+          $('#new_viewable').val(r.vid)
+          $('#new_image_form').prop('action',`/shop/admin/products/${r.id}/images`)
+          $('#vendor_new_product_trigger').click();
+        });
+      } else{
+        $('#new_product_loader').addClass('hidden')
+      }
+    });
+    $(document).on('click', ".vendor_upload_image", function(){
+      $(this).closest('li').find('#new_attachment').click();
+    });
+    $(document).on('change', "#new_attachment", function(){
+      readURL(this);
+      $(this).closest('li').find('.vendor_product_row_image').removeClass('new_image_placeholder')
+      $('#new_upload_icon').addClass('hidden')
+    });
+    $(document).on('ajax:success', "#new_image_form", function(){
+      $('#new_product_loader').addClass('hidden')
+      $('.vendor_main').load('products')
+    });
+  });
 }

@@ -123,7 +123,7 @@
     }
   }
 }
-.btn-vendor-save{
+.btn-vendor-save, .btn-vendor-new-save{
   width: 100%;
 }
 #row_info_section_list{
@@ -165,6 +165,15 @@
 .vendor_upload_image_trigger{
   display: none;
 }
-.vendor_image_input{
+.image_attachment{
+  display: none;
+}
+#new_vendor_product_row{
+  width: 100%;
+}
+.vendor_missing_input{
+  box-shadow: 0 0 5px rgba(255,50,50,0.6);
+}
+.new_image_placeholder{
   display: none;
 }
