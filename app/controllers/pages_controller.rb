@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+  class << self
+   include Rails.application.routes.url_helpers
+  end
   layout :resolve_layout
   before_action :signinRouter, except: [:landing, :guestSwiped]
   before_action :setCart, except: [:landing, :guestSwiped]
@@ -112,6 +115,10 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.json {interaction.to_json}
     end
+  end
+
+  def vendor_update_image
+    Spree::Product.find(params[:p]).images.first.destroy
   end
 
   def updateAddress
@@ -244,7 +251,9 @@ class PagesController < ApplicationController
  end
 
  def vendor_products
-  @products = Spree::Product.where(spree_user_id: current_spree_user).page(params[:page]).per(5)
+  @image = Spree::Image.new
+  @products = Spree::Product.where(spree_user_id: current_spree_user).order(created_at: :desc).page(params[:page]).per(5)
+  @p = Spree::Product.new
   render partial: 'pages/partials/vendor/products'
  end
 
@@ -261,41 +270,43 @@ class PagesController < ApplicationController
   product = Spree::Product.find(params[:p])
   case params[:type]
   when 'name'
-    product.name = params[:value]
+    product.name = params[:val]
     product.save!
   when 'vendorSKU'
-    product.vendorSKU = params[:value]
+    product.vendorSKU = params[:val]
     product.save!
   when 'price'
-    price = product.prices.where(country_iso: "LB") || Spree::Price.create(variant_id: Spree::Variant.find_by(product_id: product.id, amount: params[:value],currency: "LBP", country_code: "LB"))
-    price.amount = params[:value]
-    price.save!
+    #price = product.prices.where(country_iso: "LB") || Spree::Price.create(variant_id: Spree::Variant.find_by(product_id: product.id, amount: params[:value],currency: "LBP", country_code: "LB"))
+    #price.amount = params[:value]
+    #price.save!
   when 'gender'
-    product.gender = params[:value]
+    product.gender = params[:val]
     product.save!
   when 'brand'
-    product.brand = params[:value]
-    product.save!
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Brand').id)
+    pp.value = params[:val]
+    pp.save!
   when 'fabric'
-    product.fabric = params[:value]
-    product.save!
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Fabric').id)
+    pp.value = params[:val]
+    pp.save!
   when 'sizes'
-    product.sizes = params[:value]
-    product.save!
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Sizes').id)
+    pp.value = params[:val]
+    pp.save!
   when 'description'
-    product.description = params[:value]
+    product.description = params[:val]
     product.save!
   when 'stock'
     stock = product.stock_items.find_by(stock_location_id: current_spree_user.stock_locations.first.id)
-    stock.adjust_count_on_hand params[:value]
+    stock.adjust_count_on_hand(params[:val].to_i)
     stock.save!
     product.save!
   end
  end
 
  def create_product
-  p = Spree::Product.new
-
+  render partial: 'pages/partials/vendor/new_product'
  end
 
  def vendor_analytics

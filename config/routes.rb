@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get '/vendor/products', to: 'pages#vendor_products', as: 'vendor_products'
   get '/vendor/search', to: 'pages#vendor_search'
   post '/vendor/product/edit', to: 'pages#edit_product'
+  post '/vendor/product/image', to: 'pages#vendor_update_image', as: 'vendor_update_image'
   get '/vendor/analytics', to: 'pages#vendor_analytics', as: 'vendor_analytics'
   get '/vendor/profile', to: 'pages#vendor_info', as: 'vendor_profile'
   post '/vendor/profile_change', to: 'pages#vendor_info_change', as: 'edit_vendor_profile'
@@ -69,7 +70,7 @@ Rails.application.routes.draw do
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
   #
   # We ask that you don't use the :as option here, as Solidus relies on it being the default of "spree"
-  mount Spree::Core::Engine, at: '/shop'
+  mount Spree::Core::Engine, at: '/shop', as: 'spree'
 
   mount SolidusPaypalCommercePlatform::Engine, at: '/shop/solidus_paypal_commerce_platform'
 end

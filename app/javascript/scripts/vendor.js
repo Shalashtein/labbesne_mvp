@@ -58,24 +58,50 @@ window.vendor_product_pagination = function(){
       $(this).closest('li').attr('data-locked', 'false')
       $(this).closest('li').find('.vendor_product_details').prop('disabled', false)
       $(this).closest('li').find('.btn-vendor-save').removeClass('hidden')
+      $(this).closest('li').find('.vendor_image_input').prop('disabled', false)
     });
     $('.btn-vendor-save').on('click',function(){
       $(this).closest('li').find('.loading_area_save_product').removeClass('hidden')
       p = $(this).data('p')
       $.each($(this).closest('li').find('.vendor_product_details'),function(){
         if($(this).data('prev') != $(this).val()){
-          req = `/vendor/product/edit?type=${$(this).data('type')}&val=${$(this).val()}&p=${p}`
+          val = $(this).val()
+          if($(this).data('type') == 'stock'){
+            val = parseInt($(this).val()) - parseInt($(this).data('prev'))
+          }
+          req = `/vendor/product/edit?type=${$(this).data('type')}&val=${val}&p=${p}`
+          butt = $(this)
           alert(req)
           $.post(req, function(){
-            console.log("updated... in theory")
-          })
+            butt.closest('li').find('.loading_area_save_product').addClass('hidden')
+          });
         }
       });
+      if($(this).closest('li').find('.vendor_image_input').val().length > 0){
+        $(this).closest('li').find('.vendor_upload_image_trigger').click();
+      }
       $(this).closest('li').find('.vendor_unlock').addClass('hidden')
       $(this).closest('li').find('.vendor_lock').removeClass('hidden')
       $(this).closest('li').find('.vendor_product_details').prop('disabled', true)
-      $(this).addClass('hidden')
       $(this).closest('li').find('.loading_area_save_product').addClass('hidden')
+      $(this).addClass('hidden')
+    });
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $(input).closest('li').find('.vendor_product_row_image').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
+    }
+    $(document).on('change', ".vendor_image_input", function(){
+      readURL(this);
+    });
+    $(document).on('click', ".vendor_product_row_image", function(){
+      $(this).closest('li').find('.vendor_image_input').click();
     });
   })
 }
