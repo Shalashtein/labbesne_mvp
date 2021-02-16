@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   get '/order/finalize', to: 'pages#finalize', as: 'finalize_order'
   get '/guestSwiped', to: 'pages#guestSwiped'
   post '/popupmessage', to: 'pages#popupMessage', as: 'message'
+  get '/vendor', to: 'pages#vendor'
   get '/vendor/dashboard', to: 'pages#vendor', as: 'vendor_dashboard'
   get '/vendor/orders', to: 'pages#vendor_orders', as: 'vendor_orders'
   post '/vendor/order_ready', to: 'pages#vendor_order_ready', as: 'vendor_send_order'
