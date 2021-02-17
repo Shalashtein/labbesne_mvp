@@ -12,7 +12,6 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
 
   def create
-    byebug
     build_resource(spree_user_params)
     if resource.save
       p = Profile.new
