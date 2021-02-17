@@ -13,6 +13,10 @@ module Spree::Admin::UsersControllerDecorator
             @user.confirm
             @user.stock_locations << sl
           end
+          if @user.profile.nil?
+            p = Profile.new
+            p.spree_user_id = @user.id
+            p.save!
           flash[:success] = t('spree.created_successfully')
           redirect_to edit_admin_user_url(@user)
         else
@@ -22,7 +26,8 @@ module Spree::Admin::UsersControllerDecorator
           flash.now[:error] = @user.errors.full_messages.join(", ")
           render :new, status: :unprocessable_entity
         end
-  end
+      end
+    end
 
   Spree::Admin::UsersController.prepend self
 end
