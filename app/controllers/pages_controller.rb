@@ -125,12 +125,17 @@ class PagesController < ApplicationController
 
   def updateAddress
     current_spree_user.ship_address.address1 = params[:geo]
+    current_spree_user.bill_address.address1 = params[:geo]
     current_spree_user.ship_address.address2 = params[:address2]
+    current_spree_user.bill_address.address2 = params[:address2]
     current_spree_user.ship_address.lng = params[:lng]
     current_spree_user.ship_address.lat = params[:lat]
+    current_spree_user.bill_address.lng = params[:lng]
+    current_spree_user.bill_address.lat = params[:lat]
     @order.special_instructions = params[:instructions]
     @order.save!
     current_spree_user.ship_address.save!
+    current_spree_user.bill_address.save!
     current_spree_user.ship_address.pretty_inspect
     @order.next if @order.state == 'cart'
     @order.next if @order.state == 'address'
@@ -228,10 +233,11 @@ class PagesController < ApplicationController
   end
 
   def vendor_order_ready
-    s = Spree::Shipment.find(params[:s])
-    s.order.vendor_state = true
-    s.save!
-    s.update_state if Spree::Shipment.find(params[:s]).state == 'pending'
+    szabre = Spree::Shipment.find(params[:s])
+    szabre.order.vendor_state = true
+    szabre.order.save!
+    szabre.update_state if Spree::Shipment.find(params[:s]).state == 'pending'
+
   end
 
   def slip
