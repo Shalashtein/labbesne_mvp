@@ -15,10 +15,8 @@ window.dynamicShop = function(){
     $('.dynamic_cart').load('/current_cart');
   });
   $(document).on('click','.save_product_button', {} ,function(e){
-    console.log($('#products-swipe-card-stack li:last-child').data("name"))
-    console.log($('#products-swipe-card-stack li:last-child').data("saved"))
     $.post( `/save_product/?product=${$('#products-swipe-card-stack li:last-child').data("productid")}&action_id=${$('#products-swipe-card-stack li:last-child').data("saved")}`, function(data) {
-      if($('#products-swipe-card-stack li:last-child').data("saved")){
+      if($('#products-swipe-card-stack li:last-child').data("saved") == "true"){
         console.log("unsaving")
         $('.save_product_button').removeClass('save_product_button_saved')
         $('.save_product_button').html('Save for later')

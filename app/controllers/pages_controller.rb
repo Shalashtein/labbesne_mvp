@@ -102,12 +102,14 @@ class PagesController < ApplicationController
     product_id = params[:product].to_i
     action = params[:action_id] != 'true'
     if action
-      interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
+
+      interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
       interaction.saved = true
       interaction.save!
       puts interaction.pretty_inspect
     else
-      interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
+
+      interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
       interaction.saved = false
       interaction.save!
       puts interaction.pretty_inspect
