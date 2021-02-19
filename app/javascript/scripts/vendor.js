@@ -154,7 +154,7 @@ window.vendor_product_pagination = function(){
     });
     $(document).on('ajax:success', "#new_image_form", function(){
       $('#new_product_loader').addClass('hidden')
-      $('.vendor_main').load('products')
+      $('.vendor_main').load('/vendor/products')
     });
   });
 }
