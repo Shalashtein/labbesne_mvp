@@ -154,7 +154,8 @@ window.vendor_product_pagination = function(){
       $(this).closest('li').find('.vendor_product_row_image').removeClass('new_image_placeholder')
       $('#new_upload_icon').addClass('hidden')
     });
-    $(document).on('ajax:success', "#new_image_form", function(){
+    $(document).on('ajax:success', "#new_image_form", function(data){
+      alert(data)
       $('#new_product_loader').addClass('hidden')
       $('.vendor_main').load('/vendor/products')
     });
