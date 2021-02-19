@@ -214,6 +214,7 @@ class PagesController < ApplicationController
     li.order_id = @order.id
     li.variant_id = params[:p]
     li.save
+    byebug
   end
 
   # End of Customer Dashboard #############################################################
@@ -419,7 +420,7 @@ class PagesController < ApplicationController
   end
 
   def setCart
-    @order = current_spree_user.last_incomplete_spree_order || Spree::Order.new
+    @order = current_spree_user.last_incomplete_spree_order || Spree::Order.create(user_id: current_spree_user.id)
   end
 
   def setProducts

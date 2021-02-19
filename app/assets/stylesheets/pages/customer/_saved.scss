@@ -73,6 +73,7 @@
         justify-content: center;
         font-size: 1.5rem;
         color: white;
+        backdrop-filter: blur(3px);
         &:focus{
           outline:none;
         }
