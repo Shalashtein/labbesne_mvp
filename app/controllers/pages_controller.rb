@@ -213,6 +213,7 @@ class PagesController < ApplicationController
     li = Spree::LineItem.new
     li.order_id = @order.id
     li.variant_id = params[:p]
+    li.quantity = 1
     li.save
   end
 
