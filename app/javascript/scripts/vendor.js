@@ -13,16 +13,16 @@ window.vendor = function(){
     $(this).addClass('vendor_active_tab')
   });
   $(document).on('click','.vendor_tab_orders', {} ,function(e){
-    $('.vendor_main').load('orders')
+    $('.vendor_main').load('/vendor/orders')
   });
   $(document).on('click','.vendor_tab_products', {} ,function(e){
-    $('.vendor_main').load('products')
+    $('.vendor_main').load('/vendor/products')
   });
   $(document).on('click','.vendor_tab_analytics', {} ,function(e){
-    $('.vendor_main').load('orders')
+    $('.vendor_main').load('/vendor/orders')
   });
   $(document).on('click','.vendor_tab_account', {} ,function(e){
-    $('.vendor_main').load('profile')
+    $('.vendor_main').load('/vendor/profile')
   });
   $(document).on('focusout','.vendor_info_input', {} ,function(e){
     $('.loading_area').removeClass('hidden');
