@@ -102,20 +102,18 @@ class PagesController < ApplicationController
     product_id = params[:product].to_i
     action = params[:action_id] != 'true'
     if action
-
       interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
       interaction.saved = true
       interaction.save!
       puts interaction.pretty_inspect
     else
-
       interaction = Interaction.where(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
       interaction.saved = false
       interaction.save!
       puts interaction.pretty_inspect
     end
     respond_to do |format|
-      format.json {interaction.to_json}
+      format.json {render json: interaction.saved}
     end
   end
 
@@ -136,7 +134,6 @@ class PagesController < ApplicationController
     @order.save!
     current_spree_user.ship_address.save!
     current_spree_user.bill_address.save!
-    current_spree_user.ship_address.pretty_inspect
     @order.next if @order.state == 'cart'
     @order.next if @order.state == 'address'
     @order.next if @order.state == 'delivery'

@@ -1,7 +1,11 @@
 <ul id="products-swipe-card-stack" data-products-target="deck">
   <% @products_sorted.reverse.each_with_index do |p,i| %>
     <% product_data = "data-gender=#{p.gender} data-type=#{ProductSpec.where(spree_product_id: p.id, name: 'clothing-type').first.value || "missing"}" %>
-    <li class="swipe-card <%= "saved_product" if Interaction.where(spree_product_id: p.id).any? && Interaction.where(spree_product_id: p.id).first.saved? %>" <%= product_data %> data-saved="<%= Interaction.where(spree_product_id: p.id).any? && Interaction.where(spree_product_id: p.id).first.saved? %>" data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>" data-variant="<%= p.master.id %>" data-queue=<%= i %>>
+    <% unless action_name == 'landing' %>
+    <li class="swipe-card <%= "saved_product" if Interaction.where(spree_product_id: p.id, spree_user_id: current_spree_user.id).any? && Interaction.find_by(spree_product_id: p.id, spree_user_id: current_spree_user.id).saved? %>" <%= product_data %> data-saved="<%= Interaction.where(spree_product_id: p.id, spree_user_id: current_spree_user.id).any? && Interaction.find_by(spree_product_id: p.id, spree_user_id: current_spree_user.id).saved? %>" data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>" data-variant="<%= p.master.id %>" data-queue=<%= i %>>
+    <% else %>
+    <li class="swipe-card" <%= product_data %> data-products-target="card" data-productid="<%= p.id %>" data-action="click->products#swipe" data-name="<%= p.name %>" data-price="<%= p.price %>" data-variant="<%= p.master.id %>" data-queue=<%= i %>>
+    <% end %>
       <div class="swipe-card-base">
         <%= image_tag p.images.first.url('large') %>
       </div>
@@ -14,7 +18,7 @@
     </li>
   <% end %>
 </ul>
-<button class="btn save_product_button <%= Interaction.where(spree_product_id: @products_sorted.last.id).any? && Interaction.where(spree_product_id: @products_sorted.last.id).first.saved? ? 'save_product_button' : '' %>"><%= Interaction.where(spree_product_id: @products_sorted.last.id).any? && Interaction.where(spree_product_id: @products_sorted.last.id).first.saved? ? 'Saved' : 'Save for later' %></button>
+<button class="btn save_product_button_main <%= action_name != 'landing' && Interaction.where(spree_product_id: @products_sorted.last.id).any? && Interaction.where(spree_product_id: @products_sorted.last.id).first.saved? ? 'save_product_button_main' : '' %>"><%= Interaction.where(spree_product_id: @products_sorted.last.id).any? && Interaction.where(spree_product_id: @products_sorted.last.id).first.saved? ? 'Saved' : 'Save for later' %></button>
 
 <% page = @products_sorted.current_page + 1 %>
 <%= link_to 'Next Page', deck_path(page: page, current_page: @products_sorted.current_page),remote: true, class: 'next_deck' %>

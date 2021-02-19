@@ -1,12 +1,14 @@
 //----------------------- Products Swipe UI ----------------------
 window.landingSwipe = function(){
-  if($('#products-swipe-card-stack li:last-child').data("saved")){
-            $('.save_product_button').addClass('save_product_button_saved')
-            $('.save_product_button').html('Saved')
+  $(document).on('click', '.save_product_button_main', function(){
+    if($(this).hasClass("save_product_button_saved")){
+      $(this).removeClass('save_product_button_saved')
+      $(this).html('Save for Later')
   } else {
-    $('.save_product_button').removeClass('save_product_button_saved')
-    $('.save_product_button').html('Save for later')
+      $(this).addClass('save_product_button_saved')
+      $(this).html('Saved')
   }
+  })
   // Prepare the cards in the stack for iteration.
   const pcards = [].slice.call(document.querySelectorAll('#products-swipe-card-stack li'));
 
@@ -83,8 +85,8 @@ window.landingSwipe = function(){
     }
     var product_id = $('#products-swipe-card-stack li:last-child').data("productid")
     e.target.remove();
-    $('.save_product_button').removeClass('save_product_button_saved')
-    $('.save_product_button').html('Save for later')
+    $('.save_product_button_main').removeClass('save_product_button_saved')
+    $('.save_product_button_main').html('Save for later')
     //pstack.getCard(e.target).throwIn(0,0);
     //$(e.target).prependTo($('#products-swipe-card-stack'));
     //pstack.getCard(e.target).destroy()

@@ -51,6 +51,7 @@ document.addEventListener('turbolinks:load', () => {
   productSwipe();
   productFilter();
   sidebarToggler();
+  lifestyleCollapse()
   dynamicShop();
   dynamicStylist();
   dynamicCustomer();

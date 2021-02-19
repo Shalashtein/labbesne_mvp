@@ -1,6 +1,7 @@
 //-------------- Form Collapse in Lifestyle -------------
 window.lifestyleCollapse = function(){
   $('#lifestyle_studies').click(function studyChanged(){
+    console.log("X")
         if($('#lifestyle_studies').is(":checked"))
             $(".lifestyle_study_hours").show();
         else

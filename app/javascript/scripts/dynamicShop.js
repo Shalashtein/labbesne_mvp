@@ -14,18 +14,17 @@ window.dynamicShop = function(){
   $(document).on('ajax:success','.remove_item', {} ,function(e){
     $('.dynamic_cart').load('/current_cart');
   });
-  $(document).on('click','.save_product_button', {} ,function(e){
+  $(document).on('click','.save_product_button_main', {} ,function(e){
     $.post( `/save_product/?product=${$('#products-swipe-card-stack li:last-child').data("productid")}&action_id=${$('#products-swipe-card-stack li:last-child').data("saved")}`, function(data) {
-      if($('#products-swipe-card-stack li:last-child').data("saved") == "true"){
+      if(!data){
         console.log("unsaving")
-        $('.save_product_button').removeClass('save_product_button_saved')
-        $('.save_product_button').html('Save for later')
+        $('.save_product_button_main').removeClass('save_product_button_saved')
+        $('.save_product_button_main').html('Save for later')
         $('#products-swipe-card-stack li:last-child').removeClass('saved_product')
         $('#products-swipe-card-stack li:last-child').data("saved", "false")
       } else {
-        console.log("saving")
-        $('.save_product_button').addClass('save_product_button_saved')
-        $('.save_product_button').html('Saved')
+        $('.save_product_button_main').addClass('save_product_button_saved')
+        $('.save_product_button_main').html('Saved')
         $('#products-swipe-card-stack li:last-child').addClass('saved_product')
         $('#products-swipe-card-stack li:last-child').data("saved", "true")
       }
@@ -109,15 +108,16 @@ window.dynamicShop = function(){
           if($('#delivery_floor').val().length == 0){
            alert('Floor Number cannot be empty');
           } else {
-            var geocoded_address_req = `https://us1.locationiq.com/v1/reverse.php?key=pk.baf8daf710cdb940c656ca4f03cbcf4f&format=json&lat=${current_marker.getLngLat().lat}&lon=${current_marker.getLngLat().lng}`
+            var geocoded_address_req = `https://us1.locationiq.com/v1/reverse.php?key=pk.6bee3c8a67635229ef023dba06237acb&lat=${current_marker.getLngLat().lat}&lon=${current_marker.getLngLat().lng}&format=json`
             $.get(geocoded_address_req, function(data){
               var geocoded_string = ""
               for (var x in data["address"]){
                   geocoded_string += x + " " + data["address"][x] + " "
               }
               var address2 = `Street Name: ${$('#delivery_street').val()}, Building Name: ${$('#delivery_building').val()}, Floor: ${$('#delivery_floor').val()} `
-              var req = $('.btn-confirm-address').data('path') + `?geo=${geocoded_string}&address2=${address2}&instructions=${$('#delivery_instruction').val()}`
+              var req = $('.btn-confirm-address').data('path') + `?geo=${geocoded_string}&address2=${address2}&instructions=${$('#delivery_instruction').val()}&lat=${current_marker.getLngLat().lat}&lng=${current_marker.getLngLat().lng}`
               $.get(req, function(data){
+                console.log(data)
                 $('#confirmation-body').load('/order/confirm');
                 $('#confirmation_trigger').click();
               });

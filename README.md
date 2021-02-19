@@ -439,6 +439,7 @@ sudo apt install tree ncdu htop tig
 `cd` to the directory
 run `bundle install` to install the gems Labbesne uses
 run `yarn install` to install the JS dependencies
+run `rake db:create` to create the labbesne_development database in PostgresQL
 run `rake db:migrate` to migrate the labbesne_development database you created in PostgresQL
 run `rake db:seed` to seed the database with necessary data
 

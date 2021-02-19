@@ -2,11 +2,11 @@
 window.productSwipe = function(){
   $('#loading').addClass("hidden");
   if($('#products-swipe-card-stack li:last-child').data("saved")){
-            $('.save_product_button').addClass('save_product_button_saved')
-            $('.save_product_button').html('Saved')
+      $('.save_product_button_main').addClass('save_product_button_saved')
+      $('.save_product_button_main').html('Saved')
   } else {
-    $('.save_product_button').removeClass('save_product_button_saved')
-    $('.save_product_button').html('Save for later')
+      $('.save_product_button_main').removeClass('save_product_button_saved')
+      $('.save_product_button_main').html('Save for later')
   }
   // Prepare the cards in the stack for iteration.
   const pcards = [].slice.call(document.querySelectorAll('#products-swipe-card-stack li'));
@@ -110,11 +110,11 @@ window.productSwipe = function(){
         success:function(){
           e.target.remove();
           if($('#products-swipe-card-stack li:last-child').data("saved")){
-            $('.save_product_button').addClass('save_product_button_saved')
-            $('.save_product_button').html('Saved')
+            $('.save_product_button_main').addClass('save_product_button_saved')
+            $('.save_product_button_main').html('Saved')
           } else {
-            $('.save_product_button').removeClass('save_product_button_saved')
-            $('.save_product_button').html('Save for later')
+            $('.save_product_button_main').removeClass('save_product_button_saved')
+            $('.save_product_button_main').html('Save for later')
           }
         }
       });
