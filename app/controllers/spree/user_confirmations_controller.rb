@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Spree::UserConfirmationsign_in(resource)
+class Spree::UserConfirmationsController < Devise::ConfirmationsController
   helper 'spree/base', 'spree/store'
 
   include Spree::Core::ControllerHelpers::Auth
