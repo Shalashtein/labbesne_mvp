@@ -214,7 +214,6 @@ class PagesController < ApplicationController
     li.order_id = @order.id
     li.variant_id = params[:p]
     li.save
-    byebug
   end
 
   # End of Customer Dashboard #############################################################
