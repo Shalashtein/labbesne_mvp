@@ -45,7 +45,7 @@ window.vendor_product_pagination = function(){
   $(document).ready(function(){
     $('a.page-link').click(function(e){
       e.preventDefault()
-      req = 'products?page=' + $(this)[0].href.slice(-1)
+      req = '/vendor/products?page=' + $(this)[0].href.slice(-1)
       $('.vendor_main').load(req)
     });
     $("#vendor_search").on("change paste keyup", function() {
@@ -134,7 +134,9 @@ window.vendor_product_pagination = function(){
         price = $(this).closest('li').find('#vendor_new_product_price').val()
         fabric = $(this).closest('li').find('#vendor_new_product_fabric').val()
         sizes = $(this).closest('li').find('#vendor_new_product_sizes').val()
-        req = `/vendor/product/new?name=${name}&vendorSKU=${vendorSKU}&gender=${gender}&price=${price}&brand=${brand}&fabric=${fabric}&sizes=${sizes}`
+        stock = $(this).closest('li').find('#new_stock').val()
+        description = $(this).closest('li').find('.vendor_product_details').val()
+        req = `/vendor/product/new?name=${name}&vendorSKU=${vendorSKU}&gender=${gender}&price=${price}&brand=${brand}&fabric=${fabric}&sizes=${sizes}&stock=${stock}&description=${description}`
         $.post(req, function(r){
           $('#new_viewable').val(r.vid)
           $('#new_image_form').prop('action',`/shop/admin/products/${r.id}/images`)

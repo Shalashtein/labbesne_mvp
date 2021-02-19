@@ -8,14 +8,13 @@ Rails.application.configure do
   # Paperclip => S3
   config.paperclip_defaults = {
   :storage => :s3,
-  :preserve_files => false,
   :s3_credentials => {
     :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
     :secret_access_key => ENV["AWS_SECRET_KEY_ID"],
-    :s3_region => ENV["S3_REGION_NAME"]
+    :s3_region => ENV["S3_REGION_NAME"],
+    :preserve_files => false
     },
-  :bucket => ENV["BUCKET_NAME"],
-  :s3_region => ENV["S3_REGION_NAME"]
+  :bucket => ENV["BUCKET_NAME"]
   }
 
   config.action_mailer.delivery_method = :smtp

@@ -282,9 +282,8 @@ class PagesController < ApplicationController
     product.vendorSKU = params[:val]
     product.save!
   when 'price'
-    #price = product.prices.where(country_iso: "LB") || Spree::Price.create(variant_id: Spree::Variant.find_by(product_id: product.id, amount: params[:value],currency: "LBP", country_code: "LB"))
-    #price.amount = params[:value]
-    #price.save!
+    product.price = params[:value]
+    product.save!
   when 'gender'
     product.gender = params[:val]
     product.save!
@@ -324,6 +323,8 @@ class PagesController < ApplicationController
   brand = params[:brand]
   fabric = params[:fabric]
   sizes = params[:sizes]
+  stock = params[:stock]
+  description = params[:description]
   product.name = name
   product.vendorSKU = vendorSKU
   product.gender = gender
@@ -331,7 +332,11 @@ class PagesController < ApplicationController
   product.shipping_category = Spree::ShippingCategory.find_by(name: "Default")
   product.tax_category = Spree::TaxCategory.find_by(name: "Default")
   product.spree_user_id = current_spree_user.id
+  product.description = description
   product.save!
+  stock_items = product.stock_items.find_by(stock_location_id: current_spree_user.stock_locations.first.id)
+  stock_items.adjust_count_on_hand(stock.to_i)
+  stock_items.save!
   pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Brand').id)
   pp.value = brand
   pp.save!
