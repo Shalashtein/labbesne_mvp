@@ -18,9 +18,14 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
       p.spree_user_id = resource.id
       p.save!
       set_flash_message(:notice, :signed_up)
-      sign_in(:spree_user, resource)
-      session[:spree_user_signup] = true
-      respond_with resource, location: main_app.root_path
+      if resource.confirmed_at.nil?
+        session[:user_id] = resource.id
+        respond_with resource, location: main_app.confirmation_path
+      else
+        sign_in(:spree_user, resource)
+        session[:spree_user_signup] = true
+        respond_with resource, location: main_app.root_path
+      end
     else
       clean_up_passwords(resource)
       respond_with(resource) do |format|

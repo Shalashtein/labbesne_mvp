@@ -38,6 +38,7 @@ require("../scripts/dynamicCustomer.js")
 require("../scripts/dynamicStylist.js")
 require("../scripts/unsave.js")
 require("../scripts/vendor.js")
+require("../scripts/reconfirm.js")
 
 import { initMapbox } from '../plugins/init_mapbox';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
@@ -62,6 +63,7 @@ document.addEventListener('turbolinks:load', () => {
   unsave();
   closet_cart();
   vendor();
+  resend_confirmation()
 });
 
 import "controllers"

@@ -3,8 +3,8 @@ class PagesController < ApplicationController
    include Rails.application.routes.url_helpers
   end
   layout :resolve_layout
-  before_action :signinRouter, except: [:landing, :guestSwiped]
-  before_action :setCart, except: [:landing, :guestSwiped]
+  before_action :signinRouter, except: [:landing, :guestSwiped, :confirm_email_signup, :resend_confirmation_email]
+  before_action :setCart, except: [:landing, :guestSwiped, :confirm_email_signup, :resend_confirmation_email]
   before_action :setProducts, only: [:store, :deck, :landing]
   before_action :setStylist, only: [:stylist, :stylist_outfits_area, :stylist_products_area]
   before_action :setOutfitProduct, only: [:stylist, :stylist_outfits_area, :stylist_products_area, :stylist_filter]
@@ -397,11 +397,21 @@ class PagesController < ApplicationController
     render partial: 'pages/partials/outfit_products'
   end
 
+  def resend_confirmation_email
+    user = Spree::User.find(session[:user_id])
+    user.send_confirmation_instructions
+  end
+
   # End of stylist dashboard #############################################################
   #
   # Shared #############################################################
 
   private
+
+  def confirm_email_signup
+
+  end
+
   def signinRouter
     if !spree_user_signed_in?
       redirect_to landing_path
@@ -459,6 +469,8 @@ class PagesController < ApplicationController
     when "landing"
       "landing"
     when "slip"
+      "slip"
+    when "confirm_email_signup"
       "slip"
     else
       "application"

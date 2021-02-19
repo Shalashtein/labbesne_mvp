@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :tracks
 
   get '/touchdown', to: 'pages#landing', as: 'landing'
+  get '/confirm', to: 'pages#confirm_email_signup', as: 'confirmation'
+  get '/reconfirm', to: 'pages#resend_confirmation_email', as: 'resend_confirmation'
   get '/unapproved', to: 'spree/admin/products#unapproved'
   get '/profileforms', to: 'pages#profileRouter', as: 'profile_router'
   get '/profile/measurements', to: 'pages#measurements'
