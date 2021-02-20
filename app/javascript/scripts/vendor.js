@@ -155,7 +155,6 @@ window.vendor_product_pagination = function(){
       $('#new_upload_icon').addClass('hidden')
     });
     $(document).on('ajax:success', "#new_image_form", function(data){
-      alert(data)
       $('#new_product_loader').addClass('hidden')
       $('.vendor_main').load('/vendor/products')
     });
