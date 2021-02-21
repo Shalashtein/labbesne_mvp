@@ -1,5 +1,0 @@
-bump:
-  recurse: false
-  file: 'lib/solidus_reports/version.rb'
-  message: Bump SolidusReports to %{version}
-  branch: true
