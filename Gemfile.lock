@@ -1,6 +1,7 @@
 GIT
-  remote: https://github.com/Shalashtein/solidus_auth_devise.git
-  revision: f6bbe8766a31fac9cfba0d060c825743a0bc3f8b
+  remote: https://github.com/Shalashtein/solidus_auth_devise
+  revision: 8256f25d84426d0e13c03ddac9e9cf93f28c7343
+  branch: master
   specs:
     solidus_auth_devise (2.5.3)
       deface (~> 1.0)
