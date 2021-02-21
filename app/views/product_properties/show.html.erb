@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Spree product property:</strong>
+  <%= @product_property.spree_product_property_id_id %>
+</p>
+
+<p>
+  <strong>Spree user:</strong>
+  <%= @product_property.spree_user_id_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @product_property.value %>
+</p>
+
+<%= link_to 'Edit', edit_product_property_path(@product_property) %> |
+<%= link_to 'Back', product_properties_path %>

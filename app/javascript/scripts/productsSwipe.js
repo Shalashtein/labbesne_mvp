@@ -1,3 +1,12 @@
+window.recommendation_milestone = function(){
+  $('#loading').addClass("hidden");
+  $('#recommendation_skip').click(function(){
+    $.get('/skiprecommendation',function(){
+      $('.dynamic-deck').load('/deck')
+    })
+  })
+}
+
 //----------------------- Products Swipe UI ----------------------
 window.productSwipe = function(){
   $('#loading').addClass("hidden");

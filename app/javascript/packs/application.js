@@ -26,6 +26,7 @@ require("../controllers/index.js")
 // External imports
 import "bootstrap";
 const bootstrap = window.bootstrap = require('bootstrap');
+const ColorThief = require('colorthief');
 
 require("../scripts/lifestyleCollapse.js")
 require("../scripts/populatePage.js")
@@ -50,6 +51,7 @@ require("swing");
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   productSwipe();
+  recommendation_milestone();
   productFilter();
   sidebarToggler();
   lifestyleCollapse()

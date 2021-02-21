@@ -14,5 +14,6 @@ window.populatePage = function(){
   });
   $('.btn-product-specs-save').click(function(){
     $('.fine-submit').click();
+    $('.btn-extract-color').click();
   });
 };

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_152649) do
+ActiveRecord::Schema.define(version: 2021_02_21_134520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,6 +183,16 @@ ActiveRecord::Schema.define(version: 2021_02_15_152649) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["outfit_id"], name: "index_product_outfits_on_outfit_id"
     t.index ["spree_product_id"], name: "index_product_outfits_on_spree_product_id"
+  end
+
+  create_table "product_properties", force: :cascade do |t|
+    t.bigint "spree_product_properties_id", null: false
+    t.bigint "spree_users_id", null: false
+    t.integer "value", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spree_product_properties_id"], name: "index_product_properties_on_spree_product_properties_id"
+    t.index ["spree_users_id"], name: "index_product_properties_on_spree_users_id"
   end
 
   create_table "product_specs", force: :cascade do |t|
@@ -1300,6 +1310,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_152649) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.boolean "milestone", default: false
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true
     t.index ["reset_password_token"], name: "index_spree_users_on_reset_password_token_solidus_auth_devise", unique: true
@@ -1415,6 +1426,8 @@ ActiveRecord::Schema.define(version: 2021_02_15_152649) do
   add_foreign_key "outfits", "spree_users"
   add_foreign_key "product_outfits", "outfits"
   add_foreign_key "product_outfits", "spree_products"
+  add_foreign_key "product_properties", "spree_product_properties", column: "spree_product_properties_id"
+  add_foreign_key "product_properties", "spree_users", column: "spree_users_id"
   add_foreign_key "product_specs", "specs", column: "specs_id"
   add_foreign_key "product_specs", "spree_products"
   add_foreign_key "profile_specs", "profiles", column: "profiles_id"

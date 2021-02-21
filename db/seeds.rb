@@ -15,6 +15,9 @@ Spree::Role.find_or_create_by(name: 'vendor')
 Spree::Property.find_or_create_by(name: 'Brand', presentation: 'Brand')
 Spree::Property.find_or_create_by(name: 'Fabric', presentation: 'Fabric')
 Spree::Property.find_or_create_by(name: 'Sizes', presentation: 'Sizes')
+Spree::Property.find_or_create_by(name: 'Color_1', presentation: 'Color_1')
+Spree::Property.find_or_create_by(name: 'Color_2', presentation: 'Color_2')
+Spree::Property.find_or_create_by(name: 'Color_3', presentation: 'Color_3')
 
 # New Attributes
 Spree::PermittedAttributes.product_attributes << [:vendor]
@@ -23,7 +26,9 @@ Spree::PermittedAttributes.product_attributes << [:image]
 Spree::PermittedAttributes.product_attributes << [:gender]
 Spree::PermittedAttributes.product_attributes << [:test]
 Spree::PermittedAttributes.product_attributes << [:swiped]
+Spree::PermittedAttributes.product_attributes << [:color]
 Spree::PermittedAttributes.user_attributes << [:vendorname]
+Spree::PermittedAttributes.user_attributes << [:milestone]
 Spree::PermittedAttributes.product_attributes << [:vendorSKU]
 
 default_specs = [

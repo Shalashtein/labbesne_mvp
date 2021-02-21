@@ -49,6 +49,8 @@ gem 'appsignal'
 # Barcode  Generator
 gem 'barby'
 gem 'chunky_png'
+
+gem 'camalian', '~> 0.1.1'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

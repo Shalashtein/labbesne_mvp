@@ -14,15 +14,29 @@ class ProductSpecsController < ApplicationController
     @specs = Spec.all
   end
 
+  def saveColor
+    product = Spree::Product.find(params[:product])
+    swatch = getColor(product.images.first.url(:small),3)
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Color_1').id)
+    pp.value = swatch[0]
+    pp.save!
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Color_2').id)
+    pp.value = swatch[1]
+    pp.save!
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Color_3').id)
+    pp.value = swatch[2]
+    pp.save!
+  end
+
   def popsave
-    if !ProductSpec.where(spree_product_id: params[:spree_product_id], specs_id: params[:specs_id]).exists?
+    unless ProductSpec.find_by(spree_product_id: params[:product_spec][:spree_product_id], specs_id: params[:product_spec][:specs_id]).nil?
       product_spec = ProductSpec.new(product_spec_params)
       product_spec.name = Spec.find(product_spec.specs_id).name
       product_spec.value = Spec.find(product_spec.specs_id).value
     end
+    @product = Spree::Product.find(product_spec.spree_product_id)
     respond_to do |format|
       if product_spec.save
-        @product = Spree::Product.find(product_spec.spree_product_id)
         format.html { redirect_to populate_path(spree_product_id: @product.id), notice: 'Product specs updated.' }
         format.json { render :show, status: :created, location: populate_path(spree_product_id: @product.id) }
       else
@@ -103,4 +117,15 @@ class ProductSpecsController < ApplicationController
     def product_spec_params
       params.require(:product_spec).permit(:spree_product_id, :specs_id)
     end
+
+    def getColor(url,num)
+    image = Camalian::load(open(url).path)
+    colors = image.prominent_colors(num)
+    swatch = []
+    colors.each do |c|
+      swatch << c.to_hex.slice(1..-1)
+    end
+    return swatch
+  end
+
 end

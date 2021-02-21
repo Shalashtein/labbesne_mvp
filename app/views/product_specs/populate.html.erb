@@ -4,6 +4,7 @@
       <h2><%= @product.name %></h2>
       <%= image_tag @product.gallery.images.first.url(:large), class: "product_spec_image" %>
       <button class="btn btn-product-specs-save">Save</button>
+      <%= button_to "Extract Color", color_extract_path(product: @product.id), method: :post, remote: true, class: 'btn btn-extract-color hidden' %>
       <%= button_to "Reset", popreset_path(spree_product_id: @product.id), method: :delete, remote: true, class: 'btn btn-product-specs-reset' %>
       <%= button_to "Back", spree.edit_admin_product_path(id: @product.id), method: :get, class: 'btn btn-product-specs-back' %>
     </div>

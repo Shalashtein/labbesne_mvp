@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   layout :resolve_layout
   before_action :signinRouter, except: [:landing, :guestSwiped, :confirm_email_signup, :resend_confirmation_email]
   before_action :setCart, except: [:landing, :guestSwiped, :confirm_email_signup, :resend_confirmation_email]
-  before_action :setProducts, only: [:store, :deck, :landing]
+  before_action :setProducts, only: [:store, :deck, :landing, :recommendation_skip]
   before_action :setStylist, only: [:stylist, :stylist_outfits_area, :stylist_products_area]
   before_action :setOutfitProduct, only: [:stylist, :stylist_outfits_area, :stylist_products_area, :stylist_filter]
 
@@ -60,6 +60,16 @@ class PagesController < ApplicationController
   end
 
   def deck
+    if current_spree_user.milestone == true
+      render partial: 'pages/recommendation_milestone'
+    else
+      render partial: 'pages/partials/deck'
+    end
+  end
+
+  def recommendation_skip
+    current_spree_user.milestone = false
+    current_spree_user.save!
     render partial: 'pages/partials/deck'
   end
 
@@ -67,6 +77,14 @@ class PagesController < ApplicationController
     interaction = Interaction.where(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i, spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
     interaction.save!
     UpdatePreferencesJob.perform_later(params[:data][:product].to_i, current_spree_user.id, params[:data][:action], interaction.id)
+    if current_spree_user.profile.swiped % 100 == 0
+      current_spree_user.milestone = true;
+      current_spree_user.save!
+    end
+  end
+
+  def recommendation_milestone
+
   end
 
   def swipepage
@@ -115,10 +133,6 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.json {render json: interaction.saved}
     end
-  end
-
-  def vendor_update_image
-    Spree::Product.find(params[:p]).images.first.destroy
   end
 
   def updateAddress
@@ -310,6 +324,10 @@ class PagesController < ApplicationController
   end
  end
 
+ def vendor_update_image
+  Spree::Product.find(params[:p]).images.first.destroy
+ end
+
  def create_product
   render partial: 'pages/partials/vendor/new_product'
  end
@@ -429,20 +447,20 @@ class PagesController < ApplicationController
   end
 
   def setProducts
-    @products_sorted = Spree::Product.where(approved: true).except(Spree::Product.where(total_on_hand: 1..)).order(swiped: :desc, id: :desc)
+    @products_sorted = Spree::Product.where(approved: true).order(swiped: :desc, id: :desc)
     filterGender
     if params[:current_page].to_i == @products_sorted.page(1).total_pages
-      @products_sorted = @products_sorted.page(1)
+      @products_sorted = @products_sorted.page(1).per(10)
     else
-      @products_sorted = @products_sorted.page(params[:page])
+      @products_sorted = @products_sorted.page(params[:page]).per(10)
     end
     filterGender
   end
 
   def filterGender
-    if !params[:gender].nil?
+    unless params[:gender].nil?
       gender = params[:gender] == 'male' ? 'Men' : params[:gender] == 'female' ? 'Women' : 'Unisex'
-      if gender != 'Unisex'
+      unless gender == 'Unisex'
         @products_sorted = @products_sorted.where(gender: gender)
       end
     end
@@ -477,6 +495,8 @@ class PagesController < ApplicationController
     when "slip"
       "slip"
     when "confirm_email_signup"
+      "slip"
+    when "recommendation_milestone"
       "slip"
     else
       "application"
