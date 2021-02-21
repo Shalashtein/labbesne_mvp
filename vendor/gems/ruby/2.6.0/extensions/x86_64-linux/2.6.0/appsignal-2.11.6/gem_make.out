@@ -1,0 +1,23 @@
+current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/appsignal-2.11.6/ext
+/home/shalashtein/.rbenv/versions/2.6.6/bin/ruby -I /home/shalashtein/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210222-192145-k6zza5.rb extconf.rb
+checking for -lpthread... yes
+checking for pthread_create()... yes
+checking for -ldl... yes
+checking for dlopen()... yes
+checking for dlclose()... yes
+checking for dlsym()... yes
+checking for appsignal_start() in -lappsignal... yes
+checking for appsignal-agent in /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/appsignal-2.11.6/ext... yes
+creating Makefile
+
+current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/appsignal-2.11.6/ext
+make "DESTDIR=" clean
+
+current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/appsignal-2.11.6/ext
+make "DESTDIR="
+compiling appsignal_extension.c
+linking shared-object appsignal_extension.so
+
+current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/appsignal-2.11.6/ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 appsignal_extension.so ./.gem.20210222-192145-f7xgy9
