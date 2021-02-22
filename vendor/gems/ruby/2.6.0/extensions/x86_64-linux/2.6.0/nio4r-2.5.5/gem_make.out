@@ -1,5 +1,5 @@
 current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/nio4r-2.5.5/ext/nio4r
-/home/shalashtein/.rbenv/versions/2.6.6/bin/ruby -I /home/shalashtein/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210222-192145-13dt55m.rb extconf.rb
+/home/shalashtein/.rbenv/versions/2.6.6/bin/ruby -I /home/shalashtein/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210222-15907-nphxeo.rb extconf.rb
 checking for unistd.h... yes
 checking for linux/aio_abi.h... yes
 checking for linux/io_uring.h... yes
@@ -114,4 +114,4 @@ linking shared-object nio4r_ext.so
 
 current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/nio4r-2.5.5/ext/nio4r
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20210222-192145-1evmt1s
+/usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20210222-15907-1ukn0iq

@@ -1,5 +1,5 @@
 current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/bootsnap-1.7.2/ext/bootsnap
-/home/shalashtein/.rbenv/versions/2.6.6/bin/ruby -I /home/shalashtein/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210222-192145-bemqp7.rb extconf.rb
+/home/shalashtein/.rbenv/versions/2.6.6/bin/ruby -I /home/shalashtein/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210222-15907-1qcw3ih.rb extconf.rb
 creating Makefile
 
 current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/bootsnap-1.7.2/ext/bootsnap
@@ -31,4 +31,4 @@ linking shared-object bootsnap/bootsnap.so
 
 current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/bootsnap-1.7.2/ext/bootsnap
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20210222-192145-9ojne2/bootsnap
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20210222-15907-kire26/bootsnap

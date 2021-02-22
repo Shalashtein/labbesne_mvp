@@ -1,5 +1,5 @@
 current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
-/home/shalashtein/.rbenv/versions/2.6.6/bin/ruby -I /home/shalashtein/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210222-192145-1hlg7vn.rb extconf.rb
+/home/shalashtein/.rbenv/versions/2.6.6/bin/ruby -I /home/shalashtein/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210222-15907-1mrkn44.rb extconf.rb
 checking for ruby/st.h... yes
 checking for st.h... yes
 checking for rb_str_replace() in ruby.h... yes
@@ -52,4 +52,4 @@ linking shared-object msgpack/msgpack.so
 
 current directory: /home/shalashtein/code/Shalashtein/labbesne/vendor/gems/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 msgpack.so ./.gem.20210222-192145-1kgx7lo/msgpack
+/usr/bin/install -c -m 0755 msgpack.so ./.gem.20210222-15907-3e4wpm/msgpack
