@@ -52,3 +52,4 @@ yarn-debug.log*
 
 push
 deploy_production
+/vendor/gems
