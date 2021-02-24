@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/Shalashtein/solidus_auth_devise.git
   revision: 8256f25d84426d0e13c03ddac9e9cf93f28c7343
-  branch: master
   specs:
     solidus_auth_devise (2.5.3)
       deface (~> 1.0)
@@ -14,7 +13,6 @@ GIT
 GIT
   remote: https://github.com/solidusio-contrib/solidus_reports.git
   revision: 23b9f9327bba586109cce6eaa7643f86cbd6be59
-  branch: master
   specs:
     solidus_reports (1.0.0)
       solidus_core (>= 2.5, < 3)
