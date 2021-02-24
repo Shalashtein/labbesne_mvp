@@ -79,6 +79,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'solidus_auth_devise', git: 'https://github.com/Shalashtein/solidus_auth_devise.git', branch: 'master'
-gem 'solidus_reports', git: 'https://github.com/solidusio-contrib/solidus_reports.git', branch: 'master'
+gem 'solidus_auth_devise', github: 'Shalashtein/solidus_auth_devise'
+gem 'solidus_reports', github: 'solidusio-contrib/solidus_reports'
 gem 'solidus_paypal_commerce_platform'
