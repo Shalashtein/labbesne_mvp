@@ -26,7 +26,6 @@ require("../controllers/index.js")
 // External imports
 import "bootstrap";
 const bootstrap = window.bootstrap = require('bootstrap');
-const ColorThief = require('colorthief');
 
 require("../scripts/lifestyleCollapse.js")
 require("../scripts/populatePage.js")
