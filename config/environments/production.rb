@@ -3,10 +3,10 @@ Rails.application.configure do
   # Paperclip => S3
   config.paperclip_defaults = {
   :storage => :s3,
+  :s3_region => 'eu-west-3',
   :s3_credentials => {
     :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
     :secret_access_key => ENV["AWS_SECRET_KEY_ID"],
-    :s3_region => ENV["S3_REGION_NAME"],
     :preserve_files => false
     },
   :bucket => ENV["BUCKET_NAME"]
@@ -32,7 +32,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
@@ -96,6 +96,7 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  config.logger = Logger.new(STDOUT)
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
