@@ -85,4 +85,4 @@ test:
 #   password: <%= ENV['LABBESNE_DATABASE_PASSWORD'] %>
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  url: 'postgres://postgres:POVmilf666!abe@labbesne.c7ekjjzwr5ov.eu-west-3.rds.amazonaws.com:5432/labbesnedb'
