@@ -438,7 +438,9 @@ class PagesController < ApplicationController
 
   def signinRouter
     if !spree_user_signed_in?
-      redirect_to landing_path
+      respond_to do |format|
+        format.html { redirect_to landing_path }
+      end
     end
   end
 
