@@ -18,7 +18,7 @@
     </li>
   <% end %>
 </ul>
-<button class="btn <%= action_name != 'landing' && Interaction.where(spree_product_id: @products_sorted.last.id).any? && Interaction.where(spree_product_id: @products_sorted.last.id).first.saved? ? 'save_product_button_main' : 'save_product_button_main_landing' %>"><%= Interaction.where(spree_product_id: @products_sorted.last.id).any? && Interaction.where(spree_product_id: @products_sorted.last.id).first.saved? ? 'Saved' : 'Save for Later' %></button>
+<button class="btn save_product_button <%= action_name != 'landing' && Interaction.where(spree_product_id: @products_sorted.last.id).any? && Interaction.where(spree_product_id: @products_sorted.last.id).first.saved? ? 'save_product_button_main' : '' %>"><%= Interaction.where(spree_product_id: @products_sorted.last.id).any? && Interaction.where(spree_product_id: @products_sorted.last.id).first.saved? ? 'Saved' : 'Save for Later' %></button>
 
 <% page = @products_sorted.current_page + 1 %>
 <%= link_to 'Next Page', deck_path(page: page, current_page: @products_sorted.current_page),remote: true, class: 'next_deck' %>
