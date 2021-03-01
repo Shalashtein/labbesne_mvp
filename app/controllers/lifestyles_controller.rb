@@ -1,5 +1,5 @@
 class LifestylesController < ApplicationController
-  before_action :set_lifestyle, only: [:show, :edit, :update, :destroy]
+  before_action :set_lifestyle, only: %i[show edit update destroy]
 
   # GET /lifestyles
   # GET /lifestyles.json
@@ -62,13 +62,15 @@ class LifestylesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lifestyle
-      @lifestyle = Lifestyle.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def lifestyle_params
-      params.require(:lifestyle).permit(:profiles_id, :activity_levels_id, :works, :job_types_id, :work_hours, :studies, :study_hours, :social_activities_id, :outdoor_levels_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lifestyle
+    @lifestyle = Lifestyle.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def lifestyle_params
+    params.require(:lifestyle).permit(:profiles_id, :activity_levels_id, :works, :job_types_id, :work_hours,
+                                      :studies, :study_hours, :social_activities_id, :outdoor_levels_id)
+  end
 end

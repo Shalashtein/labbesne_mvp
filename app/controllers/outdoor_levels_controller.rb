@@ -1,5 +1,5 @@
 class OutdoorLevelsController < ApplicationController
-  before_action :set_outdoor_level, only: [:show, :edit, :update, :destroy]
+  before_action :set_outdoor_level, only: %i[show edit update destroy]
 
   # GET /outdoor_levels
   # GET /outdoor_levels.json
@@ -62,13 +62,14 @@ class OutdoorLevelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_outdoor_level
-      @outdoor_level = OutdoorLevel.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def outdoor_level_params
-      params.require(:outdoor_level).permit(:level)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_outdoor_level
+    @outdoor_level = OutdoorLevel.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def outdoor_level_params
+    params.require(:outdoor_level).permit(:level)
+  end
 end

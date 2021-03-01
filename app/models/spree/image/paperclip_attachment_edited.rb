@@ -14,8 +14,8 @@ module Spree::Image::PaperclipAttachmentEdited
                       path: 'labbesne/products/:id/:style/:basename.:extension',
                       convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
     validates_attachment :attachment,
-      presence: true,
-      content_type: { content_type: %w[image/jpeg image/jpg image/png image/gif] }
+                         presence: true,
+                         content_type: { content_type: %w[image/jpeg image/jpg image/png image/gif] }
 
     # save the w,h of the original image (from which others can be calculated)
     # we need to look at the write-queue for images which have not been saved yet
@@ -48,7 +48,8 @@ module Spree::Image::PaperclipAttachmentEdited
     unless attachment.errors.empty?
       # uncomment this to get rid of the less-than-useful interim messages
       # errors.clear
-      errors.add :attachment, "Paperclip returned errors for file '#{attachment_file_name}' - check ImageMagick installation or image source file."
+      errors.add :attachment,
+                 "Paperclip returned errors for file '#{attachment_file_name}' - check ImageMagick installation or image source file."
       false
     end
   end

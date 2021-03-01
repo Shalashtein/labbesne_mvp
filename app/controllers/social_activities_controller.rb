@@ -1,5 +1,5 @@
 class SocialActivitiesController < ApplicationController
-  before_action :set_social_activity, only: [:show, :edit, :update, :destroy]
+  before_action :set_social_activity, only: %i[show edit update destroy]
 
   # GET /social_activities
   # GET /social_activities.json
@@ -62,13 +62,14 @@ class SocialActivitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_social_activity
-      @social_activity = SocialActivity.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def social_activity_params
-      params.require(:social_activity).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_social_activity
+    @social_activity = SocialActivity.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def social_activity_params
+    params.require(:social_activity).permit(:name)
+  end
 end

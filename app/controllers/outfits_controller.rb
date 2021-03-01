@@ -1,5 +1,5 @@
 class OutfitsController < ApplicationController
-  before_action :set_outfit, only: %i[ show edit update destroy ]
+  before_action :set_outfit, only: %i[show edit update destroy]
 
   # GET /outfits or /outfits.json
   def index
@@ -57,13 +57,14 @@ class OutfitsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_outfit
-      @outfit = Outfit.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def outfit_params
-      params.fetch(:outfit, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_outfit
+    @outfit = Outfit.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def outfit_params
+    params.fetch(:outfit, {})
+  end
 end

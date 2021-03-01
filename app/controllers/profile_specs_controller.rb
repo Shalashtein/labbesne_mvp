@@ -1,5 +1,5 @@
 class ProfileSpecsController < ApplicationController
-  before_action :set_profile_spec, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile_spec, only: %i[show edit update destroy]
 
   # GET /profile_specs
   # GET /profile_specs.json
@@ -62,13 +62,14 @@ class ProfileSpecsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile_spec
-      @profile_spec = ProfileSpec.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def profile_spec_params
-      params.require(:profile_spec).permit(:profiles_id, :specs_id, :value)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile_spec
+    @profile_spec = ProfileSpec.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def profile_spec_params
+    params.require(:profile_spec).permit(:profiles_id, :specs_id, :value)
+  end
 end

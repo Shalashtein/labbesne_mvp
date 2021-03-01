@@ -37,7 +37,7 @@ class Spree::UserSessionsController < Devise::SessionsController
         end
         format.js do
           render json: { error: t('devise.failure.invalid') },
-            status: :unprocessable_entity
+                 status: :unprocessable_entity
         end
       end
     end
@@ -59,7 +59,7 @@ class Spree::UserSessionsController < Devise::SessionsController
     I18n.t('spree.login')
   end
 
-  def redirect_back_or_default(default)
+  def redirect_back_or_default(_default)
     if spree_current_user.has_spree_role?(:admin)
       redirect_to '/shop/admin'
     elsif spree_current_user.has_spree_role?(:vendor)
@@ -70,7 +70,7 @@ class Spree::UserSessionsController < Devise::SessionsController
     end
   end
 
-  def after_sign_out_path_for(resource_or_scope)
+  def after_sign_out_path_for(_resource_or_scope)
     main_app.root_path
   end
 

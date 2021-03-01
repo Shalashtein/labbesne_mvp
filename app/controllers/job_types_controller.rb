@@ -1,5 +1,5 @@
 class JobTypesController < ApplicationController
-  before_action :set_job_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_job_type, only: %i[show edit update destroy]
 
   # GET /job_types
   # GET /job_types.json
@@ -62,13 +62,14 @@ class JobTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_job_type
-      @job_type = JobType.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def job_type_params
-      params.require(:job_type).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_job_type
+    @job_type = JobType.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def job_type_params
+    params.require(:job_type).permit(:name)
+  end
 end

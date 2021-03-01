@@ -1,8 +1,7 @@
 module Spree::AddressDecorator
-
   def readonly?
     false
   end
 
-Spree::Address.prepend self
+  Spree::Address.prepend self
 end

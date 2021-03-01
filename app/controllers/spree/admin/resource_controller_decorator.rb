@@ -1,14 +1,11 @@
 module Spree::Admin::ResourceControllerDecorator
-
-    def self.prepended(base)
-      base.rescue_from CanCan::AccessDenied do |exception|
-        if !current_spree_user.spree_roles.any?
-          redirect_to '/'
-        end
-      end
+  def self.prepended(base)
+    base.rescue_from CanCan::AccessDenied do |_exception|
+      redirect_to '/' unless current_spree_user.spree_roles.any?
     end
+  end
 
-   def create
+  def create
     invoke_callbacks(:create, :before)
     image = permitted_resource_params[:image]
     @object.attributes = permitted_resource_params.except(:image)

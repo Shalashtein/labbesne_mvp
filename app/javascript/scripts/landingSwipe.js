@@ -1,6 +1,6 @@
 //----------------------- Products Swipe UI ----------------------
 window.landingSwipe = function(){
-  $(document).on('click', '.save_product_button_main', function(){
+  $(document).on('click', '.save_product_button_main_landing', function(){
     if($(this).hasClass("save_product_button_saved")){
       $(this).removeClass('save_product_button_saved')
       $(this).html('Save for Later')
