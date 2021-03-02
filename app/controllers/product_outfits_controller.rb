@@ -1,5 +1,5 @@
 class ProductOutfitsController < ApplicationController
-  before_action :set_product_outfit, only: %i[ show edit update destroy ]
+  before_action :set_product_outfit, only: %i[show edit update destroy]
 
   # GET /product_outfits or /product_outfits.json
   def index
@@ -57,13 +57,14 @@ class ProductOutfitsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_outfit
-      @product_outfit = ProductOutfit.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_outfit_params
-      params.require(:product_outfit).permit(:spree_product_id, :outfit_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_outfit
+    @product_outfit = ProductOutfit.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_outfit_params
+    params.require(:product_outfit).permit(:spree_product_id, :outfit_id)
+  end
 end

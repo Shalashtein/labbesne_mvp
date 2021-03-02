@@ -1,5 +1,5 @@
 class ProductPropertiesController < ApplicationController
-  before_action :set_product_property, only: %i[ show edit update destroy ]
+  before_action :set_product_property, only: %i[show edit update destroy]
 
   # GET /product_properties or /product_properties.json
   def index
@@ -57,13 +57,14 @@ class ProductPropertiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_property
-      @product_property = ProductProperty.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_property_params
-      params.require(:product_property).permit(:spree_product_property_id_id, :spree_user_id_id, :value)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_property
+    @product_property = ProductProperty.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_property_params
+    params.require(:product_property).permit(:spree_product_property_id_id, :spree_user_id_id, :value)
+  end
 end

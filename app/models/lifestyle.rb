@@ -9,5 +9,4 @@ class Lifestyle < ApplicationRecord
   validates :activity_levels_id, presence: true
   validates :social_activities_id, presence: true
   validates :outdoor_levels_id, presence: true
-
 end

@@ -1,5 +1,5 @@
 class ShirtSizesController < ApplicationController
-  before_action :set_shirt_size, only: [:show, :edit, :update, :destroy]
+  before_action :set_shirt_size, only: %i[show edit update destroy]
 
   # GET /shirt_sizes
   # GET /shirt_sizes.json
@@ -62,13 +62,14 @@ class ShirtSizesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_shirt_size
-      @shirt_size = ShirtSize.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def shirt_size_params
-      params.require(:shirt_size).permit(:size)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_shirt_size
+    @shirt_size = ShirtSize.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def shirt_size_params
+    params.require(:shirt_size).permit(:size)
+  end
 end

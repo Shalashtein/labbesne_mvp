@@ -1,5 +1,5 @@
 class PreregistrationsController < ApplicationController
-  before_action :set_preregistration, only: %i[ show edit update destroy ]
+  before_action :set_preregistration, only: %i[show edit update destroy]
 
   # GET /preregistrations or /preregistrations.json
   def index
@@ -57,13 +57,14 @@ class PreregistrationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_preregistration
-      @preregistration = Preregistration.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def preregistration_params
-      params.require(:preregistration).permit(:email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_preregistration
+    @preregistration = Preregistration.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def preregistration_params
+    params.require(:preregistration).permit(:email)
+  end
 end

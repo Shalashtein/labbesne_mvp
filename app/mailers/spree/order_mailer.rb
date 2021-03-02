@@ -19,7 +19,8 @@ module Spree
     end
 
     def inventory_cancellation_email(order, inventory_units, resend = false)
-      @order, @inventory_units = order, inventory_units
+      @order = order
+      @inventory_units = inventory_units
       @store = @order.store
       subject = build_subject(t('spree.order_mailer.inventory_cancellation.subject'), resend)
 

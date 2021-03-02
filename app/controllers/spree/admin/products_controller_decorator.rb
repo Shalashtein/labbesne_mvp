@@ -1,14 +1,11 @@
 module Spree::Admin::ProductsControllerDecorator
-
   def create
     super
   end
 
   def update
     super
-    if @product.sku.empty?
-      @product.sku = skuGenerator(@product.id)
-    end
+    @product.sku = skuGenerator(@product.id) if @product.sku.empty?
     @product.save
   end
 
@@ -19,6 +16,7 @@ module Spree::Admin::ProductsControllerDecorator
 
   def unapproved
     return @unapproved if @unapproved
+
     @unapproved = Spree::Product.where(approved: false)
   end
 

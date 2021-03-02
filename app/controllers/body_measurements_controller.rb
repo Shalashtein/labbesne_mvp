@@ -1,23 +1,23 @@
 class BodyMeasurementsController < ApplicationController
-  before_action :set_body_measurement, only: [:show, :edit, :update, :destroy]
+  before_action :set_body_measurement, only: %i[show edit update destroy]
 
   # GET /body_measurements
   # GET /body_measurements.json
   def index
-    if !current_spree_user.has_spree_role?(:admin)
-      redirect_to '/profile'
-    else
+    if current_spree_user.has_spree_role?(:admin)
       @body_measurements = BodyMeasurement.all
+    else
+      redirect_to '/profile'
     end
   end
 
   # GET /body_measurements/1
   # GET /body_measurements/1.json
   def show
-    if !current_spree_user.has_spree_role?(:admin)
-      redirect_to '/profile'
-    else
+    if current_spree_user.has_spree_role?(:admin)
       @body_measurements = BodyMeasurement.all
+    else
+      redirect_to '/profile'
     end
   end
 
@@ -70,13 +70,15 @@ class BodyMeasurementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_body_measurement
-      @body_measurement = BodyMeasurement.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def body_measurement_params
-      params.require(:body_measurement).permit(:profiles_id, :body_types_id, :height, :weight, :shirt_size, :pants_size, :shoe_size)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_body_measurement
+    @body_measurement = BodyMeasurement.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def body_measurement_params
+    params.require(:body_measurement).permit(:profiles_id, :body_types_id, :height, :weight, :shirt_size,
+                                             :pants_size, :shoe_size)
+  end
 end

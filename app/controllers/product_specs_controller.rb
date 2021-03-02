@@ -1,5 +1,5 @@
 class ProductSpecsController < ApplicationController
-  before_action :set_product_spec, only: [:show, :edit, :update, :destroy]
+  before_action :set_product_spec, only: %i[show edit update destroy]
 
   # GET /product_specs
   # GET /product_specs.json
@@ -9,27 +9,32 @@ class ProductSpecsController < ApplicationController
 
   def populate
     @product = Spree::Product.find(params[:spree_product_id])
-    @product_type = ProductSpec.where(spree_product_id: params[:spree_product_id], specs_id: Spec.where(name: 'clothing-type')).first
+    @product_type = ProductSpec.where(spree_product_id: params[:spree_product_id],
+                                      specs_id: Spec.where(name: 'clothing-type')).first
     @product_spec = ProductSpec.new
     @specs = Spec.all
   end
 
   def saveColor
     product = Spree::Product.find(params[:product])
-    swatch = getColor(product.images.first.url(:small),3)
-    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Color_1').id)
+    swatch = getColor(product.images.first.url(:small), 3)
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id,
+                                                  property_id: Spree::Property.find_by(name: 'Color_1').id)
     pp.value = swatch[0]
     pp.save!
-    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Color_2').id)
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id,
+                                                  property_id: Spree::Property.find_by(name: 'Color_2').id)
     pp.value = swatch[1]
     pp.save!
-    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id, property_id: Spree::Property.find_by(name: 'Color_3').id)
+    pp = Spree::ProductProperty.find_or_create_by(product_id: product.id,
+                                                  property_id: Spree::Property.find_by(name: 'Color_3').id)
     pp.value = swatch[2]
     pp.save!
   end
 
   def popsave
-    unless ProductSpec.find_by(spree_product_id: params[:product_spec][:spree_product_id], specs_id: params[:product_spec][:specs_id]).nil?
+    unless ProductSpec.find_by(spree_product_id: params[:product_spec][:spree_product_id],
+                               specs_id: params[:product_spec][:specs_id]).nil?
       product_spec = ProductSpec.new(product_spec_params)
       product_spec.name = Spec.find(product_spec.specs_id).name
       product_spec.value = Spec.find(product_spec.specs_id).value
@@ -108,18 +113,19 @@ class ProductSpecsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_spec
-      @product_spec = ProductSpec.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_spec_params
-      params.require(:product_spec).permit(:spree_product_id, :specs_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_spec
+    @product_spec = ProductSpec.find(params[:id])
+  end
 
-    def getColor(url,num)
-    image = Camalian::load(open(url).path)
+  # Only allow a list of trusted parameters through.
+  def product_spec_params
+    params.require(:product_spec).permit(:spree_product_id, :specs_id)
+  end
+
+  def getColor(url, num)
+    image = Camalian.load(open(url).path)
     colors = image.prominent_colors(num)
     swatch = []
     colors.each do |c|
@@ -127,5 +133,4 @@ class ProductSpecsController < ApplicationController
     end
     return swatch
   end
-
 end

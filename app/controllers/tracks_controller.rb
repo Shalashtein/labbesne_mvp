@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :set_track, only: [:show, :edit, :update, :destroy, :vendorRecieved, :vendorSent, :recieved]
+  before_action :set_track, only: %i[show edit update destroy vendorRecieved vendorSent recieved]
 
   # GET /tracks
   # GET /tracks.json
@@ -98,13 +98,15 @@ class TracksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_track
-      @track = Track.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def track_params
-      params.require(:track).permit(:spree_line_item_id, :vendor_recieved, :vendor_sent, :recieved, :spree_user, :quantity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_track
+    @track = Track.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def track_params
+    params.require(:track).permit(:spree_line_item_id, :vendor_recieved, :vendor_sent, :recieved, :spree_user,
+                                  :quantity)
+  end
 end

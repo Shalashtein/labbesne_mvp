@@ -1,5 +1,5 @@
 class ActivityLevelsController < ApplicationController
-  before_action :set_activity_level, only: [:show, :edit, :update, :destroy]
+  before_action :set_activity_level, only: %i[show edit update destroy]
 
   # GET /activity_levels
   # GET /activity_levels.json
@@ -62,13 +62,14 @@ class ActivityLevelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_activity_level
-      @activity_level = ActivityLevel.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def activity_level_params
-      params.require(:activity_level).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_activity_level
+    @activity_level = ActivityLevel.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def activity_level_params
+    params.require(:activity_level).permit(:name)
+  end
 end

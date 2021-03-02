@@ -1,5 +1,5 @@
 class ShoeSizesController < ApplicationController
-  before_action :set_shoe_size, only: [:show, :edit, :update, :destroy]
+  before_action :set_shoe_size, only: %i[show edit update destroy]
 
   # GET /shoe_sizes
   # GET /shoe_sizes.json
@@ -62,13 +62,14 @@ class ShoeSizesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_shoe_size
-      @shoe_size = ShoeSize.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def shoe_size_params
-      params.require(:shoe_size).permit(:EUR)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_shoe_size
+    @shoe_size = ShoeSize.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def shoe_size_params
+    params.require(:shoe_size).permit(:EUR)
+  end
 end
