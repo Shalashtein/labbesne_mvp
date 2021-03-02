@@ -14,3 +14,8 @@ files:
       (cd /var/app/current/ ; runuser -l  ec2-user -c 'yes | ./bin/webpack')
       (cd /var/app/current/ ; runuser -l  ec2-user -c './bin/webpack')
       (cd /var/app/current/ ; runuser -l  ec2-user -c 'bundle exec rails restart')
+      sudo chmod -R 777 .
+      bundle install
+      sudo chmod -R 777 yarn-error.log
+      yarn install
+      ./bin/webpack
