@@ -190,20 +190,20 @@ class PagesController < ApplicationController
   # Customer Dashboard #############################################################
 
   def customer
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').where.not(
+    @orders = Spree::Order.includes([ {line_items: [:variant, :product] }]).where(user_id: current_spree_user.id, state: 'complete').where.not(
       shipment_state: 'shipped', state: 'returned'
     ).order(created_at: :desc)
   end
 
   def customerOrders
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete').where.not(
+    @orders = Spree::Order.includes([ {line_items: [:variant, :product] }]).where(user_id: current_spree_user.id, state: 'complete').where.not(
       shipment_state: 'shipped', state: 'returned'
     ).order(created_at: :desc)
     render partial: 'pages/partials/customer/orders'
   end
 
   def customerProducts
-    @orders = Spree::Order.where(user_id: current_spree_user.id, state: 'complete', shipment_state: 'shipped',
+    @orders = Spree::Order.includes([:line_items]).where(user_id: current_spree_user.id, state: 'complete', shipment_state: 'shipped',
                                  payment_state: 'paid').where.not(state: 'returned').order(created_at: :desc)
     render partial: 'pages/partials/customer/products'
   end
@@ -463,9 +463,8 @@ class PagesController < ApplicationController
   end
 
   def setProducts
-
     if action_name == 'landing'
-      products = Spree::Product.where(approved: true)
+      products = Spree::Product.where(approved: true).includes([{ master: [:default_price]}])
     else
       products = check_new
     end
@@ -533,11 +532,11 @@ class PagesController < ApplicationController
                                                                                 spree_user_id: current_spree_user.id }).or(Spree::Product.includes(:interactions).where(approved: true,
                                                                                                                                                                         interactions: {
                                                                                                                                                                           swiped: nil, spree_user_id: nil
-                                                                                                                                                                        }))
+                                                                                                                                                                        })).includes([{ master: [:default_price]}])
     if new_products.count > 0
       return new_products
     else
-      return Spree::Product.where(approved: true)
+      return Spree::Product.where(approved: true).includes([{ master: [:default_price]}])
     end
   end
 end

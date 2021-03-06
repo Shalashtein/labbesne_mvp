@@ -6,7 +6,7 @@ class UpdatePreferencesJob < ApplicationJob
     p = Spree::Product.find(product_id)
     current_user = Spree::User.find(user_id)
     # grab all the product specifications and map it to a profile spec increasing the value by 1
-    p.product_specs.each do |product_spec|
+    p.product_specs.includes([:specs]).each do |product_spec|
       if ProfileSpec.where(profiles_id: current_user.profile.id, specs_id: product_spec.specs.id).first.nil?
         ps = ProfileSpec.create(profiles_id: current_user.profile.id, specs_id: product_spec.specs.id, value: 0)
         ps.save!

@@ -1,4 +1,16 @@
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.alert         = false
+    Bullet.bullet_logger = true
+    Bullet.console       = true
+  # Bullet.growl         = true
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = true
+  #  Bullet.slack = { webhook_url: 'https://hooks.slack.com/services/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', channel: '#query-optimization', username: 'Labbesne Bullet' }
+    Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Spree::Variant", :association => :default_price
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
