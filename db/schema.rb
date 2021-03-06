@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_134520) do
+ActiveRecord::Schema.define(version: 2021_03_05_135324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,15 @@ ActiveRecord::Schema.define(version: 2021_02_21_134520) do
     t.index ["spree_product_id"], name: "index_product_specs_on_spree_product_id"
   end
 
+  create_table "profile_colors", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.string "color"
+    t.integer "value", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_profile_colors_on_profile_id"
+  end
+
   create_table "profile_specs", force: :cascade do |t|
     t.bigint "profiles_id", null: false
     t.bigint "specs_id", null: false
@@ -222,6 +231,16 @@ ActiveRecord::Schema.define(version: 2021_02_21_134520) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "swiped", default: 0
     t.index ["spree_user_id"], name: "index_profiles_on_spree_user_id"
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.bigint "spree_user_id", null: false
+    t.bigint "spree_product_id", null: false
+    t.float "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spree_product_id"], name: "index_scores_on_spree_product_id"
+    t.index ["spree_user_id"], name: "index_scores_on_spree_user_id"
   end
 
   create_table "social_activities", force: :cascade do |t|
@@ -1311,6 +1330,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_134520) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.boolean "milestone", default: false
+    t.string "score_state", default: "listening"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true
     t.index ["reset_password_token"], name: "index_spree_users_on_reset_password_token_solidus_auth_devise", unique: true
@@ -1430,9 +1450,12 @@ ActiveRecord::Schema.define(version: 2021_02_21_134520) do
   add_foreign_key "product_properties", "spree_users", column: "spree_users_id"
   add_foreign_key "product_specs", "specs", column: "specs_id"
   add_foreign_key "product_specs", "spree_products"
+  add_foreign_key "profile_colors", "profiles"
   add_foreign_key "profile_specs", "profiles", column: "profiles_id"
   add_foreign_key "profile_specs", "specs", column: "specs_id"
   add_foreign_key "profiles", "spree_users"
+  add_foreign_key "scores", "spree_products"
+  add_foreign_key "scores", "spree_users"
   add_foreign_key "spree_products", "spree_users"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"

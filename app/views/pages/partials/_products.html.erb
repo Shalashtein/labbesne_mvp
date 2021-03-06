@@ -1,8 +1,6 @@
 <div class="products-container" data-controller="products">
   <div class="products-container-sidebar">
-    <div class="products-container-sidebar-toggler" data-action="click->products#swipe">
-      Product Info <i class="fa fa-info-circle"></i>
-    </div>
+    <button class="hide-sidebar hide-sidebar-info">Hide</button>
     <div class="products-container-sidebar-header">
       <h1 data-products-target="name">Product Name</h1>
       <h3 data-products-target="price">0.0</h3>
@@ -25,34 +23,57 @@
       <% end %>
     </div>
   </div>
-  <div class="products-section-swiper">
-    <div class="product-filters">
-      <div class="form-check form-switch men-switch">
-        <input class="form-check-input" type="checkbox" id="men-toggler" checked>
-        <label class="form-check-label" for="men-toggler">Men's Clothing</label>
-      </div>
-      <div class="form-check form-switch women-switch">
-        <input class="form-check-input" type="checkbox" id="women-toggler" checked>
-        <label class="form-check-label" for="women-toggler">Women's Clothing</label>
-      </div>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="top-toggler" checked>
-        <label class="form-check-label" for="top-toggler">Show Tops</label>
-      </div>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="pants-toggler" checked>
-        <label class="form-check-label" for="pants-toggler">Show Pants</label>
-      </div>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="shoes-toggler" checked>
-        <label class="form-check-label" for="shoes-toggler">Show Shoes</label>
-      </div>
+  <div class="products-container-settings">
+    <button class="hide-sidebar hide-sidebar-settings">Hide</button>
+    <div class="products-container-sidebar-header">
+      <h1>Settings</h1>
     </div>
+    <div class="products-container-sidebar-body">
+      <ul class="filters_list">
+        <li>
+          <div class="form-check form-switch men-switch">
+            <input class="form-check-input" type="checkbox" id="men-toggler" checked>
+            <label class="form-check-label" for="men-toggler">Men's Clothing</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check form-switch women-switch">
+            <input class="form-check-input" type="checkbox" id="women-toggler" checked>
+            <label class="form-check-label" for="women-toggler">Women's Clothing</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="top-toggler" checked>
+            <label class="form-check-label" for="top-toggler">Show Tops</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="pants-toggler" checked>
+            <label class="form-check-label" for="pants-toggler">Show Pants</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="shoes-toggler" checked>
+            <label class="form-check-label" for="shoes-toggler">Show Shoes</label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="products-section-swiper">
     <div class="dynamic-deck">
       <% if current_spree_user.milestone == true %>
         <%= render partial: 'pages/recommendation_milestone' %>
       <% else %>
         <%= render partial: 'pages/partials/deck' %>
+        <div class="product_buttons">
+          <%= evil_icon 'ei-tag', size: :m, class: 'products-container-sidebar-toggler', data: {action: "click->products#swipe"} %>
+          <%= evil_icon 'ei-gear', size: :m, class: 'products-container-settings-toggler' %>
+          <%= evil_icon 'ei-cart', size: :m, class: 'products-container-cart-toggler' %>
+        </div>
       <% end %>
     </div>
     <div id="loading">
@@ -65,9 +86,6 @@
     </div>
   </div>
   <div class="products-container-cart">
-      <div class="products-container-cart-toggler">
-        <i class="fa fa-shopping-cart"></i> Cart
-      </div>
       <div class="dynamic_cart">
         <%= render partial: '/pages/partials/cart' %>
       </div>

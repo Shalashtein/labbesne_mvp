@@ -1,7 +1,6 @@
 window.dynamicShop = function(){
   $(document).on('ajax:success','.next_deck', {} ,function(e){
     $('#loading').addClass('hidden')
-    //$('.dynamic-deck').load($('.next_deck').attr('href'));
   });
   // Dynamic Add to Cart Button
   $('#add_to_cart').bind('ajax:success', function(e){
@@ -79,9 +78,7 @@ window.dynamicShop = function(){
       $('#map-section').addClass('hidden-map')
       $.post('/popupmessage/?message=orderdone',function(){
         $('.products-container-sidebar').removeClass('sidebar-active')
-        $('.products-container-sidebar-toggler').removeClass('toggler-active')
         $('.products-container-cart').removeClass('cart-active')
-        $('.products-container-cart-toggler').removeClass('toggler-active')
         $('.message_box').removeClass('popup_hidden');
         $('#popup_close').click(function(){
           $('#message_box').addClass('popup_hidden');

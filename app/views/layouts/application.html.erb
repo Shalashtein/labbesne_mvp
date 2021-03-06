@@ -16,6 +16,7 @@
     <% unless controller_name == 'user_sessions' || controller_name == 'user_registrations' %>
       <%= render 'shared/navbar' %>
     <% end %>
+    <%= evil_icons_sprite %>
     <%= yield %>
   </body>
 </html>

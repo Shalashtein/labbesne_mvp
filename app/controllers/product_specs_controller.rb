@@ -33,13 +33,14 @@ class ProductSpecsController < ApplicationController
   end
 
   def popsave
+    product_spec = ProductSpec.new(product_spec_params)
     unless ProductSpec.find_by(spree_product_id: params[:product_spec][:spree_product_id],
                                specs_id: params[:product_spec][:specs_id]).nil?
       product_spec = ProductSpec.new(product_spec_params)
       product_spec.name = Spec.find(product_spec.specs_id).name
       product_spec.value = Spec.find(product_spec.specs_id).value
     end
-    @product = Spree::Product.find(product_spec.spree_product_id)
+    @product = Spree::Product.find(params[:product_spec][:spree_product_id])
     respond_to do |format|
       if product_spec.save
         format.html { redirect_to populate_path(spree_product_id: @product.id), notice: 'Product specs updated.' }
