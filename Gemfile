@@ -51,10 +51,13 @@ gem 'barby'
 gem 'chunky_png'
 
 gem 'camalian', '~> 0.1.1'
+gem 'color'
+gem 'evil_icons'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
+  gem "standard"
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

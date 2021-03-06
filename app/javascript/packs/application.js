@@ -57,7 +57,6 @@ document.addEventListener('turbolinks:load', () => {
   dynamicShop();
   dynamicStylist();
   dynamicCustomer();
-  cartToggler();
   disabledLinks();
   dynamicCustomer();
   populatePage();

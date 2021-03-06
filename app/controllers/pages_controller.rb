@@ -31,21 +31,6 @@ class PagesController < ApplicationController
   # Profile Router #############################################################
 
   def profileRouter
-    @measurements_progress = if current_spree_user.profile.body_measurement.nil?
-                               0
-                             else
-                               100
-                             end
-    @lifestyle_progress = if current_spree_user.profile.lifestyle.nil?
-                            0
-                          else
-                            100
-                          end
-    @info_progress = if current_spree_user.profile.info.nil?
-                       0
-                     else
-                       100
-                     end
   end
 
   # End of profile router #############################################################
@@ -59,6 +44,7 @@ class PagesController < ApplicationController
 
   def deck
     if current_spree_user.milestone == true
+      UpdateScoresJob.perform_later(current_spree_user.id)
       render partial: 'pages/recommendation_milestone'
     else
       render partial: 'pages/partials/deck'
@@ -76,7 +62,8 @@ class PagesController < ApplicationController
                                     spree_user_id: current_spree_user.id).first || Interaction.create(spree_product_id: params[:data][:product].to_i,
                                                                                                       spree_user_id: current_spree_user.id, swiped: false, like_count: 0, dislike_count: 0, expanded: false, bought: false)
     interaction.save!
-    UpdatePreferencesJob.perform_later(params[:data][:product].to_i, current_spree_user.id, params[:data][:action],
+    UpdatePreferencesJob.perform_later(params[:data][:product].to_i,
+                                       current_spree_user.id, params[:data][:action],
                                        interaction.id)
     if current_spree_user.profile.swiped % 100 == 0
       current_spree_user.milestone = true
@@ -476,7 +463,8 @@ class PagesController < ApplicationController
   end
 
   def setProducts
-    @products_sorted = Spree::Product.where(approved: true).order(swiped: :desc, id: :desc)
+    products = check_new
+    @products_sorted = products.order(created_at: :desc)
     filterGender
     if params[:current_page].to_i == @products_sorted.page(1).total_pages
       @products_sorted = @products_sorted.page(1).per(10)
@@ -531,6 +519,20 @@ class PagesController < ApplicationController
       "slip"
     else
       "application"
+    end
+  end
+
+  def check_new
+    new_products = Spree::Product.includes(:interactions).where(approved: true,
+                                                                interactions: { swiped: false,
+                                                                                spree_user_id: current_spree_user.id }).or(Spree::Product.includes(:interactions).where(approved: true,
+                                                                                                                                                                        interactions: {
+                                                                                                                                                                          swiped: nil, spree_user_id: nil
+                                                                                                                                                                        }))
+    if new_products.count > 0
+      return new_products
+    else
+      return Spree::Product.where(approved: true)
     end
   end
 end

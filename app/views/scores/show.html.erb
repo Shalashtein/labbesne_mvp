@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Spree user:</strong>
+  <%= @score.spree_user_id %>
+</p>
+
+<p>
+  <strong>Spree product:</strong>
+  <%= @score.spree_product_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @score.value %>
+</p>
+
+<%= link_to 'Edit', edit_score_path(@score) %> |
+<%= link_to 'Back', scores_path %>

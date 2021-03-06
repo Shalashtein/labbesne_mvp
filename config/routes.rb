@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :scores
+  resources :profile_colors
   resources :product_properties
   resources :preregistrations
   resources :interactions

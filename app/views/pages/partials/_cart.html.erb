@@ -1,17 +1,19 @@
 <div class="products-container-cart-header">
-  <h1 data-products-target="name">Cart</h1><%= link_to "empty", empty_cart_path(order_id: @order.id), remote: true, method: :delete, class: "empty_cart" %>
-
+  <button class="hide-sidebar hide-sidebar-cart">Hide</button>
+  <div><h1 data-products-target="name">Cart</h1><%= link_to "empty", empty_cart_path(order_id: @order.id), remote: true, method: :delete, class: "empty_cart" %></div>
   <h3 data-products-target="price"><%= "#{@order.total.to_i} LBP" %></h3>
 </div>
 <div class="products-container-cart-body">
   <ul class="cart-items">
     <% @order.line_items.each do |li| %>
       <li class="cart-line-item">
-        <div class="cart-line-item-name">
-          <%= link_to "remove", remove_item_path(item_id: li.id), remote: true, method: :delete, class: "remove_item" %>
+        <div>
+          <div class="cart-line-item-name">
           <%= li.product.name %>
           </div>
-        <div class="cart-line-item-price"><%= "#{li.product.price} x #{li.quantity}" %></div>
+          <div class="cart-line-item-price"><%= "#{li.product.price} x #{li.quantity}" %></div>
+          </div>
+        <%= link_to "x", remove_item_path(item_id: li.id), remote: true, method: :delete, class: "remove_item" %>
       </li>
       <hr>
     <% end %>
