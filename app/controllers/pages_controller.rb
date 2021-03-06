@@ -463,7 +463,12 @@ class PagesController < ApplicationController
   end
 
   def setProducts
-    products = check_new
+
+    if action_name == 'landing'
+      products = Spree::Product.where(approved: true)
+    else
+      products = check_new
+    end
     @products_sorted = products.order(created_at: :desc)
     filterGender
     if params[:current_page].to_i == @products_sorted.page(1).total_pages
