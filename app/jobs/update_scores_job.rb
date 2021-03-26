@@ -1,15 +1,13 @@
 class UpdateScoresJob < ApplicationJob
   queue_as :default
+  include Colorscore
 
   def perform(user_id)
     user = Spree::User.find(user_id)
     # grab the unswiped products or all approved products if all have been swiped
     products = Spree::Product.includes(:interactions).where(approved: true,
                                                             interactions: { swiped: false,
-                                                                            spree_user_id: user.id }).or(Spree::Product.includes(:interactions).where(approved: true,
-                                                                                                                                                      interactions: {
-                                                                                                                                                        swiped: nil, spree_user_id: nil
-                                                                                                                                                      }))
+                                                                            spree_user_id: user.id })
     products = Spree::Product.where(approved: true) if products.count == 0
 
     # Grab max profile spec value to use in normalization

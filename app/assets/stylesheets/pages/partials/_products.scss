@@ -288,21 +288,22 @@ body::-webkit-scrollbar-thumb {
     }
   }
   &-body{
-    height:60%;
+    height:40%;
     width: 100%;
     padding: 5px;
     padding-right: 10px;
     color: rgba(10,10,10,0.8);
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     color: ghostwhite;
   }
   &-footer{
     width: 100%;
     padding: 10px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     #checkout-btn{
       background-color: blue;
       color: #b5b5e0;

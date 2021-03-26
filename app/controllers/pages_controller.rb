@@ -31,6 +31,9 @@ class PagesController < ApplicationController
   # Profile Router #############################################################
 
   def profileRouter
+    @info = current_spree_user.profile.info || Info.new
+    @body_measurement = current_spree_user.profile.body_measurement || BodyMeasurement.new
+    @lifestyle = current_spree_user.profile.lifestyle || Lifestyle.new
   end
 
   # End of profile router #############################################################
@@ -234,12 +237,12 @@ class PagesController < ApplicationController
   # Vendor Dashboard #############################################################
 
   def vendor
-    @shipments = Spree::Shipment.where(stock_location_id: current_spree_user.stock_locations.first.id,
+    @shipments = Spree::Shipment.includes([:inventory_units, { line_items: [:variant, {product: [:master]}] }]).where(stock_location_id: current_spree_user.stock_locations.first.id,
                                        state: "pending").joins(:order).where(spree_orders: { state: 'complete' }).order(created_at: :asc)
   end
 
   def vendor_orders
-    @shipments = Spree::Shipment.where(stock_location_id: current_spree_user.stock_locations.first.id,
+    @shipments = Spree::Shipment.includes([:inventory_units, { line_items: [:variant, {product: [:master]}] }]).where(stock_location_id: current_spree_user.stock_locations.first.id,
                                        state: "pending").joins(:order).where(spree_orders: { state: 'complete' }).order(created_at: :asc)
     render partial: 'pages/partials/vendor/orders'
   end
@@ -527,12 +530,9 @@ class PagesController < ApplicationController
   end
 
   def check_new
-    new_products = Spree::Product.includes(:interactions).where(approved: true,
-                                                                interactions: { swiped: false,
-                                                                                spree_user_id: current_spree_user.id }).or(Spree::Product.includes(:interactions).where(approved: true,
+    new_products = Spree::Product.includes(:interactions).where(approved: true, interactions: { swiped: false, spree_user_id: current_spree_user.id }).or(Spree::Product.includes(:interactions).where(approved: true,
                                                                                                                                                                         interactions: {
-                                                                                                                                                                          swiped: nil, spree_user_id: nil
-                                                                                                                                                                        })).includes([{ master: [:default_price]}])
+                                                                                                                                                                          swiped: nil})).includes([{ master: [:default_price]}])
     if new_products.count > 0
       return new_products
     else

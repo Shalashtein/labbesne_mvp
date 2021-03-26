@@ -8,7 +8,7 @@ class BodyMeasurement < ApplicationRecord
                      numericality: { greater_than_or_equal_to: 60, less_than_or_equal_to: 260, message: "Please enter the correct height in cm" }
   validates :weight, presence: :true,
                      numericality: { greater_than_or_equal_to: 30, less_than_or_equal_to: 260, message: "Please enter the correct weight in kg" }
-  validates :shirt_size, presence: :true, inclusion: { in: %w[XS S M L XL XXL],
+  validates :shirt_size, presence: :true, inclusion: { in: %w[XXS XS S M L XL XXL XXXL XXXXL],
                                                        message: "%{value} is not a valid size" }
   validates :pants_size, presence: :true,
                          numericality: { greater_than_or_equal_to: 26, less_than_or_equal_to: 60, message: "Please enter the correct pants size" }

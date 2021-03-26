@@ -1,34 +1,289 @@
+<div id="profile_loader_block">
+  <%= evil_icon 'ei-spinner-3', size: :m, class: 'profile_spinner' %>
+  <p>Saving...</p>
+</div>
 <div class="container-profile-router">
-  <div class="container-links">
-    <%= link_to new_info_path do %>
-      <div class="router-link-info">
-        <% if current_spree_user.profile.info.nil? %>
-          <i class="fas fa-address-card"></i>
-        <% else %>
-          <i class="fas fa-check-circle"></i>
-        <% end %>
-        <p>Basic Info</p>
+  <div id="profile_forms_slider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#profile_forms_slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#profile_forms_slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" id="body_type_indicator" data-bs-target="#profile_forms_slider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#profile_forms_slider" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#profile_forms_slider" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button type="button" data-bs-target="#profile_forms_slider" data-bs-slide-to="5" aria-label="Slide 6"></button>
+      <button type="button" data-bs-target="#profile_forms_slider" data-bs-slide-to="6" aria-label="Slide 7"></button>
+      <button type="button" data-bs-target="#profile_forms_slider" data-bs-slide-to="7" aria-label="Slide 8"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="false">
+        <div class="slider_inner_container">
+          <div class="slider_inner_container_items">
+            <h2>Clothing you're interested in</h2>
+            <%= simple_form_for(@info, remote: true) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <h1><%= f.object.errors[:base].to_sentence %></h1>
+            <%= f.association :profiles, as: :hidden, input_html: { value: current_spree_user.profile.id } %>
+            <div class="gender-selector">
+              <div class="gender-selector-block gender-selector-men">
+                <i class="fa fa-mars gender-icon"></i>
+                <h3>Men's</h3>
+              </div>
+              <div class="gender-selector-block gender-selector-women">
+                <i class="fa fa-venus gender-icon"></i>
+                <h3>Women's</h3>
+              </div>
+            </div>
+            <%= f.input :gender, as: :hidden, collection: ['Male', 'Female'], input_html: {class: "gender_input_slider"}  %>
+          </div>
+        </div>
       </div>
-    <% end %>
-    <%= link_to new_body_measurement_path, disabled: current_spree_user.profile.info.nil? do %>
-      <div class="router-link-measurements">
-        <% if current_spree_user.profile.body_measurement.nil? %>
-          <i class="fas fa-ruler-combined"></i>
-        <% else %>
-          <i class="fas fa-check-circle"></i>
-        <% end %>
-        <p>Measurements</p>
+      <div class="carousel-item" data-bs-interval="false">
+        <div class="slider_inner_container">
+          <div class="slider_inner_container_items">
+            <%= f.input :name, label: false, input_html: { placeholder: "Full Name", class: 'info_slide_2_inputs' }  %>
+            <h4>Birthday</h4>
+            <%= f.input :dob, label: false, start_year: Date.today.year - 50, end_year: Date.today.year - 10, input_html: { class: 'info_slide_2_inputs' } %>
+            <%= f.input :phone, label: false, input_html: { oninvalid: "this.setCustomValidity('Please enter an 8 digit Lebanese mobile number, this way we can contact you in case of any problem with your orders')",type: 'tel', pattern: '(03|71|76|78)([0-9]{6})', oninput: "setCustomValidity('')", placeholder: "Phone Number", class: 'info_slide_2_inputs' } %>
+            <%= f.button :submit, 'Next', class: 'profile_info_submit' %>
+            <% end %>
+          </div>
+        </div>
       </div>
-    <% end %>
-    <%= link_to new_lifestyle_path, disabled: current_spree_user.profile.body_measurement.nil? do %>
-      <div class="router-link-lifestyle" >
-        <% if current_spree_user.profile.lifestyle.nil? %>
-          <i class="fas fa-glass-cheers"></i>
-        <% else %>
-          <i class="fas fa-check-circle"></i>
-        <% end %>
-        <p>Lifestyle</p>
+      <div class="carousel-item" data-bs-interval="false">
+        <div class="slider_inner_container">
+          <div class="slider_inner_container_items" id="body_type_form">
+            <%= simple_form_for(@body_measurement, remote: true) do |f| %>
+            <%= f.association :profiles, as: :hidden, input_html: { value: current_spree_user.profile.id } %>
+            <%= f.association :body_types, as: :hidden %>
+            <div class="body_type_list body_type_list_men body_type_list_hidden">
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'triangle').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/triangle-man.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/triangle-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Triangle</h3>
+                  <h6>Broader Hips</h6>
+                </div>
+              </div>
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'inverted').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/inverted-man.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/inverted-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Inverted</h3>
+                  <h6>Broader Shoulders</h6>
+                </div>
+              </div>
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'hourglass').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/hourglass-man.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/hourglass-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Hourglass</h3>
+                  <h6>Broader Shoulders and Hips</h6>
+                </div>
+              </div>
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'diamond').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/diamond-man.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/diamond-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Diamond</h3>
+                  <h6>Broader Waist</h6>
+                </div>
+              </div>
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'uniform').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/uniform-man.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/uniform-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Uniform</h3>
+                <h6>Shoulders, Waist, and Hips Align</h6>
+                </div>
+              </div>
+            </div>
+            <!--                                  -->
+            <div class="body_type_list body_type_list_hidden body_type_list_women">
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'triangle').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/triangle.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/triangle-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Triangle</h3>
+                  <h6>Broader Hips</h6>
+                </div>
+              </div>
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'inverted').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/inverted.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/inverted-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Inverted</h3>
+                  <h6>Broader Shoulders</h6>
+                </div>
+              </div>
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'hourglass').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/hourglass.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/hourglass-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Hourglass</h3>
+                  <h6>Broader Shoulders and Hips</h6>
+                </div>
+              </div>
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'diamond').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/diamond.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/diamond-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Diamond</h3>
+                  <h6>Broader Waist</h6>
+                </div>
+              </div>
+              <div class="body_image_group" data-body="<%= BodyType.find_by(name: 'uniform').id %>">
+                <div class="body_image_group_images">
+                  <%= image_tag 'body_types/uniform.png', class: 'body_image_model' %>
+                  <%= image_tag 'body_types/uniform-icon.png', class: 'body_image_icon' %>
+                </div>
+                <div class="body_image_group_text">
+                  <h3>Uniform</h3>
+                <h6>Shoulders, Waist, and Hips Align</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    <% end %>
+      <div class="carousel-item" data-bs-interval="false">
+        <div class="slider_inner_container">
+          <div class="slider_inner_container_items">
+            <h2>Shirt Size</h2>
+            <div class="shirt_size_container">
+              <div class="shirt_size_box" value="XXS">
+                <h3>XXS</h3>
+              </div>
+              <div class="shirt_size_box" value="XS">
+                <h3>XS</h3>
+              </div>
+              <div class="shirt_size_box" value="S">
+                <h3>S</h3>
+              </div>
+              <div class="shirt_size_box" value="M">
+                <h3>M</h3>
+              </div>
+              <div class="shirt_size_box" value="L">
+                <h3>L</h3>
+              </div>
+              <div class="shirt_size_box" value="XL">
+                <h3>XL</h3>
+              </div>
+              <div class="shirt_size_box" value="XXL">
+                <h3>XXL</h3>
+              </div>
+              <div class="shirt_size_box" value="XXXL">
+                <h3>XXXL</h3>
+              </div>
+              <div class="shirt_size_box" value="XXXXL">
+                <h3>XXXXL</h3>
+              </div>
+            </div>
+            <div class="height_weight_inputs">
+              <%= f.input :height, label: 'Height (cm)', input_html: { min: '80', max: '200', step: 1, step: 1 } %>
+              <%= f.input :weight, label: 'Weight (kg)', input_html: { min: '30', max: '200', step: 1, step: 1 } %>
+            </div>
+            <div class="height_weight_inputs">
+              <%= f.input :pants_size, label: 'Pants Size (EU)', input_html: { min: '32', max: '64', step: '1'} %>
+              <%= f.input :shoe_size, label: 'Shoe Size (EU)', input_html: { min: '32', max: '52', step: '0.5'} %>
+            </div>
+            <%= f.input :shirt_size, as: :hidden, collection: ['XXS', 'XS','S','M','L','XL','XXL', 'XXXL', 'XXXXL'] %>
+            <div class="form-actions">
+              <%= f.button :submit, "Next", class: "btn_profile_next btn_profile_measurements_submit" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="false">
+        <div class="slider_inner_container">
+          <div class="slider_inner_container_items">
+            <%= simple_form_for(@lifestyle) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.association :profiles, as: :hidden, input_html: { value: current_spree_user.profile.id } %>
+              <%= f.association :activity_levels, as: :hidden, label: "How physically active are you?" %>
+            </div>
+            <h2>How physically active are you?</h2>
+            <div class="text_choice_list">
+              <% ActivityLevel.all.each do |al| %>
+              <% text =  al.name[0..al.name.index('(')-2] %>
+              <h4 data-lifestyle="activity" class="text_choice_list_item" value="<%= al.id %>"><%= text.split(' ')[0] %><br><%= text.split(' ')[1] %></h4>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="false">
+        <div class="slider_inner_container">
+          <div class="slider_inner_container_items">
+            <div class="form-inputs">
+              <%= f.association :social_activities, as: :hidden, label: "How social are you?" %>
+            </div>
+            <h2>How social are you?</h2>
+            <div class="text_choice_list">
+              <% SocialActivity.all.each do |al| %>
+              <% text =  al.name %>
+              <h4 data-lifestyle="social" class="text_choice_list_item" value="<%= al.id %>"><%= text.split(' ')[0] %><br><%= text.split(' ')[1] %></h4>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="false">
+        <div class="slider_inner_container">
+          <div class="slider_inner_container_items">
+            <div class="form-inputs">
+               <%= f.association :outdoor_levels, as: :hidden, label: "Do you like outdoor activities?" %>
+            </div>
+            <h2>How outgoing are you?</h2>
+            <div class="text_choice_list">
+              <% OutdoorLevel.all.each do |al| %>
+              <% text =  al.level[0..al.level.index('(')-2] %>
+              <h4 data-lifestyle="outdoor" class="text_choice_list_item" value="<%= al.id %>"><%= text.split(' ')[0] %><br><%= text.split(' ')[1] %></h4>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="false">
+        <div class="slider_inner_container">
+          <div class="slider_inner_container_items">
+            <div class="lifestyle_state">
+              <h4>I </h4><input type="checkbox" id="works_check" class="lifestyle_state_check"><h4>work</h4><input type="checkbox" id="studies_check" class="lifestyle_state_check"><h4>study</h4>
+            </div>
+              <%= f.input :works, label: false, input_html: {class: 'hidden'} %>
+              <%= f.association :job_types, label: "How's your job like?", selected: 6 %>
+              <%= f.input :work_hours, label: "Hours spent working per week" %>
+              <%= f.input :studies, label: false, input_html: {class: 'hidden'} %>
+              <%= f.input :study_hours, label: "Hours spent at school per week", selected: 6 %>
+            <div class="form-actions">
+              <%= f.button :submit, "Save and Return", class: "lifestyle_submit" %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

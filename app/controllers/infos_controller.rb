@@ -44,6 +44,7 @@ class InfosController < ApplicationController
         end
         format.html { redirect_to profile_router_path, notice: 'Info saved.' }
         format.json { render :show, status: :created, location: @info }
+        format.js { head :ok}
       else
         format.html { render :new }
         format.json { render json: @info.errors, status: :unprocessable_entity }
@@ -57,7 +58,8 @@ class InfosController < ApplicationController
     respond_to do |format|
       if @info.update(info_params)
         format.html { redirect_to profile_router_path, notice: 'Info updated.' }
-        format.json { render :show, status: :ok, location: @info }
+        format.json { render json: @info.to_json, status: :ok }
+        format.js { head :ok}
       else
         format.html { render :edit }
         format.json { render json: @info.errors, status: :unprocessable_entity }

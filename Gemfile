@@ -52,7 +52,10 @@ gem 'chunky_png'
 
 gem 'camalian', '~> 0.1.1'
 gem 'color'
+gem 'colorscore'
 gem 'evil_icons'
+
+gem 'fastclick-rails'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

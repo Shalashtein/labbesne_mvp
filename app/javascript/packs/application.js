@@ -26,10 +26,11 @@ require("../controllers/index.js")
 // External imports
 import "bootstrap";
 const bootstrap = window.bootstrap = require('bootstrap');
+const FastClick = window.FastClick = require('fastclick');
 
 require("../scripts/lifestyleCollapse.js")
 require("../scripts/populatePage.js")
-require("../scripts/disabledLinks.js")
+require("../scripts/profile.js")
 require("../scripts/productsSwipe.js")
 require("../scripts/productFilters.js")
 require("../scripts/sidebarTogglers.js")
@@ -48,6 +49,9 @@ require("swing");
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
+  $(function() {
+    FastClick.attach(document.body);
+  });
   initMapbox();
   productSwipe();
   recommendation_milestone();
@@ -57,7 +61,7 @@ document.addEventListener('turbolinks:load', () => {
   dynamicShop();
   dynamicStylist();
   dynamicCustomer();
-  disabledLinks();
+  profile();
   dynamicCustomer();
   populatePage();
   unsave();

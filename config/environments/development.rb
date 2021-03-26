@@ -7,7 +7,7 @@ Rails.application.configure do
   # Bullet.growl         = true
     Bullet.rails_logger  = true
     Bullet.add_footer    = true
-  #  Bullet.slack = { webhook_url: 'https://hooks.slack.com/services/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', channel: '#query-optimization', username: 'Labbesne Bullet' }
+  #  Bullet.slack = { webhook_url: ENV['SLACK_QUERY_WEBHOOK'], channel: '#query-optimization', username: 'Labbesne Bullet' }
     Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Spree::Variant", :association => :default_price
   end
 

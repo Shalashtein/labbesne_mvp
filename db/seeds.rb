@@ -76,7 +76,7 @@ unless Spree::User.where(email: "vendor@labbesne.com").exists?
   end
 end
 
-body_types = ['V Shape', 'Pear Shape', 'Rectangle Shape', 'Oval Shape', 'Hourglass Shape']
+body_types = ['triangle', 'inverted', 'hourglass', 'diamond', 'uniform']
 
 body_types.each do |bt|
   if !BodyType.where(name: bt).exists?

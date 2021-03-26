@@ -127,7 +127,7 @@ class ProductSpecsController < ApplicationController
 
   def getColor(url, num)
     image = Camalian.load(open(url).path)
-    colors = image.prominent_colors(num)
+    colors = image.prominent_colors(num, quantization: Camalian::QUANTIZATION_K_MEANS)
     swatch = []
     colors.each do |c|
       swatch << c.to_hex.slice(1..-1)

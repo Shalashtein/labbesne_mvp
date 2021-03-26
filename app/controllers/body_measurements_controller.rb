@@ -38,6 +38,7 @@ class BodyMeasurementsController < ApplicationController
       if @body_measurement.save
         format.html { redirect_to profile_router_path, notice: 'Measurements Saved' }
         format.json { render :show, status: :created, location: @body_measurement }
+        format.js { head :ok}
       else
         format.html { render :new }
         format.json { render json: @body_measurement.errors, status: :unprocessable_entity }
@@ -52,6 +53,7 @@ class BodyMeasurementsController < ApplicationController
       if @body_measurement.update(body_measurement_params)
         format.html { redirect_to profile_router_path, notice: 'Measurements updated.' }
         format.json { render :show, status: :ok, location: @body_measurement }
+        format.js { head :ok}
       else
         format.html { render :edit }
         format.json { render json: @body_measurement.errors, status: :unprocessable_entity }
