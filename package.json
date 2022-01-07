@@ -22,7 +22,11 @@
     "stimulus": "^2.0.0",
     "swing": "^3.1.4",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.0.0"
+    "webpack": "^4.0.0",
+    "yarn": "^1.22.17"
+  },
+  "engines": {
+    "node": "14.17.6"
   },
   "version": "0.1.0",
   "devDependencies": {
