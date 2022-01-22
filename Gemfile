@@ -43,9 +43,6 @@ gem 'solidus'
 # Upload images to Cloudinary
 gem 'paperclip-cloudinary'
 
-# Monitoring
-gem 'appsignal'
-
 # Barcode  Generator
 gem 'barby'
 gem 'chunky_png'

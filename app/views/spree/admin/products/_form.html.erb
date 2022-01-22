@@ -216,11 +216,9 @@
 
           <% if current_spree_user.has_spree_role?(:admin) %>
 
-          <% unless @product.product_specs.empty? %>
-            <%= f.field_container :approved do %>
-              <%= f.label :approved, "Approved?" %>
-              <%= f.check_box :approved %>
-            <% end %>
+          <%= f.field_container :approved do %>
+            <%= f.label :approved, "Approved?" %>
+            <%= f.check_box :approved %>
           <% end %>
           <%= f.field_container :test do %>
             <%= f.label :test, "Test Product?" %>

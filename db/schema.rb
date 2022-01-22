@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 2021_03_05_135324) do
     t.float "shoe_size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "gender"
     t.index ["body_types_id"], name: "index_body_measurements_on_body_types_id"
     t.index ["profiles_id"], name: "index_body_measurements_on_profiles_id"
   end
@@ -109,11 +108,11 @@ ActiveRecord::Schema.define(version: 2021_03_05_135324) do
   create_table "interactions", force: :cascade do |t|
     t.bigint "spree_product_id", null: false
     t.bigint "spree_user_id", null: false
-    t.boolean "expanded"
-    t.boolean "swiped"
+    t.boolean "expanded", default: false
+    t.boolean "swiped", default: false
     t.integer "like_count"
     t.integer "dislike_count"
-    t.boolean "bought"
+    t.boolean "bought", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "saved", default: false
@@ -236,7 +235,7 @@ ActiveRecord::Schema.define(version: 2021_03_05_135324) do
   create_table "scores", force: :cascade do |t|
     t.bigint "spree_user_id", null: false
     t.bigint "spree_product_id", null: false
-    t.float "value"
+    t.float "value", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["spree_product_id"], name: "index_scores_on_spree_product_id"

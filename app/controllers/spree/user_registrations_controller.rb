@@ -13,6 +13,7 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(spree_user_params)
+    resource.confirmed_at = Time.now # Hack to get it running
     if resource.save
       p = Profile.new
       p.spree_user_id = resource.id
