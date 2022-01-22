@@ -26,6 +26,9 @@
     "webpack": "^4.0.0",
     "yarn": "^1.22.17"
   },
+  "engines": {
+    "node": "14.17.6"
+  },
   "version": "0.1.0",
   "devDependencies": {
     "webpack-cli": "^4.5.0",
